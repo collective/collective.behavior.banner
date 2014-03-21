@@ -1,0 +1,43 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.behavior.teaser">
+
+    <!-- Zope2 initialization -->
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <!-- Include configuration for dependencies listed in setup.py -->
+    <includeDependencies package="." />
+
+    <!-- Include sub-packages that use their own configure.zcml files. -->
+    <include package=".browser" />
+
+    <!-- Register all components defined with grok -->
+    <grok:grok package="." />
+
+    <!-- Register the installation GenericSetup extension profile -->
+    <genericsetup:registerProfile
+        name="default"
+        title="collective.behavior.teaser"
+        directory="profiles/default"
+        description="Extension profile for collective.behavior.teaser."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <include package="plone.behavior" file="meta.zcml"/>
+
+    <plone:behavior
+      title="Teaser"
+      description="A teaser consits of various fields that can be used as a teaser or combined to a slider"
+      provides=".teaser.ITeaser"
+      factory=".teaser.Teaser"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".teaser.ITeaser"
+      />
+
+</configure>

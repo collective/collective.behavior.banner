@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from collective.behavior.teaser.browser.controlpanel import ITeaserSettingsSchema
+from collective.behavior.teaser.browser.controlpanel import \
+    ITeaserSettingsSchema
 from collective.behavior.teaser.teaser import ITeaser
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase

@@ -1,8 +1,8 @@
-====================
-collective.behavior.teaser
-====================
 
-A behavior to create sliders with teasers
+collective.behavior.teaser
+==========================
+
+A behavior to create teasers and sliders from teasers
 
 * `Source code @ GitHub <https://github.com/starzel/collective.behavior.teaser>`_
 * `Releases @ PyPI <http://pypi.python.org/pypi/collective.behavior.teaser>`_
@@ -12,7 +12,17 @@ A behavior to create sliders with teasers
 How it works
 ============
 
-...
+Enable the behavior in ``<your_package>/profiles/default/types/Folder.xml``
+
+.. code:: xml
+
+    <?xml version="1.0"?>
+    <object name="Folder" meta_type="Dexterity FTI">
+     <property name="behaviors" purge="False">
+      <element value="collective.behavior.teaser.teaser.ITeaser"/>
+     </property>
+    </object>
+
 
 
 Installation

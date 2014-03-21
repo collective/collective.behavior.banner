@@ -9,7 +9,7 @@ class ITeaserSettingsSchema(Interface):
 
     types = schema.List(
         title=u'Types',
-        description=u'Types that should show teasers inherited from their parents-folders',
+        description=_(u'Types displaying inherited teasers'),
         required=False,
         value_type=schema.Choice(
             vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes',

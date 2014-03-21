@@ -1,0 +1,21 @@
+.teaser_container {
+    background-color: #ddd;
+    margin-bottom: 1em;
+}
+
+.teaser_inner_container {
+    display: table-row;
+}
+
+.teaser_image_container {
+    float: left;
+}
+
+.teaser_image_container img {
+    height: auto;
+}
+
+.teaser_content_container {
+    float: left;
+    padding: 1em;
+}

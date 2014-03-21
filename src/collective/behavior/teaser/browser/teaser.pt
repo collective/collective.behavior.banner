@@ -1,16 +1,18 @@
-<tal:block tal:define="teaser view/teaser"
+<tal:block tal:define="teaser view/teaser;
+                       portal_url context/@@plone_portal_state/portal_url"
            tal:condition="teaser">
 <div tal:define="has_image python:teaser.has_key('teaser_image')"
-     class="header-startpage">
-
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-right-reset"
+     tal:attributes="class python:'teaser_container' if has_image else 'teaser_container teaser_without_image'"
+     class="teaser_container">
+  <div class="teaser_inner_container">
+    <div class="teaser_image_container"
          tal:condition="has_image">
-        <div class="teaser-img">
-            <img class="img-responsive"
-                 tal:attributes="src teaser/teaser_image">
+        <div class="">
+            <img class="teaser_image"
+                 tal:attributes="src string:${teaser/teaser_image}/preview">
         </div>
     </div>
-    <div tal:attributes="class python: 'col-xs-12 col-sm-8 col-md-8 col-lg-8 padding-left-reset' if has_image else 'col-xs-12 col-sm-12 col-md-12 col-lg-12'">
+    <div class="teaser_content_container">
         <div class="teaser-verlauf">
             <h1 tal:condition="python:teaser.has_key('teaser_title')"
                 tal:content="teaser/teaser_title">
@@ -26,5 +28,10 @@
             </p>
         </div>
     </div>
+  </div>
+
 </div>
+
+<link media="screen" tal:attributes="href string:${portal_url}/++resource++collective.behavior.teaser/teaser.css" type="text/css" rel="stylesheet">
+
 </tal:block>

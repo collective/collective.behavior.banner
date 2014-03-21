@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from collective.behavior.teaser.browser.controlpanel import ITeaserSettingsSchema
 from collective.behavior.teaser.teaser import ITeaser
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 
 class TeaserViewlet(ViewletBase):
     """ A viewlet which renders the teaser """
 
     def find_teaser(self):
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(ITeaserSettingsSchema)
+        types = settings.types
         context = aq_inner(self.context)
         # first handle the obj itself
         if ITeaser.providedBy(context):
@@ -20,6 +26,9 @@ class TeaserViewlet(ViewletBase):
             if context.teaser_stop_inheriting:
                 return False
             # if all the fields are empty and inheriting is not stopped
+        if context.portal_type not in types:
+            return False
+        context = context.__parent__
 
         # we walk up the path
         while True:
@@ -31,6 +40,8 @@ class TeaserViewlet(ViewletBase):
                 if teaser:
                     return teaser
             if INavigationRoot.providedBy(context):
+                return False
+            if context.portal_type not in types:
                 return False
             context = context.__parent__
 

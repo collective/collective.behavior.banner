@@ -24,4 +24,13 @@
       permission="zope2.View"
       />
 
+    <include package="Products.CMFCore" file="permissions.zcml" />
+
+    <browser:page
+        name="teaser_configlet"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.TeaserSettingsControlPanel"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

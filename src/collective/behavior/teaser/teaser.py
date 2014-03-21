@@ -8,6 +8,8 @@ from plone.supermodel import model
 from zope import schema
 from zope.component import adapts
 from zope.interface import alsoProvides, implements
+from plone.formwidget.contenttree import ObjPathSourceBinder
+from z3c.relationfield.schema import RelationChoice
 
 from collective.behavior.teaser import _
 
@@ -18,26 +20,28 @@ class ITeaser(model.Schema):
         'teaser',
         label=u"Teaser",
         fields=[
-            'teaser_display',
-            'teaser_inherit',
+            'teaser_hide',
+            'teaser_stop_inheriting',
             'teaser_image',
             'teaser_title',
             'teaser_description',
             'teaser_text',
+            'teaser_link',
         ]
     )
 
-    teaser_display = schema.Bool(
-        title=_(u"Show Teaser"),
-        description=u"",
-        default=True,
+    teaser_hide = schema.Bool(
+        title=_(u"Hide Teaser"),
+        description=_(u"This does not show the teaser for this item."),
+        default=False,
         required=False,
     )
 
-    teaser_inherit = schema.Bool(
-        title=_(u"Inherit Teaser from parent folder"),
-        description=u"",
-        default=True,
+    teaser_stop_inheriting = schema.Bool(
+        title=_(u"Do not inherit Teaser from parents"),
+        description=_(
+            u"This stops inheriting teasers for this item and all children."),
+        default=False,
         required=False,
     )
 
@@ -65,6 +69,12 @@ class ITeaser(model.Schema):
         required=False,
     )
 
+    teaser_link = RelationChoice(
+        title=_(u"Teaser Link"),
+        description=u"",
+        source=ObjPathSourceBinder(),
+        required=False,
+    )
 
 alsoProvides(ITeaser, IFormFieldProvider)
 

@@ -1,61 +1,51 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-# from Acquisition import aq_parent
-# from collective.behaviors.teaser.teaser import ITeaser
-from plone.app.layout.viewlets import ViewletBase
-# from zope.component import getMultiAdapter
+from collective.behavior.teaser.teaser import ITeaser
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.layout.viewlets import ViewletBase
 
 
 class TeaserViewlet(ViewletBase):
     """ A viewlet which renders the teaser """
 
-    # def update(self):
-    #     self.available = True if self.context.teaser_image else False
-
-    def teaser(self):
-        teaser = {}
-        obj = aq_inner(self.context)
-        while not hasattr(obj, 'teaser_display'):
-            if INavigationRoot.providedBy(obj):
+    def find_teaser(self):
+        context = aq_inner(self.context)
+        # first handle the obj itself
+        if ITeaser.providedBy(context):
+            if context.teaser_hide:
                 return False
+            teaser = self.teaser(context)
+            if teaser:
+                return teaser
+            if context.teaser_stop_inheriting:
+                return False
+            # if all the fields are empty and inheriting is not stopped
 
-            if obj.teaser_display:
-                break
+        # we walk up the path
+        while True:
+            if ITeaser.providedBy(context):
+                # we have a teaser. check.
+                if context.teaser_stop_inheriting:
+                    return False
+                teaser = self.teaser(context)
+                if teaser:
+                    return teaser
+            if INavigationRoot.providedBy(context):
+                return False
+            context = context.__parent__
 
-            if obj.teaser_inherit:
-                obj = obj.aq_parent
+        return False
 
-        if obj.teaser_display is False:
-            return False
-
+    def teaser(self, obj):
+        """ return teaser of this object """
+        teaser = {}
         if getattr(obj, 'teaser_image', False):
-            teaser['teaser_image'] = '%s/@@images/teaser_image' % obj.absolute_url()
-
+            teaser['teaser_image'] = '%s/@@images/teaser_image' \
+                % obj.absolute_url()
         if obj.teaser_title:
             teaser['teaser_title'] = obj.teaser_title
         if obj.teaser_description:
             teaser['teaser_description'] = obj.teaser_description
         if obj.teaser_text:
             teaser['teaser_text'] = obj.teaser_text.output
-
         return teaser
-
-        # context = aq_inner(self.context)
-        # if not getattr(context, 'teaser_header', None):
-        #     context_state = getMultiAdapter(
-        #         (context, self.request), name=u"plone_context_state")
-        #     if not context_state.is_default_page():
-        #         return False
-        #     else:
-        #         context = aq_parent(context)
-        #         if not getattr(context, 'teaser_header', None):
-        #             return False
-        # result = {}
-        # result['teaser_header'] = context.teaser_header
-        # result['teaser_subtitle'] = context.teaser_subtitle
-        # body = context.teaser_body
-        # result['teaser_body'] = body.output if body else False
-        # result['has_image'] = getattr(context, 'image', False)
-        # result['teaser_base_url'] = context.absolute_url()
-        # return result

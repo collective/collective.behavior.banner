@@ -1,4 +1,4 @@
-<tal:block tal:define="teaser view/teaser;
+<tal:block tal:define="teaser view/find_teaser;
                        portal_url context/@@plone_portal_state/portal_url"
            tal:condition="teaser">
 <div tal:define="has_image python:teaser.has_key('teaser_image')"

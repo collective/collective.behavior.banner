@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Acquisition import aq_parent
-from dgbbw.site.behaviors.teaser import ITeaser
+# from Acquisition import aq_parent
+# from collective.behaviors.teaser.teaser import ITeaser
 from plone.app.layout.viewlets import ViewletBase
-from zope.component import getMultiAdapter
+# from zope.component import getMultiAdapter
 from plone.app.layout.navigation.interfaces import INavigationRoot
 
 

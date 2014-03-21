@@ -60,4 +60,9 @@ class TeaserViewlet(ViewletBase):
             teaser['teaser_description'] = obj.teaser_description
         if obj.teaser_text:
             teaser['teaser_text'] = obj.teaser_text.output
+        if obj.teaser_link:
+            to_obj = obj.teaser_link.to_object
+            if to_obj:
+                teaser['teaser_link'] = to_obj.absolute_url()
+                teaser['teaser_link_title'] = to_obj.Title()
         return teaser

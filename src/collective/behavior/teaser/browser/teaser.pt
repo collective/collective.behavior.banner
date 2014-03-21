@@ -8,8 +8,12 @@
     <div class="teaser_image_container"
          tal:condition="has_image">
         <div class="">
+          <a href="#"
+             tal:attributes="href teaser/teaser_link"
+             tal:omit-tag="not:teaser/teaser_link">
             <img class="teaser_image"
                  tal:attributes="src string:${teaser/teaser_image}/preview">
+          </a>
         </div>
     </div>
     <div class="teaser_content_container">

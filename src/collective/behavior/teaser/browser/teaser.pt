@@ -10,7 +10,7 @@
         <div class="">
           <a href="#"
              tal:attributes="href teaser/teaser_link"
-             tal:omit-tag="not:teaser/teaser_link">
+             tal:omit-tag="python:not teaser.has_key('teaser_link')">
             <img class="teaser_image"
                  tal:attributes="src string:${teaser/teaser_image}/preview">
           </a>

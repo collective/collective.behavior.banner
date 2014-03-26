@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<layers>
-  <layer
-    name="collective.behavior.teaser"
-    interface="collective.behavior.teaser.interfaces.ICollectiveTeaserLayer"
-  />
-</layers>

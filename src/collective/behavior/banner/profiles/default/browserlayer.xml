@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="collective.behavior.banner"
+    interface="collective.behavior.banner.interfaces.ICollectiveBannerLayer"
+  />
+</layers>

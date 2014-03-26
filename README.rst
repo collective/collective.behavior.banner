@@ -1,13 +1,13 @@
 
-collective.behavior.teaser
+collective.behavior.banner
 ==========================
 
-A behavior to create teasers and sliders from teasers
+A behavior to create banners and sliders from banners
 
-* `Source code @ GitHub <https://github.com/starzel/collective.behavior.teaser>`_
-* `Releases @ PyPI <http://pypi.python.org/pypi/collective.behavior.teaser>`_
-* `Documentation @ ReadTheDocs <http://collectivebehaviorteaser.readthedocs.org>`_
-* `Continuous Integration @ Travis-CI <http://travis-ci.org/collective/collective.behavior.teaser>`_
+* `Source code @ GitHub <https://github.com/starzel/collective.behavior.banner>`_
+* `Releases @ PyPI <http://pypi.python.org/pypi/collective.behavior.banner>`_
+* `Documentation @ ReadTheDocs <http://collectivebehaviorbanner.readthedocs.org>`_
+* `Continuous Integration @ Travis-CI <http://travis-ci.org/collective/collective.behavior.banner>`_
 
 How it works
 ============
@@ -19,7 +19,7 @@ Enable the behavior in ``<your_package>/profiles/default/types/Folder.xml``
     <?xml version="1.0"?>
     <object name="Folder" meta_type="Dexterity FTI">
      <property name="behaviors" purge="False">
-      <element value="collective.behavior.teaser.teaser.ITeaser"/>
+      <element value="collective.behavior.banner.banner.Ibanner"/>
      </property>
     </object>
 
@@ -28,9 +28,9 @@ Enable the behavior in ``<your_package>/profiles/default/types/Folder.xml``
 Installation
 ============
 
-To install `collective.behavior.teaser` you simply add ``collective.behavior.teaser``
+To install `collective.behavior.banner` you simply add ``collective.behavior.banner``
 to the list of eggs in your buildout, run buildout and restart Plone.
-Then, install `collective.behavior.teaser` using the Add-ons control panel.
+Then, install `collective.behavior.banner` using the Add-ons control panel.
 
 
 Configuration

@@ -5,11 +5,11 @@ from zope import schema
 from zope.interface import Interface
 
 
-class ITeaserSettingsSchema(Interface):
+class IBannerSettingsSchema(Interface):
 
     types = schema.List(
         title=u'Types',
-        description=_(u'Types displaying inherited teasers'),
+        description=_(u'Types displaying inherited banners'),
         required=False,
         value_type=schema.Choice(
             vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes',
@@ -27,18 +27,18 @@ class ITeaserSettingsSchema(Interface):
     )
 
 
-class TeaserSettingsEditForm(controlpanel.RegistryEditForm):
+class BannerSettingsEditForm(controlpanel.RegistryEditForm):
 
-    schema = ITeaserSettingsSchema
-    label = _(u"Teaser settings")
+    schema = IBannerSettingsSchema
+    label = _(u"Banner settings")
     description = _(u"""""")
 
     def updateFields(self):
-        super(TeaserSettingsEditForm, self).updateFields()
+        super(BannerSettingsEditForm, self).updateFields()
 
     def updateWidgets(self):
-        super(TeaserSettingsEditForm, self).updateWidgets()
+        super(BannerSettingsEditForm, self).updateWidgets()
 
 
-class TeaserSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
-    form = TeaserSettingsEditForm
+class BannerSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
+    form = BannerSettingsEditForm

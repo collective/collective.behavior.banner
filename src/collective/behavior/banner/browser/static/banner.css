@@ -1,21 +1,21 @@
-.teaser_container {
+.banner_container {
     background-color: #ddd;
     margin-bottom: 1em;
 }
 
-.teaser_inner_container {
+.banner_inner_container {
     display: table-row;
 }
 
-.teaser_image_container {
+.banner_image_container {
     float: left;
 }
 
-.teaser_image_container img {
+.banner_image_container img {
     height: auto;
 }
 
-.teaser_content_container {
+.banner_content_container {
     float: left;
     padding: 1em;
 }

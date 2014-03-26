@@ -6,7 +6,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="collective.behavior.teaser">
+    i18n_domain="collective.behavior.banner">
 
     <!-- Zope2 initialization -->
     <five:registerPackage package="." initialize=".initialize" />
@@ -23,21 +23,21 @@
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
         name="default"
-        title="collective.behavior.teaser"
+        title="collective.behavior.banner"
         directory="profiles/default"
-        description="Extension profile for collective.behavior.teaser."
+        description="Extension profile for collective.behavior.banner."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
     <include package="plone.behavior" file="meta.zcml"/>
 
     <plone:behavior
-      title="Teaser"
-      description="A teaser consits of various fields that can be used as a teaser or combined to a slider"
-      provides=".teaser.ITeaser"
-      factory=".teaser.Teaser"
+      title="banner"
+      description="A banner consits of various fields that can be used as a banner or combined to a slider"
+      provides=".banner.IBanner"
+      factory=".banner.Banner"
       for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".teaser.ITeaser"
+      marker=".banner.IBanner"
       />
 
 </configure>

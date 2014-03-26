@@ -11,76 +11,76 @@ from zope.interface import alsoProvides, implements
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from z3c.relationfield.schema import RelationChoice
 
-from collective.behavior.teaser import _
+from collective.behavior.banner import _
 
 
-class ITeaser(model.Schema):
+class IBanner(model.Schema):
 
     form.fieldset(
-        'teaser',
-        label=u"Teaser",
+        'banner',
+        label=u"Banner",
         fields=[
-            'teaser_hide',
-            'teaser_stop_inheriting',
-            'teaser_image',
-            'teaser_title',
-            'teaser_description',
-            'teaser_text',
-            'teaser_link',
+            'banner_hide',
+            'banner_stop_inheriting',
+            'banner_image',
+            'banner_title',
+            'banner_description',
+            'banner_text',
+            'banner_link',
         ]
     )
 
-    teaser_hide = schema.Bool(
-        title=_(u"Hide Teaser"),
-        description=_(u"This does not show the teaser for this item."),
+    banner_hide = schema.Bool(
+        title=_(u"Hide banner"),
+        description=_(u"This does not show the banner for this item."),
         default=False,
         required=False,
     )
 
-    teaser_stop_inheriting = schema.Bool(
-        title=_(u"Do not inherit Teaser from parents"),
+    banner_stop_inheriting = schema.Bool(
+        title=_(u"Do not inherit banner from parents"),
         description=_(
-            u"This stops inheriting teasers for this item and all children."),
+            u"This stops inheriting banners for this item and all children."),
         default=False,
         required=False,
     )
 
-    teaser_image = namedfile.NamedBlobImage(
-        title=_(u"Teaser Image"),
+    banner_image = namedfile.NamedBlobImage(
+        title=_(u"Banner Image"),
         description=u"",
         required=False,
     )
 
-    teaser_title = schema.TextLine(
-        title=_(u"Teaser Title"),
+    banner_title = schema.TextLine(
+        title=_(u"Banner Title"),
         description=u"",
         required=False,
     )
 
-    teaser_description = schema.Text(
-        title=_(u"Teaser Subtitle"),
+    banner_description = schema.Text(
+        title=_(u"Banner Subtitle"),
         description=u"",
         required=False,
     )
 
-    teaser_text = RichText(
-        title=_(u"Teaser Text"),
+    banner_text = RichText(
+        title=_(u"Banner Text"),
         description=u"",
         required=False,
     )
 
-    teaser_link = RelationChoice(
-        title=_(u"Teaser Link"),
+    banner_link = RelationChoice(
+        title=_(u"Banner Link"),
         description=u"",
         source=ObjPathSourceBinder(),
         required=False,
     )
 
-alsoProvides(ITeaser, IFormFieldProvider)
+alsoProvides(IBanner, IFormFieldProvider)
 
 
-class Teaser(object):
-    implements(ITeaser)
+class Banner(object):
+    implements(IBanner)
     adapts(IDexterityContent)
 
     def __init__(self, context):

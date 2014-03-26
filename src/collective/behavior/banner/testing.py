@@ -15,21 +15,21 @@ from plone.testing import z2
 import unittest2 as unittest
 
 
-class Collective.behavior.teaserLayer(PloneSandboxLayer):
+class CollectiveBannerLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
-        import collective.behavior.teaser
-        self.loadZCML(package=collective.behavior.teaser)
-        z2.installProduct(app, 'collective.behavior.teaser')
+        import collective.behavior.banner
+        self.loadZCML(package=collective.behavior.banner)
+        z2.installProduct(app, 'collective.behavior.banner')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
-        applyProfile(portal, 'collective.behavior.teaser:default')
+        applyProfile(portal, 'collective.behavior.banner:default')
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
@@ -43,14 +43,14 @@ class Collective.behavior.teaserLayer(PloneSandboxLayer):
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        z2.uninstallProduct(app, 'collective.behavior.teaser')
+        z2.uninstallProduct(app, 'collective.behavior.banner')
 
 
-FIXTURE = Collective.behavior.teaserLayer()
+FIXTURE = CollectiveBannerLayer()
 INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="ICollectiveTeaserLayer:Integration")
+    bases=(FIXTURE,), name="ICollectiveBannerLayer:Integration")
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name="ICollectiveTeaserLayer:Functional")
+    bases=(FIXTURE,), name="ICollectiveBannerLayer:Functional")
 
 
 class IntegrationTestCase(unittest.TestCase):

@@ -3,14 +3,27 @@ from Acquisition import aq_inner
 from collective.behavior.banner.browser.controlpanel import \
     IBannerSettingsSchema
 from collective.behavior.banner.banner import IBanner
+from collective.behavior.banner.slider import ISlider
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 
+import random
 
 class BannerViewlet(ViewletBase):
     """ A viewlet which renders the banner """
+
+    banner_template = ViewPageTemplateFile('banner.pt')
+    slider_template = ViewPageTemplateFile('slider.pt')
+
+    def index(self):
+        context = aq_inner(self.context)
+        if ISlider.providedBy(context) and len(context.slider_relation) > 1:
+            return self.slider_template()
+        else:
+            return self.banner_template()
 
     def find_banner(self):
         registry = getUtility(IRegistry)
@@ -66,3 +79,17 @@ class BannerViewlet(ViewletBase):
                 banner['banner_link'] = to_obj.absolute_url()
                 banner['banner_link_title'] = to_obj.Title()
         return banner
+
+
+    def random_banner(self):
+        context = aq_inner(self.context)
+        banners = []
+        raw_banners = context.slider_relation
+        for banner in raw_banners:
+            banner = banner.to_object
+            banners.append(self.banner(banner))
+
+        self.scroll = len(banners) > 1
+
+        random.shuffle(banners)
+        return banners

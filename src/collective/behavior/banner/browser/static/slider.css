@@ -1,4 +1,3 @@
-
 #slider {
     margin-bottom: 1em;
 }
@@ -15,66 +14,66 @@
 	position: absolute;
 	}
 
-.items .teaser {
+.items .banner {
     float: left;
     margin-bottom: 1em;
     }
 
-.teaser {
+.banner {
 	width: 695px;
 	height: 200px;
 	}
 
-.teaserImage {
+.bannerImage {
     position: absolute;
 }
 
-.teaserImage img {
+.bannerImage img {
     border-radius: 7px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
 }
 
-.teaserText-black,
-.teaserText-white,
-.teaserText-blue,
-.teaserText-darkgrey,
-.teaserText-lightgrey {
+.bannerText-black,
+.bannerText-white,
+.bannerText-blue,
+.bannerText-darkgrey,
+.bannerText-lightgrey {
 	position: relative;
 	padding: 1em;
 	}
 
-.teaserTitle {
+.bannerTitle {
 	font-size: 150%;
 	font-weight: bold;
 	margin-bottom: 0.5em;
 	}
 
-.teaserDescription {
+.bannerDescription {
 	font-weight: bold;
 	width: 425px;
 	margin-bottom: 0.5em;
 	}
 
-.teaserText-black,
-.teaserText-black a { color: #000 !important; }
+.bannerText-black,
+.bannerText-black a { color: #000 !important; }
 
-.teaserText-white,
-.teaserText-white a { color: #fff !important; }
+.bannerText-white,
+.bannerText-white a { color: #fff !important; }
 
-.teaserText-blue,
-.teaserText-blue a { color: #205C90 !important; }
+.bannerText-blue,
+.bannerText-blue a { color: #205C90 !important; }
 
-.teaserText-darkgrey,
-.teaserText-darkgrey a { color: #666 !important; }
+.bannerText-darkgrey,
+.bannerText-darkgrey a { color: #666 !important; }
 
-.teaserText-lightgrey,
-.teaserText-lightgrey a { color: #ddd !important; }
+.bannerText-lightgrey,
+.bannerText-lightgrey a { color: #ddd !important; }
 
-.teaserLink a,
-.teaserLink a:visited {
+.bannerLink a,
+.bannerLink a:visited {
 	border: none !important;
 	text-decoration: underline !important;
 	}
 
-.teaserLink a:hover { text-decoration: none !important; }
+.bannerLink a:hover { text-decoration: none !important; }

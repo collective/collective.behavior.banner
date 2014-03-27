@@ -18,7 +18,6 @@
       name="collective.bannerviewlet"
       for="plone.dexterity.interfaces.IDexterityContent"
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-      template="banner.pt"
       class=".viewlets.BannerViewlet"
       layer="..interfaces.ICollectiveBannerLayer"
       permission="zope2.View"

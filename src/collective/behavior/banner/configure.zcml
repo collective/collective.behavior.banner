@@ -40,4 +40,13 @@
       marker=".banner.IBanner"
       />
 
+    <plone:behavior
+      title="slider"
+      description="Add a relation to the banner for slider function"
+      provides=".slider.ISlider"
+      factory=".slider.Slider"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".slider.ISlider"
+      />
+
 </configure>

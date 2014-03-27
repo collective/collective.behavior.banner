@@ -38,6 +38,7 @@ setup(
     install_requires=[
         'Plone',
         'setuptools',
+        'plone.app.dexterity [relations]',
     ],
     entry_points="""
     [z3c.autoinclude.plugin]

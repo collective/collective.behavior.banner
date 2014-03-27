@@ -8,7 +8,7 @@
     enabled="1" expression=""/>
 
  <stylesheet title=""
-    id="++resource++collective.behavior.banner/teaser.css"
+    id="++resource++collective.behavior.banner/banner.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""/>

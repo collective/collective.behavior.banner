@@ -80,6 +80,7 @@ class IBanner(model.Schema):
     banner_fontcolor = schema.TextLine(
         title=_(u"Fontcolor on the teaser"),
         description=_(u'Color for headings and texts as webcolor'),
+        required=False,
     )
 
 

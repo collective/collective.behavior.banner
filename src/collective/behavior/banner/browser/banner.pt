@@ -36,6 +36,4 @@
 
 </div>
 
-<link media="screen" tal:attributes="href string:${portal_url}/++resource++collective.behavior.banner/banner.css" type="text/css" rel="stylesheet">
-
 </tal:block>

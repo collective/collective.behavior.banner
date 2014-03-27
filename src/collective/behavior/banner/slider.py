@@ -2,14 +2,14 @@
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.directives import form
-from plone.app.textfield import RichText
-from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
 from zope.component import adapts
 from zope.interface import alsoProvides, implements
 from plone.formwidget.contenttree import ObjPathSourceBinder
-from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationChoice, RelationList
+
+from collective.behavior.banner.banner import IBanner
 
 from collective.behavior.banner import _
 
@@ -20,7 +20,7 @@ class ISlider(model.Schema):
         'slider',
         label=u"Slider",
         fields=[
-            'banner_link',
+            'slider_relation',
         ]
     )
 

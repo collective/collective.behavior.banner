@@ -11,7 +11,10 @@
 
         <tal:loop tal:repeat="banner banners">
 
-            <div class="banner" tal:define="has_image python:banner.has_key('banner_image')">
+            <div class="banner"
+                 tal:define="has_image python:banner.has_key('banner_image');
+                             has_fontcolor python:banner.has_key('banner_fontcolor');
+                             fontcolor python:has_fontcolor and banner.banner_fontcolor or '#FFF'">
 
 
                 <div class="bannerImage"
@@ -19,11 +22,12 @@
                         <img class="bannerImageImage"
                              tal:attributes="src string:${banner/banner_image}/preview">
                 </div>
-                <div class="bannerText-black">
+                <div class="bannerText">
 
                     <div class="bannerTitle"
+                         tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:banner.has_key('banner_title')">
-                        <span tal:replace="banner/banner_title" />
+                        <span tal:replace="banner/banner_title">Title</span>
                     </div>
 
                     <div class="bannerDescription"

@@ -27,6 +27,7 @@ class IBanner(model.Schema):
             'banner_description',
             'banner_text',
             'banner_link',
+            'banner_fontcolor',
         ]
     )
 
@@ -75,6 +76,12 @@ class IBanner(model.Schema):
         source=ObjPathSourceBinder(),
         required=False,
     )
+
+    banner_fontcolor = schema.TextLine(
+        title=_(u"Fontcolor on the teaser"),
+        description=_(u'Color for headings and texts as webcolor'),
+    )
+
 
 alsoProvides(IBanner, IFormFieldProvider)
 

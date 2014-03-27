@@ -34,46 +34,27 @@
     -moz-border-radius: 7px;
 }
 
-.bannerText-black,
-.bannerText-white,
-.bannerText-blue,
-.bannerText-darkgrey,
-.bannerText-lightgrey {
+.bannerText {
 	position: relative;
 	padding: 1em;
-	}
+}
 
 .bannerTitle {
 	font-size: 150%;
 	font-weight: bold;
 	margin-bottom: 0.5em;
-	}
+}
 
 .bannerDescription {
 	font-weight: bold;
 	width: 425px;
 	margin-bottom: 0.5em;
-	}
-
-.bannerText-black,
-.bannerText-black a { color: #000 !important; }
-
-.bannerText-white,
-.bannerText-white a { color: #fff !important; }
-
-.bannerText-blue,
-.bannerText-blue a { color: #205C90 !important; }
-
-.bannerText-darkgrey,
-.bannerText-darkgrey a { color: #666 !important; }
-
-.bannerText-lightgrey,
-.bannerText-lightgrey a { color: #ddd !important; }
+}
 
 .bannerLink a,
 .bannerLink a:visited {
 	border: none !important;
 	text-decoration: underline !important;
-	}
+}
 
 .bannerLink a:hover { text-decoration: none !important; }

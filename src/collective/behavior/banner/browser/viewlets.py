@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.behavior.banner.banner import IBanner
 from collective.behavior.banner.browser.controlpanel import \
     IBannerSettingsSchema
-from collective.behavior.banner.banner import IBanner
 from collective.behavior.banner.slider import ISlider
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 
 import random
+
 
 class BannerViewlet(ViewletBase):
     """ A viewlet which renders the banner """
@@ -20,10 +21,10 @@ class BannerViewlet(ViewletBase):
 
     def index(self):
         context = aq_inner(self.context)
-        if ISlider.providedBy(context) and len(context.slider_relation) > 1:
-            return self.slider_template()
-        else:
-            return self.banner_template()
+        if ISlider.providedBy(context):
+            if context.slider_relation and len(context.slider_relation) > 1:
+                return self.slider_template()
+        return self.banner_template()
 
     def find_banner(self):
         registry = getUtility(IRegistry)
@@ -81,7 +82,6 @@ class BannerViewlet(ViewletBase):
         if obj.banner_fontcolor:
             banner['banner_fontcolor'] = obj.banner_fontcolor
         return banner
-
 
     def random_banner(self):
         context = aq_inner(self.context)

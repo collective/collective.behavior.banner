@@ -40,6 +40,9 @@ setup(
         'setuptools',
         'plone.app.dexterity [relations]',
         'plone.directives.form',
+        'plone.formwidget.contenttree',
+        'plone.app.relationfield',
+        'z3c.relationfield'
     ],
     entry_points="""
     [z3c.autoinclude.plugin]

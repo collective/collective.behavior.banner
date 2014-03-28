@@ -36,36 +36,14 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'five.grok',
-        'five.pt',
-        'Pillow',
         'Plone',
-        'plone.api',
         'setuptools',
-        'z3c.jbot',
+        'plone.app.dexterity [relations]',
+        'plone.directives.form',
+        'plone.formwidget.contenttree',
+        'plone.app.relationfield',
+        'z3c.relationfield'
     ],
-    extras_require={
-        'test': [
-            'mock',
-            'plone.app.testing',
-            'unittest2',
-        ],
-        'develop': [
-            'coverage',
-            'flake8',
-            'jarn.mkrelease',
-            'niteoweb.loginas',
-            'plone.app.debugtoolbar',
-            'plone.reload',
-            'Products.Clouseau',
-            'Products.DocFinderTab',
-            'Products.PDBDebugMode',
-            'Products.PrintingMailHost',
-            'Sphinx',
-            'zest.releaser',
-            'zptlint',
-        ],
-    },
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone

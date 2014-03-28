@@ -1,7 +1,9 @@
 <tal:block tal:define="banner view/find_banner;
                        portal_url context/@@plone_portal_state/portal_url"
            tal:condition="banner">
-<div tal:define="has_image python:banner.has_key('banner_image')"
+<div tal:define="has_image python:banner.has_key('banner_image');
+                 has_fontcolor python:banner.has_key('banner_fontcolor');
+                 fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#000'"
      tal:attributes="class python:'banner_container' if has_image else 'banner_container banner_without_image'"
      class="banner_container">
   <div class="banner_inner_container">
@@ -19,23 +21,25 @@
     <div class="banner_content_container">
         <div class="banner-verlauf">
             <h1 tal:condition="python:banner.has_key('banner_title')"
+                tal:attributes="style string:color:${fontcolor} !important"
                 tal:content="banner/banner_title">
                 Titel
             </h1>
             <h3 tal:condition="python:banner.has_key('banner_description')"
+                tal:attributes="style string:color:${fontcolor} !important"
                 tal:content="banner/banner_description">
                 Subtitle
             </h3>
-            <p tal:condition="python:banner.has_key('banner_text')"
-               tal:replace="structure banner/banner_text">
-               Text
-            </p>
+            <div tal:condition="python:banner.has_key('banner_text')"
+                 tal:attributes="style string:color:${fontcolor} !important">
+                <p tal:replace="structure banner/banner_text">
+                       Text
+                </p>
+            </div>
         </div>
     </div>
   </div>
 
 </div>
-
-<link media="screen" tal:attributes="href string:${portal_url}/++resource++collective.behavior.banner/banner.css" type="text/css" rel="stylesheet">
 
 </tal:block>

@@ -32,12 +32,21 @@
     <include package="plone.behavior" file="meta.zcml"/>
 
     <plone:behavior
-      title="banner"
+      title="Banner"
       description="A banner consits of various fields that can be used as a banner or combined to a slider"
       provides=".banner.IBanner"
       factory=".banner.Banner"
       for="plone.dexterity.interfaces.IDexterityContent"
       marker=".banner.IBanner"
+      />
+
+    <plone:behavior
+      title="Slider"
+      description="Add a relation to the banner for slider function"
+      provides=".slider.ISlider"
+      factory=".slider.Slider"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".slider.ISlider"
       />
 
 </configure>

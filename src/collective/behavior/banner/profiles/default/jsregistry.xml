@@ -2,8 +2,7 @@
 <object name="portal_javascripts">
 
  <javascript
-    id="++resource++collective.behavior.banner/slider.js"
-    cacheable="False" compression="safe" cookable="False"
-    enabled="True" expression=""  inline="False"/>
+    id="++resource++plone.app.jquerytools.plugins.js"
+    enabled="True" />
 
 </object>

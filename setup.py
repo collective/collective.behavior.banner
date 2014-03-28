@@ -47,6 +47,11 @@ setup(
     ],
      extras_require={
             'test': [
+                'plone.app.contenttypes [atrefs]',
+                'plone.app.dexterity [relations]',
+                'plone.app.relationfield',
+                'plone.app.textfield [supermodel]',
+                'plone.namedfile [blobs]',
                 'plone.app.robotframework',
                 'plone.app.testing[robot]>=4.2.4', # we need ROBOT_TEST_LEVEL
             ],

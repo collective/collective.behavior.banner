@@ -39,11 +39,18 @@ setup(
         'Plone',
         'setuptools',
         'plone.app.dexterity [relations]',
+        'plone.app.relationfield',
+        'plone.api',
         'plone.directives.form',
         'plone.formwidget.contenttree',
-        'plone.app.relationfield',
         'z3c.relationfield'
     ],
+     extras_require={
+            'test': [
+                'plone.app.robotframework',
+                'plone.app.testing[robot]>=4.2.4', # we need ROBOT_TEST_LEVEL
+            ],
+    },
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone

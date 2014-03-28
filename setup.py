@@ -39,6 +39,7 @@ setup(
         'Plone',
         'setuptools',
         'plone.app.dexterity [relations]',
+        'plone.directives.form',
     ],
     entry_points="""
     [z3c.autoinclude.plugin]

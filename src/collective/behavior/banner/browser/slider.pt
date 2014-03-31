@@ -14,14 +14,15 @@
             <div class="portal-banner"
                  tal:define="has_image python:banner.has_key('banner_image');
                              has_fontcolor python:banner.has_key('banner_fontcolor');
-                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#000'">
+                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#ffffff'">
 
 
                 <div class="bannerImage"
                      tal:condition="python:has_image">
                         <img class="bannerImageImage"
-                             tal:attributes="src string:${banner/banner_image}/preview">
+                             tal:attributes="src string:${banner/banner_image}">
                 </div>
+                
                 <div class="bannerText">
 
                     <div class="bannerTitle"
@@ -51,15 +52,13 @@
 
                     </div>
 
-
-                    <div class="bannerText"
+                    <div class="bannerBody"
                        tal:attributes="style string:color:${fontcolor} !important"
                        tal:condition="python:banner.has_key('banner_text')">
                        <span tal:replace="structure banner/banner_text">
                              Text
                        </span>
                     </div>
-
 
                  </div>
 
@@ -72,7 +71,7 @@
 <script type="application/javascript">
 $(document).ready(function() {
 
-    $(".scrollable").scrollable({ circular: true, speed: 1000 }).autoscroll(10000);
+	$(".scrollable").scrollable({ circular: true, speed: 1000 });
 
 });
 </script>

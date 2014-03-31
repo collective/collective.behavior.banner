@@ -1,21 +1,55 @@
-.banner_container {
-    background-color: #ddd;
+.portal-banner {
     margin-bottom: 1em;
+    position: relative;
 }
 
-.banner_inner_container {
-    display: table-row;
-}
-
-.banner_image_container {
+.portal-banner {
     float: left;
+    height: 200px;
+    position: relative;
+    width: 695px;
 }
 
-.banner_image_container img {
-    height: auto;
+.portal-banner .bannerImage {
+    height: 200px;
+    position: absolute;
+    width: 695px;
 }
 
-.banner_content_container {
-    float: left;
-    padding: 1em;
+.portal-banner .bannerImage img {
+    height: 100%;
+    width: 100%;
 }
+
+.portal-banner .bannerText {
+    bottom: 0.5em;
+    position: absolute;
+}
+
+.portal-banner .bannerTitle {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 140%;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 20px;
+}
+
+.portal-banner .bannerDescription {
+    color: #FFFFFF;
+    display: block;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    text-shadow: 0 0 30px #000000;
+}
+
+.portal-banner .bannerLink a,
+.portal-banner .bannerLink a:visited {
+	border: none !important;
+	text-decoration: underline !important;
+}
+
+.portal-banner .bannerLink a:hover { text-decoration: none !important; }
+

@@ -1,60 +1,21 @@
-#slider {
+#portal-slider {
     margin-bottom: 1em;
 }
 
-.scrollable {
+#portal-slider .scrollable {
 	position: relative;
 	overflow: hidden;
 	width: 695px;
 	height: 200px;
 	}
 
-.scrollable .items {
+#portal-slider .scrollable .items {
 	width: 20000em;
 	position: absolute;
 	}
 
-.items .banner {
+#portal-slider .items .banner {
     float: left;
     margin-bottom: 1em;
     }
 
-.banner {
-	width: 695px;
-	height: 200px;
-	}
-
-.bannerImage {
-    position: absolute;
-}
-
-.bannerImage img {
-    border-radius: 7px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-}
-
-.bannerText {
-	position: relative;
-	padding: 1em;
-}
-
-.bannerTitle {
-	font-size: 150%;
-	font-weight: bold;
-	margin-bottom: 0.5em;
-}
-
-.bannerDescription {
-	font-weight: bold;
-	width: 425px;
-	margin-bottom: 0.5em;
-}
-
-.bannerLink a,
-.bannerLink a:visited {
-	border: none !important;
-	text-decoration: underline !important;
-}
-
-.bannerLink a:hover { text-decoration: none !important; }

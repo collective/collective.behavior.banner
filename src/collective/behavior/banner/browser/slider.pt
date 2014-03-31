@@ -1,4 +1,4 @@
-<div id="slider"
+<div id="portal-slider"
      class=""
      tal:define="banners view/random_banner | nothing;
                  portal context/@@plone_portal_state/portal;
@@ -11,7 +11,7 @@
 
         <tal:loop tal:repeat="banner banners">
 
-            <div class="banner"
+            <div class="portal-banner"
                  tal:define="has_image python:banner.has_key('banner_image');
                              has_fontcolor python:banner.has_key('banner_fontcolor');
                              fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#000'">

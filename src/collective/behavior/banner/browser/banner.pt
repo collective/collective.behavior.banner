@@ -1,14 +1,14 @@
 <div id="portal-banner"
-     tal:define="banner view/find_banner | nothing;
+     tal:define="banner view/find_banner|nothing;
                  portal context/@@plone_portal_state/portal;
-                 context_state context/@@plone_context_state;
-                 has_image python:banner.has_key('banner_image');
-                 has_fontcolor python:banner.has_key('banner_fontcolor');
-                 fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#000'"
+                 context_state context/@@plone_context_state"
      tal:condition="python: banner"
-     tal:attributes="class python:'banner_container portal-banner' if has_image else 'banner_container banner_without_image portal-banner'"
      class="portal-banner"
      i18n:domain="collective.behavior.banner">
+     <div tal:define="has_image python:banner.has_key('banner_image');
+                      has_fontcolor python:banner.has_key('banner_fontcolor');
+                      fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#000'"
+          tal:attributes="class python:'banner_container portal-banner' if has_image else 'banner_container banner_without_image portal-banner'">
 
                 <div class="bannerImage"
                      tal:condition="python:has_image">
@@ -54,7 +54,8 @@
                        </span>
                     </div>
 
+                </div>
 
-                 </div>
+          </div>
 
 </div>

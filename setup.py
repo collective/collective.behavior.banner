@@ -12,8 +12,8 @@ def read(*rnames):
 
 long_description = \
     read('README.rst') + \
-    read('docs', 'CHANGELOG.rst') + \
-    read('docs', 'LICENSE.rst')
+    read('CHANGELOG.rst') + \
+    read('docs/source', 'LICENSE.rst')
 
 setup(
     name='collective.behavior.banner',

@@ -5,6 +5,7 @@ from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import login
+from zope.configuration import xmlconfig
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import setRoles
@@ -24,12 +25,20 @@ class CollectiveBannerLayer(PloneSandboxLayer):
         # Load ZCML
         import collective.behavior.banner
         self.loadZCML(package=collective.behavior.banner)
+        #ease tests
+        xmlconfig.file(
+            'testing.zcml',
+            collective.behavior.banner,
+            context=configurationContext
+        )
         z2.installProduct(app, 'collective.behavior.banner')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
         applyProfile(portal, 'collective.behavior.banner:default')
+        #ease tests
+        applyProfile(portal, 'collective.behavior.banner:testing')
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])

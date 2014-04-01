@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.behavior.banner">
+
+  <include file="configure.zcml" />
+
+  <genericsetup:registerProfile
+      name="testing"
+      title="collective.behavior.banner tests"
+      directory="profiles/testing"
+      description="Steps to ease tests of collective.behavior.banner"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

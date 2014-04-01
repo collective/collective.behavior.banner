@@ -25,5 +25,8 @@ var
 .pydevproject
 *.prefs
 
+# Pycharm
+.idea/
+
 # translations
 *.mo

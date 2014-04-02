@@ -46,7 +46,7 @@
                          tal:attributes="style string:color:${fontcolor} !important"
                          tal:condition="python:  banner.has_key('banner_link') and banner.has_key('banner_linktext')">
 
-                        <a href="" title="" tal:attributes="href banner_linkurl; title banner_linktext;" tal:content="banner_linktext">
+                        <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext;" tal:content="banner/banner_link">
                             Link
                         </a>
 

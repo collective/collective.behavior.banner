@@ -58,6 +58,7 @@
 .portal-banner .bannerLink a,
 .portal-banner .bannerLink a:visited {
 	border: none !important;
+    padding-left:20px;
 	text-decoration: underline !important;
 }
 

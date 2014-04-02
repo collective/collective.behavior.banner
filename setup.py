@@ -47,7 +47,7 @@ setup(
     ],
      extras_require={
             'test': [
-                'plone.app.contenttypes [atrefs]',
+                'plone.app.contenttypes[atrefs]==1.1b2',
                 'plone.app.dexterity [relations]',
                 'plone.app.relationfield',
                 'plone.app.textfield [supermodel]',

@@ -28,6 +28,7 @@ class IBanner(model.Schema):
             'banner_description',
             'banner_text',
             'banner_link',
+            'banner_linktext',
             'banner_fontcolor',
         ]
     )
@@ -77,6 +78,12 @@ class IBanner(model.Schema):
         title=_(u"Banner Link"),
         description=u"",
         source=ObjPathSourceBinder(),
+        required=False,
+    )
+
+    banner_linktext = schema.TextLine(
+        title=_(u"Link caption"),
+        description=_(u'Caption for the link'),
         required=False,
     )
 

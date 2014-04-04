@@ -45,8 +45,7 @@
 
                     </div>
 
-
-                    <div class="bannerText"
+                    <div class="bannerBody"
                        tal:attributes="style string:color:${fontcolor} !important"
                        tal:condition="python:banner.has_key('banner_text')">
                        <span tal:replace="structure banner/banner_text">

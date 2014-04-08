@@ -2,14 +2,14 @@
     margin-bottom: 1em;
 }
 
-#portal-slider .scrollable {
+#portal-slider.scrollable {
 	position: relative;
 	overflow: hidden;
 	width: 695px;
 	height: 200px;
 	}
 
-#portal-slider .scrollable .items {
+#portal-slider.scrollable .items {
 	width: 20000em;
 	position: absolute;
 	}

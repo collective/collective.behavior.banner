@@ -14,7 +14,7 @@
             <div class="portal-banner"
                  tal:define="has_image python:banner.has_key('banner_image');
                              has_fontcolor python:banner.has_key('banner_fontcolor');
-                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] or '#ffffff'">
+                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff'">
 
 
                 <div class="bannerImage"
@@ -22,17 +22,17 @@
                         <img class="bannerImageImage"
                              tal:attributes="src string:${banner/banner_image}">
                 </div>
-                
+
                 <div class="bannerText">
 
                     <div class="bannerTitle"
-                         tal:attributes="style string:color:${fontcolor} !important"
+                         tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:banner.has_key('banner_title')">
                         <span tal:replace="banner/banner_title">Title</span>
                     </div>
 
                     <div class="bannerDescription"
-                         tal:attributes="style string:color:${fontcolor} !important"
+                         tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:banner.has_key('banner_description')">
                         <tal:def tal:define="banner_desc_org banner/banner_description;
                                              banner_desc_cropped python:' '.join((banner_desc_org[0:400].strip()).split(' ')[:-1]).strip('.')+'...';
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="bannerLink"
-                         tal:attributes="style string:color:${fontcolor} !important"
+                         tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:  banner.has_key('banner_link') and banner.has_key('banner_linktext')">
 
                         <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext;" tal:content="banner/banner_link">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="bannerBody"
-                       tal:attributes="style string:color:${fontcolor} !important"
+                       tal:attributes="style string:color:${fontcolor}"
                        tal:condition="python:banner.has_key('banner_text')">
                        <span tal:replace="structure banner/banner_text">
                              Text

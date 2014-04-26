@@ -5,15 +5,15 @@
 
 .portal-banner {
     float: left;
-    height: 200px;
+    height: 100%;
     position: relative;
-    width: 695px;
+    width: 100%;
 }
 
 .portal-banner .bannerImage {
-    height: 200px;
+    height: 100%;
     position: absolute;
-    width: 695px;
+    width: 100%;
 }
 
 .portal-banner .bannerImage img {

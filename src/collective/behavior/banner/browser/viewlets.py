@@ -79,6 +79,8 @@ class BannerViewlet(ViewletBase):
             if to_obj:
                 banner['banner_link'] = to_obj.absolute_url()
                 banner['banner_linktext'] = to_obj.Title()
+        if obj.banner_linktext:
+            banner['banner_linktext'] = obj.banner_linktext
         if obj.banner_fontcolor:
             banner['banner_fontcolor'] = obj.banner_fontcolor
         return banner

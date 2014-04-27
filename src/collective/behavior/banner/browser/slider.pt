@@ -7,11 +7,11 @@
      tal:attributes="class python: view.scroll and 'scrollable' or '';"
      i18n:domain="collective.behavior.banner">
 
-    <div class="items">
+    <ul class="items">
 
         <tal:loop tal:repeat="banner banners">
 
-            <div class="portal-banner"
+            <li class="portal-banner"
                  tal:define="has_image python:banner.has_key('banner_image');
                              has_fontcolor python:banner.has_key('banner_fontcolor');
                              fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff'">
@@ -44,9 +44,10 @@
 
                     <div class="bannerLink"
                          tal:attributes="style string:color:${fontcolor}"
-                         tal:condition="python:  banner.has_key('banner_link') and banner.has_key('banner_linktext')">
+                         tal:condition="python: banner.has_key('banner_link') and banner.has_key('banner_linktext')">
 
-                        <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext;" tal:content="banner/banner_link">
+                        <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext"
+                                            tal:content="banner/banner_linktext">
                             Link
                         </a>
 
@@ -62,16 +63,21 @@
 
                  </div>
 
-            </div>
+            </li>
 
         </tal:loop>
 
-    </div>
+    </ul>
 
 <script type="application/javascript">
 $(document).ready(function() {
 
-	$(".scrollable").scrollable({ circular: true, speed: 1000 }).autoscroll(10000);
+  $(function() {
+    $(".items").responsiveSlides({
+        speed: 700,
+        timeout: 6000
+    });
+  });
 
 });
 </script>

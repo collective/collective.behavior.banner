@@ -1,21 +1,36 @@
 #portal-slider {
     margin-bottom: 1em;
+    margin: 0px auto;
 }
 
-#portal-slider.scrollable {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	}
-
 #portal-slider.scrollable .items {
-	width: 20000em;
-	position: absolute;
-	}
+    position: relative;
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
 
-#portal-slider .items .banner {
-    float: left;
-    margin-bottom: 1em;
-    }
+#portal-slider.scrollable .items li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
 
+#portal-slider.scrollable .items li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+#portal-slider.scrollable .items img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+}

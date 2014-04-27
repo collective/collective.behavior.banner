@@ -2,7 +2,7 @@
 <object name="portal_javascripts">
 
   <javascript cacheable="True"
-              compression="safe"
+              compression="none"
               cookable="True"
               enabled="True"
               expression=""

@@ -46,19 +46,18 @@ class BannerViewlet(ViewletBase):
         context = context.__parent__
 
         # we walk up the path
-        while True:
-            if IBanner.providedBy(context):
+        for item in context.aq_chain:
+            if IBanner.providedBy(item):
                 # we have a banner. check.
-                if context.banner_stop_inheriting:
+                if item.banner_stop_inheriting:
                     return False
-                banner = self.banner(context)
+                banner = self.banner(item)
                 if banner:
                     return banner
-            if INavigationRoot.providedBy(context):
+            if INavigationRoot.providedBy(item):
                 return False
-            if context.portal_type not in types:
+            if item.portal_type not in types:
                 return False
-            context = context.__parent__
 
         return False
 

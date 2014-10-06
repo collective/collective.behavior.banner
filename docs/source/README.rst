@@ -2,15 +2,32 @@
 collective.behavior.banner
 ==========================
 
-A behavior to create banners and sliders from banners
+A behavior to create banners and sliders from banners.
 
-* `Source code @ GitHub <https://github.com/starzel/collective.behavior.banner>`_
-* `Continuous Integration <https://jenkins.starzel.de/job/collective.behavior.banner>`_
+Features
+========
+
+The addon provides two new behaviors:
+
+``collective.behavior.banner.banner.IBanner``
+    Has various fields that can be used as a banner for one type.
+    You can either add it to existing types or 'Banner'-type that only has these fields.
+
+``collective.behavior.banner.slider.ISlider``
+    Add relations several items with banners to build a slider for an existing type.
+    The slider uses the js-library http://responsiveslides.com.
+
+The banners are inherited to child-objects and you can configure which types
+should display inherited banners (in the banner-controlpanel).
+
+You can also prevent inheriting banners for an item.
+
+
 
 How it works
 ============
 
-Enable the behavior in ``<your_package>/profiles/default/types/Folder.xml``
+Enable the behavior by hand or in the FTI  ``<your_package>/profiles/default/types/Folder.xml``
 
 .. code:: xml
 
@@ -30,9 +47,4 @@ To install `collective.behavior.banner` you simply add ``collective.behavior.ban
 to the list of eggs in your buildout, run buildout and restart Plone.
 Then, install `collective.behavior.banner` using the Add-ons control panel.
 
-
-Configuration
-=============
-
-...
 

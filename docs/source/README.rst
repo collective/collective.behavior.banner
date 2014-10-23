@@ -22,6 +22,8 @@ The behavior ``collective.behavior.banner.slider.ISlider`` adds th eoption to ad
 
 The slider-viewlet uses the js-library http://responsiveslides.com and fades from one banner to another.
 
+Before you use a slider/carousel on your website plase take time to read this http://shouldiuseacarousel.com.
+
 
 Inheriting
 ----------

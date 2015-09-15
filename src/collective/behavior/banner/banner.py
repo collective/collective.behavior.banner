@@ -72,12 +72,10 @@ class IBanner(model.Schema):
         required=False,
     )
 
-    form.widget(
-        banner_link=ContentTreeFieldWidget)
     banner_link = RelationChoice(
         title=_(u"Banner Link"),
         description=u"",
-        source=ObjPathSourceBinder(),
+        vocabulary="plone.app.vocabularies.Catalog",
         required=False,
     )
 

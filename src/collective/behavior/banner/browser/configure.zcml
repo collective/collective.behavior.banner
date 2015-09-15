@@ -13,7 +13,7 @@
     <browser:viewlet
       name="collective.bannerviewlet"
       for="plone.dexterity.interfaces.IDexterityContent"
-      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
       class=".viewlets.BannerViewlet"
       layer="..interfaces.ICollectiveBannerLayer"
       permission="zope2.View"

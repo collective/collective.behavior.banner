@@ -1,14 +1,17 @@
-<div id="portal-banner"
-     tal:define="banner view/find_banner|nothing;
-                 portal context/@@plone_portal_state/portal;
-                 context_state context/@@plone_context_state"
-     tal:condition="python: banner"
-     class="portal-banner"
-     i18n:domain="collective.behavior.banner">
-     <div tal:define="has_image python:banner.has_key('banner_image');
-                      has_fontcolor python:banner.has_key('banner_fontcolor');
-                      fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff'"
-          tal:attributes="class python:'banner_container portal-banner' if has_image else 'banner_container banner_without_image portal-banner'">
+<tal:block
+    tal:define="banner view/find_banner|nothing"
+    tal:condition="python: banner"
+    i18n:domain="collective.behavior.banner">
+
+<div id="portal-banner" class="principal" role="complementary"
+     tal:define="has_image python:banner.has_key('banner_image');
+                 has_fontcolor python:banner.has_key('banner_fontcolor');
+                 fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#4d4d4d'">
+
+    <div class="container">
+
+        <div class="gigantic"
+             tal:attributes="class python:'banner_container portal-banner gigantic' if has_image else 'banner_container banner_without_image portal-banner gigantic'">
 
                 <div class="bannerImage"
                      tal:condition="python:has_image">
@@ -18,13 +21,13 @@
 
                 <div class="bannerText">
 
-                    <div class="bannerTitle"
+                    <h1 class="bannerTitle"
                          tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:banner.has_key('banner_title')">
                         <span tal:replace="banner/banner_title">Title</span>
-                    </div>
+                    </h1>
 
-                    <div class="bannerDescription"
+                    <p class="bannerDescription"
                          tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:banner.has_key('banner_description')">
                         <tal:def tal:define="banner_desc_org banner/banner_description;
@@ -33,17 +36,17 @@
                                               ">
                             <span tal:replace="banner_desc" />
                         </tal:def>
-                    </div>
+                    </p>
 
                     <div class="bannerLink"
                          tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python: banner.has_key('banner_link')">
 
-                            <a href="" title=""
-                                    tal:attributes="href banner/banner_link; title banner/banner_linktext"
-                                    tal:content="banner/banner_linktext">
+                            <p><a class="context" role="button" target="_blank" href="" title=""
+                                  tal:attributes="href banner/banner_link; title banner/banner_linktext"
+                                  tal:content="banner/banner_linktext">
                                 Link
-                            </a>
+                            </a></p>
 
                     </div>
 
@@ -58,5 +61,7 @@
                 </div>
 
           </div>
+    </div>
 
 </div>
+</tal:block>

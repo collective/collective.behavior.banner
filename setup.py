@@ -41,7 +41,6 @@ setup(
         'plone.app.dexterity [relations]',
         'plone.app.relationfield',
         'plone.api',
-        'plone.directives.form',
         'plone.formwidget.contenttree',
         'z3c.relationfield'
     ],

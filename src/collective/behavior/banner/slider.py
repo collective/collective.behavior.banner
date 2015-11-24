@@ -3,7 +3,7 @@ from collective.behavior.banner import _
 from collective.behavior.banner.banner import IBanner
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
-from plone.directives import form
+from plone.autoform import directives as form
 from plone.formwidget.contenttree import MultiContentTreeFieldWidget
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.supermodel import model
@@ -14,7 +14,7 @@ from zope.interface import alsoProvides, implements
 
 class ISlider(model.Schema):
 
-    form.fieldset(
+    model.fieldset(
         'slider',
         label=u"Slider",
         fields=[

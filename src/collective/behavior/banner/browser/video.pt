@@ -1,0 +1,16 @@
+<tal:block
+    tal:define="banner view/find_banner|nothing"
+    tal:condition="python: banner"
+    i18n:domain="collective.behavior.banner">
+
+<div id="portal-banner" class="principal" role="complementary"
+     tal:define="has_url python:banner.has_key('banner_url');">
+
+    <div class="container">
+        <div class="bannerVideo">
+            <tal:iframe replace="structure view/getVideoEmbedMarkup">
+            </tal:iframe>
+        </div>
+    </div>
+</div>
+</tal:block>

@@ -18,12 +18,15 @@ class BannerViewlet(ViewletBase):
 
     banner_template = ViewPageTemplateFile('banner.pt')
     slider_template = ViewPageTemplateFile('slider.pt')
+    video_template = ViewPageTemplateFile('video.pt')
 
     def index(self):
         context = aq_inner(self.context)
         if ISlider.providedBy(context):
             if context.slider_relation and len(context.slider_relation) > 1:
                 return self.slider_template()
+        if context.banner_url:
+            return self.video_template()
         return self.banner_template()
 
     def find_banner(self):
@@ -82,6 +85,8 @@ class BannerViewlet(ViewletBase):
             banner['banner_linktext'] = obj.banner_linktext
         if obj.banner_fontcolor:
             banner['banner_fontcolor'] = obj.banner_fontcolor
+        if obj.banner_url:
+            banner['banner_url'] = obj.banner_url
         return banner
 
     def random_banner(self):
@@ -96,3 +101,44 @@ class BannerViewlet(ViewletBase):
 
         random.shuffle(banners)
         return banners
+
+    def getVideoEmbedMarkup(self):
+        """ Build an iframe from a YouTube or Vimeo share url
+        """
+        # https://www.youtube.com/watch?v=Q6qYdJuWB6w
+        YOUTUBE_TEMPLATE = '''
+            <iframe
+                width="660"
+                height="495"
+                src="//www.youtube-nocookie.com/embed/{1}?showinfo=0"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+        '''
+        # https://vimeo.com/75721023
+        VIMEO_TEMPLATE = '''
+            <iframe
+                src="//player.vimeo.com/video/{0}?title=0&amp;byline=0&amp;portrait=0"
+                width="660"
+                height="371"
+                frameborder="0"
+                webkitallowfullscreen
+                mozallowfullscreen
+                allowfullscreen>
+            </iframe>
+        '''
+        url = self.context.banner_url
+        from urlparse import urlparse
+        try:
+            parsed = urlparse(url)
+        except AttributeError:
+            return ''
+        path = parsed.path.replace('/', '')
+        videoId = parsed.query.replace('v=', '')
+        if 'youtube' in parsed.netloc:
+            template = YOUTUBE_TEMPLATE
+        elif 'vimeo' in parsed.netloc:
+            template = VIMEO_TEMPLATE
+        else:
+            return ''
+        return template.format(path, videoId)

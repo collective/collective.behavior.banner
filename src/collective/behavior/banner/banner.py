@@ -8,7 +8,10 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapts
-from zope.interface import alsoProvides, implements
+from zope.interface import alsoProvides
+from zope.interface import implements
+from zope.interface import Invalid
+from zope.interface.interface import invariant
 
 
 class IBanner(model.Schema):
@@ -20,6 +23,7 @@ class IBanner(model.Schema):
             'banner_hide',
             'banner_stop_inheriting',
             'banner_image',
+            'banner_url',
             'banner_title',
             'banner_description',
             'banner_text',
@@ -49,6 +53,28 @@ class IBanner(model.Schema):
         description=u"",
         required=False,
     )
+
+    banner_url = schema.URI(
+        title=_(u'label_banner_url', default=u'Video URL'),
+        description=u'''
+        If you want the banner for this item to show a video, enter an
+        external URL here.  YouTube and Vimeo are supported.  Note:
+        You can either supply an image, or a video URL, not both.
+        ''',
+        required=False,
+    )
+
+    # @invariant
+    # def validate_visual_content(data):
+    #     """
+    #     It is not allowed to add an image and an external url at the same time.
+    #     """
+    #     if data.banner_image and data.banner_url:
+    #         raise Invalid(_(
+    #             u'error_message_links',
+    #             default=u'It\'s not possible to add an image and an '
+    #                     u'external url at the same time')
+    #         )
 
     banner_title = schema.TextLine(
         title=_(u"Banner Title"),

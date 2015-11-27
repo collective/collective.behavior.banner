@@ -25,7 +25,8 @@ class BannerViewlet(ViewletBase):
         if ISlider.providedBy(context):
             if context.slider_relation and len(context.slider_relation) > 1:
                 return self.slider_template()
-        if context.banner_url:
+        banner = self.find_banner()
+        if banner and 'banner_url' in banner:
             return self.video_template()
         return self.banner_template()
 
@@ -102,7 +103,7 @@ class BannerViewlet(ViewletBase):
         random.shuffle(banners)
         return banners
 
-    def getVideoEmbedMarkup(self):
+    def getVideoEmbedMarkup(self, obj):
         """ Build an iframe from a YouTube or Vimeo share url
         """
         # https://www.youtube.com/watch?v=Q6qYdJuWB6w
@@ -127,7 +128,7 @@ class BannerViewlet(ViewletBase):
                 allowfullscreen>
             </iframe>
         '''
-        url = self.context.banner_url
+        url = obj['banner_url']
         from urlparse import urlparse
         try:
             parsed = urlparse(url)

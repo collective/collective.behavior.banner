@@ -11,6 +11,10 @@
             <tal:iframe replace="structure python:view.getVideoEmbedMarkup(banner)">
             </tal:iframe>
         </div>
+        <span class="bannerTitle"
+          tal:content="banner/banner_title"
+          tal:condition="python:banner.has_key('banner_title')">
+        </span>
     </div>
 </div>
 </tal:block>

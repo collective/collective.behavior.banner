@@ -25,7 +25,8 @@ class BannerViewlet(ViewletBase):
         if ISlider.providedBy(context):
             if context.slider_relation and len(context.slider_relation) > 1:
                 return self.slider_template()
-        if context.banner_url:
+        banner = self.find_banner()
+        if banner and 'banner_url' in banner:
             return self.video_template()
         return self.banner_template()
 

@@ -1,0 +1,3 @@
+- Philip Bauer, bauer@starzel.de
+- Steffen Lindner. lidner@starzel.de
+- Stefan Antonelli, stefan.antonelli@operun.de

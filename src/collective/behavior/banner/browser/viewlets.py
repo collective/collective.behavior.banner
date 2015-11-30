@@ -102,11 +102,7 @@ class BannerViewlet(ViewletBase):
         random.shuffle(banners)
         return banners
 
-<<<<<<< 3e290a6ff36e79fc2b8bcf8d7be477d2e658623c
     def getVideoEmbedMarkup(self, obj):
-=======
-    def getVideoEmbedMarkup(self):
->>>>>>> Allow showing video in banners.
         """ Build an iframe from a YouTube or Vimeo share url
         """
         # https://www.youtube.com/watch?v=Q6qYdJuWB6w
@@ -131,11 +127,7 @@ class BannerViewlet(ViewletBase):
                 allowfullscreen>
             </iframe>
         '''
-<<<<<<< 3e290a6ff36e79fc2b8bcf8d7be477d2e658623c
         url = obj['banner_url']
-=======
-        url = self.context.banner_url
->>>>>>> Allow showing video in banners.
         from urlparse import urlparse
         try:
             parsed = urlparse(url)

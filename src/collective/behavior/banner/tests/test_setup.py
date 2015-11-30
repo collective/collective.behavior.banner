@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING  # noqa
+from Products.CMFPlone.interfaces import IResourceRegistry
+from collective.behavior.banner.testing import (
+    COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING)
 from plone import api
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 import unittest
+
+CSS = (
+    '++resource++collective.behavior.banner/banner.css',
+    '++resource++collective.behavior.banner/slider.css',
+)
 
 
 class TestSetup(unittest.TestCase):
@@ -28,6 +37,18 @@ class TestSetup(unittest.TestCase):
         from plone.browserlayer import utils
         self.assertIn(ICollectiveBannerLayer, utils.registered_layers())
 
+    def test_cssregistry(self):
+        bundles = getUtility(IRegistry).collectionOfInterface(
+            IResourceRegistry, prefix="plone.resources")
+        bundle = bundles['collective-behavior-banner']
+
+        for id in CSS:
+            self.assertIn(id, bundle.css, '{0} not installed'.format(id))
+
+        self.assertIn(
+            '++resource++collective.behavior.banner/responsiveslides.min.js',
+            bundle.js)
+
 
 class TestUninstall(unittest.TestCase):
 
@@ -49,3 +70,9 @@ class TestUninstall(unittest.TestCase):
             ICollectiveBannerLayer)
         from plone.browserlayer import utils
         self.assertNotIn(ICollectiveBannerLayer, utils.registered_layers())
+
+    def test_cssregistry_removed(self):
+        bundles = getUtility(IRegistry).collectionOfInterface(
+            IResourceRegistry, prefix="plone.resources")
+        self.assertNotIn(
+            'collective-behavior-banner', bundles)

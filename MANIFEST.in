@@ -1,2 +1,4 @@
 graft src/collective
-include *.cfg *.rst *.in
+graft docs
+include *.rst
+global-exclude *.pyc

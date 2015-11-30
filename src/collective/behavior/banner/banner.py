@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
+from collective.behavior.banner import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
-from plone.formwidget.contenttree import ContentTreeFieldWidget
-from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
@@ -13,8 +12,6 @@ from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.interface import Invalid
 from zope.interface.interface import invariant
-
-from collective.behavior.banner import _
 
 
 class IBanner(model.Schema):

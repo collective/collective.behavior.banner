@@ -1,32 +1,24 @@
-# buildout config files
+*.egg-info
+*.mo
+*.pyc
 .installed.cfg
 .mr.developer.cfg
-
-# directories
-bin
-develop-eggs
-docs/html
-include
-lib
-parts
-var
-
-# python generated files
-*.py[co]
-
-# ingore egg directories
-*.egg
-
-# ignore egg info directory
-*.egg-info
-
-# eclipse and pydev project files
 .project
 .pydevproject
-*.prefs
-
-# Pycharm
-.idea/
-
-# translations
-*.mo
+.settings/
+bin/
+buildout-cache/
+develop-eggs/
+parts/
+src/*
+!src/collective
+var/
+htmlcov/
+.coverage
+*.log
+output.xml
+*.swp
+log.html
+report.html
+lib/
+include/

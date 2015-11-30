@@ -17,15 +17,19 @@ long_description = \
 
 setup(
     name='collective.behavior.banner',
-    version='0.1',
+    version='1.0a1',
     description="A behavior to create sliders with banners",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
+        "Environment :: Web Environment",
         "Framework :: Plone",
+        "Framework :: Plone :: 5.0",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Operating System :: OS Independent",
     ],
-    keywords='Plone, Dexterity, behavior',
+    keywords='Python, Plone, Dexterity, behavior',
     author='Philip Bauer',
     author_email='bauer@starzel.de',
     url='http://pypi.python.org/pypi/collective.behavior.banner',
@@ -38,22 +42,14 @@ setup(
     install_requires=[
         'Plone',
         'setuptools',
-        'plone.app.dexterity [relations]',
-        'plone.app.relationfield',
         'plone.api',
-        'plone.formwidget.contenttree',
-        'z3c.relationfield'
     ],
-     extras_require={
-            'test': [
-                'plone.app.contenttypes[atrefs]>=1.1b2',
-                'plone.app.dexterity [relations]',
-                'plone.app.relationfield',
-                'plone.app.textfield [supermodel]',
-                'plone.namedfile [blobs]',
-                'plone.app.robotframework',
-                'plone.app.testing[robot]>=4.2.4', # we need ROBOT_TEST_LEVEL
-            ],
+    extras_require={
+        'test': [
+            'plone.app.contenttypes',
+            'plone.app.robotframework[debug]',
+            'plone.app.testing',
+        ],
     },
     entry_points="""
     [z3c.autoinclude.plugin]

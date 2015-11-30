@@ -6,7 +6,8 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Show YouTube and Vimeo videos in a banner.
+  [fulv]
 
 
 1.0b1 (2015-11-30)

@@ -1,8 +1,3 @@
-#portal-slider {
-    margin-bottom: 1em;
-    margin: 0px auto;
-}
-
 #portal-slider.scrollable .items {
     position: relative;
     list-style: none;

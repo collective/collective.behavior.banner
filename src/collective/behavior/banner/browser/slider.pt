@@ -1,11 +1,15 @@
 <div id="portal-slider"
-     class=""
+     class="principal"
+     role="complementary"
      tal:define="banners view/random_banner | nothing;
                  portal context/@@plone_portal_state/portal;
                  context_state context/@@plone_context_state"
      tal:condition="python: banners"
-     tal:attributes="class python: view.scroll and 'scrollable' or '';"
+     tal:attributes="class python: view.scroll and 'scrollable principal' or 'principal';"
      i18n:domain="collective.behavior.banner">
+
+ <div class="container">
+  <div class="gigantic">
 
     <ul class="items">
 
@@ -69,11 +73,14 @@
 
     </ul>
 
+  </div>
+ </div>
+
 <script type="application/javascript">
 $(document).ready(function() {
 
   $(function() {
-    $(".items").responsiveSlides({
+    $("#portal-slider .items").responsiveSlides({
         speed: 700,
         timeout: 6000
     });

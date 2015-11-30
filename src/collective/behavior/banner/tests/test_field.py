@@ -12,6 +12,7 @@ from plone.dexterity.fti import DexterityFTI
 from plone.app.testing import TEST_USER_ID, setRoles
 from plone import api
 
+
 class TestFieldCase(unittest.TestCase):
     """Test integration of collective.behavior.banner into Plone."""
 
@@ -50,4 +51,3 @@ class TestFieldCase(unittest.TestCase):
         self.assertTrue('Banner' in self.browser.contents)
         self.assertTrue('banner_fontcolor' in self.browser.contents)
         self.assertTrue('banner_linktext' in self.browser.contents)
-

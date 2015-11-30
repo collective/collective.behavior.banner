@@ -16,5 +16,5 @@ class TestIntegration(IntegrationTestCase):
     def test_css_available(self):
         cssreg = getattr(self.portal, 'portal_css')
         stylesheets_ids = cssreg.getResourceIds()
-        self.failUnless("++resource++collective.behavior.banner/slider.css" in stylesheets_ids)
-        self.failUnless("++resource++collective.behavior.banner/banner.css" in stylesheets_ids)
+        self.failUnless("++resource++collective.behavior.banner/slider.css" in stylesheets_ids)  # noqa
+        self.failUnless("++resource++collective.behavior.banner/banner.css" in stylesheets_ids)  # noqa

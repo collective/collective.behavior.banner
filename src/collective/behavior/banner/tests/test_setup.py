@@ -14,17 +14,20 @@ class TestInstall(IntegrationTestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
-        """Test if collective.behavior.banner is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('collective.behavior.banner'))
+        """Test if collective.behavior.banner is installed"""
+        self.assertTrue(
+            self.installer.isProductInstalled('collective.behavior.banner'))
 
     def test_uninstall(self):
         """Test if collective.behavior.banner is cleanly uninstalled."""
         self.installer.uninstallProducts(['collective.behavior.banner'])
-        self.assertFalse(self.installer.isProductInstalled('collective.behavior.banner'))
+        self.assertFalse(
+            self.installer.isProductInstalled('collective.behavior.banner'))
 
     # browserlayer.xml
     def test_browserlayer(self):
         """Test that ICollective.behavior.BannerLayer is registered."""
-        from collective.behavior.banner.interfaces import ICollectiveBannerLayer
+        from collective.behavior.banner.interfaces import (
+            ICollectiveBannerLayer)
         from plone.browserlayer import utils
         self.failUnless(ICollectiveBannerLayer in utils.registered_layers())

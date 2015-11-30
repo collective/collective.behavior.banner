@@ -26,11 +26,11 @@ class CollectiveBannerLayer(PloneSandboxLayer):
         import plone.app.dexterity
         xmlconfig.file(
             'configure.zcml',
-             plone.app.dexterity,
-             context=configurationContext)
+            plone.app.dexterity,
+            context=configurationContext)
         import collective.behavior.banner
         self.loadZCML(package=collective.behavior.banner)
-        #ease tests
+        # ease tests
         xmlconfig.file(
             'testing.zcml',
             collective.behavior.banner,
@@ -42,7 +42,7 @@ class CollectiveBannerLayer(PloneSandboxLayer):
         """Set up Plone."""
         # Install into Plone site using portal_setup
         applyProfile(portal, 'collective.behavior.banner:default')
-        #ease tests
+        # ease tests
         applyProfile(portal, 'collective.behavior.banner:testing')
 
         # Login and create some test content

@@ -2,7 +2,7 @@
 """Setup/installation tests for this package."""
 import unittest2 as unittest
 
-from collective.behavior.banner.testing import INTEGRATION_TESTING
+from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING  # noqa
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.testing.z2 import Browser
@@ -12,10 +12,11 @@ from plone.dexterity.fti import DexterityFTI
 from plone.app.testing import TEST_USER_ID, setRoles
 from plone import api
 
+
 class TestFieldCase(unittest.TestCase):
     """Test integration of collective.behavior.banner into Plone."""
 
-    layer = INTEGRATION_TESTING
+    layer = COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING
 
     behaviors = (
         'collective.behavior.banner.banner.IBanner',)
@@ -50,4 +51,3 @@ class TestFieldCase(unittest.TestCase):
         self.assertTrue('Banner' in self.browser.contents)
         self.assertTrue('banner_fontcolor' in self.browser.contents)
         self.assertTrue('banner_linktext' in self.browser.contents)
-

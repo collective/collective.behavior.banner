@@ -1,79 +1,46 @@
 # -*- coding: utf-8 -*-
-"""Base module for unittesting."""
-
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
-from plone.app.testing import login
-from zope.configuration import xmlconfig
-from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from plone.testing import z2
 
-import unittest2 as unittest
+import collective.behavior.banner
 
 
-class CollectiveBannerLayer(PloneSandboxLayer):
+class CollectiveBehaviorBannerLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE,)
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        """Set up Zope."""
-        # Load ZCML
-        import plone.app.dexterity
-        xmlconfig.file(
-            'configure.zcml',
-             plone.app.dexterity,
-             context=configurationContext)
-        import collective.behavior.banner
         self.loadZCML(package=collective.behavior.banner)
-        #ease tests
-        xmlconfig.file(
-            'testing.zcml',
-            collective.behavior.banner,
-            context=configurationContext
-        )
-        z2.installProduct(app, 'collective.behavior.banner')
 
     def setUpPloneSite(self, portal):
-        """Set up Plone."""
-        # Install into Plone site using portal_setup
         applyProfile(portal, 'collective.behavior.banner:default')
-        #ease tests
-        applyProfile(portal, 'collective.behavior.banner:testing')
-
-        # Login and create some test content
-        setRoles(portal, TEST_USER_ID, ['Manager'])
-        login(portal, TEST_USER_NAME)
-        portal.invokeFactory('Folder', 'folder')
-
-        # Commit so that the test browser sees these objects
-        portal.portal_catalog.clearFindAndRebuild()
-        import transaction
-        transaction.commit()
-
-    def tearDownZope(self, app):
-        """Tear down Zope."""
-        z2.uninstallProduct(app, 'collective.behavior.banner')
 
 
-FIXTURE = CollectiveBannerLayer()
-INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="ICollectiveBannerLayer:Integration")
-FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name="ICollectiveBannerLayer:Functional")
+COLLECTIVE_BEHAVIOR_BANNER_FIXTURE = CollectiveBehaviorBannerLayer()
 
 
-class IntegrationTestCase(unittest.TestCase):
-    """Base class for integration tests."""
+COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(COLLECTIVE_BEHAVIOR_BANNER_FIXTURE,),
+    name='CollectiveBehaviorBannerLayer:IntegrationTesting'
+)
 
-    layer = INTEGRATION_TESTING
+
+COLLECTIVE_BEHAVIOR_BANNER_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(COLLECTIVE_BEHAVIOR_BANNER_FIXTURE,),
+    name='CollectiveBehaviorBannerLayer:FunctionalTesting'
+)
 
 
-class FunctionalTestCase(unittest.TestCase):
-    """Base class for functional tests."""
-
-    layer = FUNCTIONAL_TESTING
+COLLECTIVE_BEHAVIOR_BANNER_ACCEPTANCE_TESTING = FunctionalTesting(
+    bases=(
+        COLLECTIVE_BEHAVIOR_BANNER_FIXTURE,
+        REMOTE_LIBRARY_BUNDLE_FIXTURE,
+        z2.ZSERVER_FIXTURE
+    ),
+    name='CollectiveBehaviorBannerLayer:AcceptanceTesting'
+)

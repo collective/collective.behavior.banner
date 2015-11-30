@@ -1,48 +1,69 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:cmf="http://namespaces.zope.org/cmf"
-    xmlns:five="http://namespaces.zope.org/five"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.behavior.banner">
 
-    <!-- Zope2 initialization -->
-    <five:registerPackage package="." initialize=".initialize" />
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
 
-    <!-- Include configuration for dependencies listed in setup.py -->
-    <includeDependencies package="." />
-
-    <!-- Include sub-packages that use their own configure.zcml files. -->
-    <include package=".browser" />
-
-    <!-- Register the installation GenericSetup extension profile -->
-    <genericsetup:registerProfile
-        name="default"
-        title="collective.behavior.banner"
-        directory="profiles/default"
-        description="Extension profile for collective.behavior.banner."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <include package="plone.behavior" file="meta.zcml"/>
-
-    <plone:behavior
-      title="Banner"
-      description="A banner consits of various fields that can be used as a banner or combined to a slider"
-      provides=".banner.IBanner"
-      factory=".banner.Banner"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".banner.IBanner"
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.behavior.banner"
+      directory="profiles/default"
+      description="Installs the collective.behavior.banner add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-    <plone:behavior
-      title="Slider"
-      description="Add a relation to the banner for slider function"
-      provides=".slider.ISlider"
-      factory=".slider.Slider"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".slider.ISlider"
+  <genericsetup:importStep
+      name="collective.behavior.banner-postInstall"
+      title="collective.behavior.banner post_install import step"
+      description="Post install import step from collective.behavior.banner"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.behavior.banner"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.behavior.banner add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <genericsetup:importStep
+      name="collective.behavior.banner-uninstall"
+      title="collective.behavior.banner uninstall import step"
+      description="Import step run during ininstalling collective.behavior.banner"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.behavior.banner-hiddenprofiles" />
+
+  <!-- Include sub-packages that use their own configure.zcml files. -->
+  <include package=".browser" />
+
+  <include package="plone.behavior" file="meta.zcml"/>
+
+  <plone:behavior
+    title="Banner"
+    description="A banner consits of various fields that can be used as a banner or combined to a slider"
+    provides=".banner.IBanner"
+    factory=".banner.Banner"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".banner.IBanner"
+    />
+
+  <plone:behavior
+    title="Slider"
+    description="Add a relation to the banner for slider function"
+    provides=".slider.ISlider"
+    factory=".slider.Slider"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".slider.ISlider"
+    />
 
 </configure>

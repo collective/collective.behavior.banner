@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/collective/collective.behavior.banner.svg?branch=plone4
+    :target: https://travis-ci.org/collective/collective.behavior.banner
+
 
 collective.behavior.banner
 ==========================

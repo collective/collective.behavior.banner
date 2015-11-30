@@ -10,8 +10,6 @@ from zope import schema
 from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.interface import implements
-from zope.interface import Invalid
-from zope.interface.interface import invariant
 
 
 class IBanner(model.Schema):
@@ -63,18 +61,6 @@ class IBanner(model.Schema):
         ''',
         required=False,
     )
-
-    # @invariant
-    # def validate_visual_content(data):
-    #     """
-    #     It is not allowed to add an image and an external url at the same time.
-    #     """
-    #     if data.banner_image and data.banner_url:
-    #         raise Invalid(_(
-    #             u'error_message_links',
-    #             default=u'It\'s not possible to add an image and an '
-    #                     u'external url at the same time')
-    #         )
 
     banner_title = schema.TextLine(
         title=_(u"Banner Title"),

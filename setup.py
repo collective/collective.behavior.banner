@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 """Installer for the collective.behavior.banner package."""
-
 from setuptools import find_packages
 from setuptools import setup
 
-import os
 
-
-def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-
-long_description = \
-    read('README.rst') + \
-    read('CHANGELOG.rst') + \
-    read('docs/source', 'LICENSE.rst')
+long_description = (
+    open('README.rst').read() +
+    '\n' +
+    'Contributors\n' +
+    '============\n' +
+    '\n' +
+    open('CONTRIBUTORS.rst').read() +
+    '\n' +
+    open('CHANGES.rst').read() +
+    '\n')
 
 setup(
     name='collective.behavior.banner',

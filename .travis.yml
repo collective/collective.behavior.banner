@@ -18,10 +18,6 @@ install:
 script:
   - bin/code-analysis
   - bin/test
-after_success:
-  - bin/createcoverage
-  - pip install coveralls
-  - coveralls
 
 notifications:
   email:

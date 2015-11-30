@@ -3,7 +3,7 @@
 Changelog
 =========
 
-1.0a1 (unreleased)
+1.0b1 (2015-11-30)
 ------------------
 
 - Use p5-style resources.

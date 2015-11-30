@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/collective/collective.behavior.banner.svg?branch=master
+    :target: https://travis-ci.org/collective/collective.behavior.banner
+
 
 collective.behavior.banner
 ==========================

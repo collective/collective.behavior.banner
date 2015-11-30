@@ -1,5 +1,29 @@
 <?xml version="1.0"?>
 <registry>
- <records interface="collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema">
- </records>
+  <records interface="collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema">
+  </records>
+
+  <!-- resources definition -->
+  <records prefix="plone.resources/collective-behavior-banner"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+     <value key="css">
+        <element>++resource++collective.behavior.banner/slider.css</element>
+        <element>++resource++collective.behavior.banner/banner.css</element>
+     </value>
+     <value key="js">++resource++collective.behavior.banner/responsiveslides.min.js</value>
+  </records>
+
+  <!-- bundle definition -->
+  <records prefix="plone.bundles/collective-behavior-banner"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>collective-behavior-banner</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="compile">False</value>
+    <value key="jscompilation">++plone++static/responsiveslides-min-compiled.js</value>
+    <value key="csscompilation">++plone++static/collective-behavior-banner-compiled.css</value>
+    <value key="last_compilation"></value>
+  </records>
+
 </registry>

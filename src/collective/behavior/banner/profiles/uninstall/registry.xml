@@ -1,0 +1,13 @@
+<registry>
+
+  <records prefix="plone.resources/collective-behavior-banner"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'
+           remove="True">
+  </records>
+
+  <records prefix="plone.bundles/collective-behavior-banner-bundle"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'
+           remove="True">
+  </records>
+
+</registry>

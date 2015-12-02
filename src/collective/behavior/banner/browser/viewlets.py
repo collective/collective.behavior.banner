@@ -20,6 +20,11 @@ class BannerViewlet(ViewletBase):
     slider_template = ViewPageTemplateFile('slider.pt')
     video_template = ViewPageTemplateFile('video.pt')
 
+    def render(self):
+        if '@@edit' in self.request.steps:
+            return ''
+        return self.index()
+
     def index(self):
         context = aq_inner(self.context)
         if ISlider.providedBy(context):

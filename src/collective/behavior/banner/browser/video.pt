@@ -2,7 +2,7 @@
     tal:define="banner view/find_banner|nothing"
     i18n:domain="collective.behavior.banner">
 
-<div id="portal-banner" class="principal" role="complementary"
+<div id="portal-banner" class="principal portal-banner" role="complementary"
      tal:define="has_url python:'banner_url' in banner;">
 
     <div class="container"

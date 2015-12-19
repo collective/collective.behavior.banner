@@ -3,6 +3,7 @@ from collective.behavior.banner import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
+from plone.indexer.decorator import indexer
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
@@ -109,3 +110,13 @@ class Banner(object):
 
     def __init__(self, context):
         self.context = context
+
+
+@indexer(IBanner)
+def has_image(object, **kw):
+    return (object.banner_image
+        or object.banner_title
+        or object.banner_description
+        or object.banner_text
+        or object.banner_link
+        )

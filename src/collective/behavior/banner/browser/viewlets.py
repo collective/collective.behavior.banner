@@ -8,6 +8,7 @@ from collective.behavior.banner.slider import ISlider
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
+from urlparse import urlparse
 from zope.component import getUtility
 
 import random
@@ -134,7 +135,6 @@ class BannerViewlet(ViewletBase):
             </iframe>
         '''
         url = obj['banner_url']
-        from urlparse import urlparse
         try:
             parsed = urlparse(url)
         except AttributeError:

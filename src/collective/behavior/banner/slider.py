@@ -28,7 +28,7 @@ class ISlider(model.Schema):
         default=[],
         value_type=RelationChoice(
             title=_(u'Target'),
-            source=CatalogSource(object_provides=IBanner.__identifier__)
+            source=CatalogSource(banner_has_image=True)
         ),
         required=False,
     )

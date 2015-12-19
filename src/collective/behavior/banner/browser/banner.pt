@@ -4,6 +4,7 @@
 
 <div id="portal-banner" class="principal portal-banner" role="complementary"
      tal:define="has_image python:banner and 'banner_image' in banner;
+                 has_url python:banner and 'banner_url' in banner;
                  has_fontcolor python:banner and 'banner_fontcolor' in banner;
                  fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#4d4d4d'">
 
@@ -17,6 +18,13 @@
                      tal:condition="python:has_image">
                         <img class="bannerImageImage"
                              tal:attributes="src string:${banner/banner_image}/preview">
+                </div>
+
+                <div class="bannerVideo"
+                     tal:condition="python:has_url and not has_image">
+                    <tal:iframe define="url banner/banner_url"
+                      replace="structure python:view.getVideoEmbedMarkup(url)">
+                    </tal:iframe>
                 </div>
 
                 <div class="bannerText">

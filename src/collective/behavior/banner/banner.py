@@ -3,12 +3,14 @@ from collective.behavior.banner import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
+from plone.indexer.decorator import indexer
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapts
-from zope.interface import alsoProvides, implements
+from zope.interface import alsoProvides
+from zope.interface import implements
 
 
 class IBanner(model.Schema):
@@ -20,6 +22,7 @@ class IBanner(model.Schema):
             'banner_hide',
             'banner_stop_inheriting',
             'banner_image',
+            'banner_url',
             'banner_title',
             'banner_description',
             'banner_text',
@@ -47,6 +50,16 @@ class IBanner(model.Schema):
     banner_image = namedfile.NamedBlobImage(
         title=_(u"Banner Image"),
         description=u"",
+        required=False,
+    )
+
+    banner_url = schema.URI(
+        title=_(u'label_banner_url', default=u'Video URL'),
+        description=u'''
+        If you want the banner for this item to show a video, enter an
+        external URL here.  YouTube and Vimeo are supported.  Note:
+        You can either supply an image, or a video URL, not both.
+        ''',
         required=False,
     )
 
@@ -97,3 +110,13 @@ class Banner(object):
 
     def __init__(self, context):
         self.context = context
+
+
+@indexer(IBanner)
+def has_image(object, **kw):
+    return (object.banner_image
+            or object.banner_title
+            or object.banner_description
+            or object.banner_text
+            or object.banner_link
+            )

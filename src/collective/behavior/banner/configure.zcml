@@ -66,4 +66,6 @@
     marker=".slider.ISlider"
     />
 
+  <adapter name="banner_has_image" factory=".banner.has_image" />
+
 </configure>

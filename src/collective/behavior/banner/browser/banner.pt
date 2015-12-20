@@ -1,14 +1,15 @@
 <tal:block
     tal:define="banner view/find_banner|nothing"
-    tal:condition="python: banner"
     i18n:domain="collective.behavior.banner">
 
-<div id="portal-banner" class="principal" role="complementary"
-     tal:define="has_image python:banner.has_key('banner_image');
-                 has_fontcolor python:banner.has_key('banner_fontcolor');
+<div id="portal-banner" class="principal portal-banner" role="complementary"
+     tal:define="has_image python:banner and 'banner_image' in banner;
+                 has_url python:banner and 'banner_url' in banner;
+                 has_fontcolor python:banner and 'banner_fontcolor' in banner;
                  fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#4d4d4d'">
 
-    <div class="container">
+    <div class="container"
+        tal:condition="python: banner">
 
         <div class="gigantic"
              tal:attributes="class python:'banner_container portal-banner gigantic' if has_image else 'banner_container banner_without_image portal-banner gigantic'">
@@ -19,17 +20,24 @@
                              tal:attributes="src string:${banner/banner_image}/preview">
                 </div>
 
+                <div class="bannerVideo"
+                     tal:condition="python:has_url and not has_image">
+                    <tal:iframe define="url banner/banner_url"
+                      replace="structure python:view.getVideoEmbedMarkup(url)">
+                    </tal:iframe>
+                </div>
+
                 <div class="bannerText">
 
                     <h1 class="bannerTitle"
                          tal:attributes="style string:color:${fontcolor}"
-                         tal:condition="python:banner.has_key('banner_title')">
+                         tal:condition="python:'banner_title' in banner">
                         <span tal:replace="banner/banner_title">Title</span>
                     </h1>
 
                     <p class="bannerDescription"
                          tal:attributes="style string:color:${fontcolor}"
-                         tal:condition="python:banner.has_key('banner_description')">
+                         tal:condition="python:'banner_description' in banner">
                         <tal:def tal:define="banner_desc_org banner/banner_description;
                                              banner_desc_cropped python:' '.join((banner_desc_org[0:400].strip()).split(' ')[:-1]).strip('.')+'...';
                                              banner_desc python: len(banner_desc_org) > 400 and banner_desc_cropped or banner_desc_org;
@@ -40,7 +48,7 @@
 
                     <div class="bannerLink"
                          tal:attributes="style string:color:${fontcolor}"
-                         tal:condition="python: banner.has_key('banner_link')">
+                         tal:condition="python: 'banner_link' in banner">
 
                             <p><a class="context" role="button" target="_blank" href="" title=""
                                   tal:attributes="href banner/banner_link; title banner/banner_linktext"
@@ -52,7 +60,7 @@
 
                     <div class="bannerBody"
                        tal:attributes="style string:color:${fontcolor}"
-                       tal:condition="python:banner.has_key('banner_text')">
+                       tal:condition="python:'banner_text' in banner">
                        <span tal:replace="structure banner/banner_text">
                              Text
                        </span>

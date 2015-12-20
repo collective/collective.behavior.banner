@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.banner import _
-from collective.behavior.banner.banner import IBanner
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -28,7 +27,7 @@ class ISlider(model.Schema):
         default=[],
         value_type=RelationChoice(
             title=_(u'Target'),
-            source=CatalogSource(object_provides=IBanner.__identifier__)
+            source=CatalogSource(banner_has_image=True)
         ),
         required=False,
     )

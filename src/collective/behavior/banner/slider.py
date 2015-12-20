@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.banner import _
-from collective.behavior.banner.banner import IBanner
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent

@@ -115,8 +115,8 @@ class Banner(object):
 @indexer(IBanner)
 def has_image(object, **kw):
     return (object.banner_image
-        or object.banner_title
-        or object.banner_description
-        or object.banner_text
-        or object.banner_link
-        )
+            or object.banner_title
+            or object.banner_description
+            or object.banner_text
+            or object.banner_link
+            )

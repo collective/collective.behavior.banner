@@ -8,6 +8,7 @@ from collective.behavior.banner.slider import ISlider
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
+from urlparse import urlparse
 from zope.component import getUtility
 
 import random
@@ -18,16 +19,17 @@ class BannerViewlet(ViewletBase):
 
     banner_template = ViewPageTemplateFile('banner.pt')
     slider_template = ViewPageTemplateFile('slider.pt')
-    video_template = ViewPageTemplateFile('video.pt')
+
+    def render(self):
+        if '@@edit' in self.request.steps:
+            return ''
+        return self.index()
 
     def index(self):
         context = aq_inner(self.context)
         if ISlider.providedBy(context):
             if context.slider_relation and len(context.slider_relation) > 1:
                 return self.slider_template()
-        banner = self.find_banner()
-        if banner and 'banner_url' in banner:
-            return self.video_template()
         return self.banner_template()
 
     def find_banner(self):
@@ -103,9 +105,8 @@ class BannerViewlet(ViewletBase):
         random.shuffle(banners)
         return banners
 
-    def getVideoEmbedMarkup(self, obj):
-        """ Build an iframe from a YouTube or Vimeo share url
-        """
+    def getVideoEmbedMarkup(self, url):
+        """ Build an iframe from a YouTube or Vimeo share url """
         # https://www.youtube.com/watch?v=Q6qYdJuWB6w
         YOUTUBE_TEMPLATE = '''
             <iframe
@@ -128,8 +129,6 @@ class BannerViewlet(ViewletBase):
                 allowfullscreen>
             </iframe>
         '''
-        url = obj['banner_url']
-        from urlparse import urlparse
         try:
             parsed = urlparse(url)
         except AttributeError:
@@ -142,4 +141,9 @@ class BannerViewlet(ViewletBase):
             template = VIMEO_TEMPLATE
         else:
             return ''
+        # It so happens that path is needed by the Vimeo format,
+        # while videoId is needed by the Youtube format, so only one
+        # of the variables will have a useful value, depending on the player.
+        # Each template will use the argument it cares about and ignore the
+        # other.
         return template.format(path, videoId)

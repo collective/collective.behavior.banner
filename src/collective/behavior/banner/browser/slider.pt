@@ -46,10 +46,7 @@
                     <div class="bannerDescription"
                          tal:attributes="style string:color:${fontcolor}"
                          tal:condition="python:'banner_description' in banner">
-                        <tal:def tal:define="banner_desc_org banner/banner_description;
-                                             banner_desc_cropped python:' '.join((banner_desc_org[0:400].strip()).split(' ')[:-1]).strip('.')+'...';
-                                             banner_desc python: len(banner_desc_org) > 400 and banner_desc_cropped or banner_desc_org;
-                                              ">
+                        <tal:def tal:define="banner_desc banner/banner_description;">
                             <span tal:replace="banner_desc" />
                         </tal:def>
                     </div>

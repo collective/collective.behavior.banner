@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.behavior.banner.banner import IBanner
 from collective.behavior.banner.browser.controlpanel import \
@@ -76,7 +77,8 @@ class BannerViewlet(ViewletBase):
         if obj.banner_title:
             banner['banner_title'] = obj.banner_title
         if obj.banner_description:
-            banner['banner_description'] = obj.banner_description
+            crop = Plone(self.context, self.request).cropText
+            banner['banner_description'] = crop(obj.banner_description, 400)
         if obj.banner_text:
             banner['banner_text'] = obj.banner_text.output
         if obj.banner_link:

@@ -26,7 +26,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="collective.behavior.banner"
+      title="collective.behavior.banner uninstall"
       directory="profiles/uninstall"
       description="Uninstalls the collective.behavior.banner add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -35,7 +35,7 @@
   <genericsetup:importStep
       name="collective.behavior.banner-uninstall"
       title="collective.behavior.banner uninstall import step"
-      description="Import step run during ininstalling collective.behavior.banner"
+      description="Import step run during uninstallation of collective.behavior.banner"
       handler=".setuphandlers.uninstall">
   </genericsetup:importStep>
 

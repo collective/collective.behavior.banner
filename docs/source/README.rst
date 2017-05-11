@@ -1,6 +1,9 @@
 .. image:: https://travis-ci.org/collective/collective.behavior.banner.svg?branch=master
     :target: https://travis-ci.org/collective/collective.behavior.banner
 
+.. image:: https://coveralls.io/repos/github/collective/collective.behavior.banner/badge.svg?branch=master
+    :target: https://coveralls.io/github/collective/collective.behavior.banner?branch=master
+
 
 collective.behavior.banner
 ==========================

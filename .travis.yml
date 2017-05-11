@@ -21,8 +21,8 @@ script:
   - bin/test
 after_success:
   - bin/createcoverage
-  - pip install coveralls
-  - coveralls
+  - bin/pip install coveralls
+  - bin/coveralls
 notifications:
   email:
     - bauer@starzel.de

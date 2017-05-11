@@ -86,10 +86,3 @@ Support
 
 If you are having issues, please let us know at https://github.com/collective/collective.behavior.banner/issues.
 
-
-Contributors
-============
-
-* Philip Bauer, bauer@starzel.de
-* Steffen Lindner. lidner@starzel.de
-* Stefan Antonelli, stefan.antonelli@operun.de

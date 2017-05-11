@@ -6,24 +6,24 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from zope.component import adapts
+from zope.component import adapter
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class ISlider(model.Schema):
 
     model.fieldset(
         'slider',
-        label=u"Slider",
+        label=u'Slider',
         fields=[
             'slider_relation',
         ]
     )
 
     slider_relation = RelationList(
-        title=_(u"Slider Banners"),
-        description=_(u"These banners will be used in the slider"),
+        title=_(u'Slider Banners'),
+        description=_(u'These banners will be used in the slider'),
         default=[],
         value_type=RelationChoice(
             title=_(u'Target'),
@@ -32,12 +32,13 @@ class ISlider(model.Schema):
         required=False,
     )
 
+
 alsoProvides(ISlider, IFormFieldProvider)
 
 
+@implementer(ISlider)
+@adapter(IDexterityContent)
 class Slider(object):
-    implements(ISlider)
-    adapts(IDexterityContent)
 
     def __init__(self, context):
         self.context = context

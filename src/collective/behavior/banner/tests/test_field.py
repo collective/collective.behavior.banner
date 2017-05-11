@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
-import unittest2 as unittest
-
-from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING  # noqa
+from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_FUNCTIONAL_TESTING  # noqa
+from plone import api
+from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.fti import DexterityFTI
 from plone.testing.z2 import Browser
 
-from plone.dexterity.fti import DexterityFTI
-
-from plone.app.testing import TEST_USER_ID, setRoles
-from plone import api
+import unittest
 
 
 class TestFieldCase(unittest.TestCase):
     """Test integration of collective.behavior.banner into Plone."""
 
-    layer = COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING
+    layer = COLLECTIVE_BEHAVIOR_BANNER_FUNCTIONAL_TESTING
 
     behaviors = (
         'collective.behavior.banner.banner.IBanner',)
@@ -33,7 +32,10 @@ class TestFieldCase(unittest.TestCase):
         self.portal.portal_types._setObject(self.portal_type, fti)
         fti.klass = 'plone.dexterity.content.Item'
         fti.behaviors = self.behaviors
-        self.portal.invokeFactory(self.portal_type, 'doc1')
+        api.content.create(
+            container=self.portal,
+            type=self.portal_type,
+            id='doc1')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         import transaction
 
@@ -43,7 +45,7 @@ class TestFieldCase(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             'Authorization',
-            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+            'Basic {0}:{1}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
 
     def test_some_banner_fields(self):

@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Setup tests for this package."""
-from Products.CMFPlone.interfaces import IResourceRegistry
-from collective.behavior.banner.testing import (
-    COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING)
+from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING  # noqa: E501
 from plone import api
 from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.interfaces import IResourceRegistry
 from zope.component import getUtility
 
 import unittest
+
 
 CSS = (
     '++resource++collective.behavior.banner/banner.css',
@@ -39,7 +38,7 @@ class TestSetup(unittest.TestCase):
 
     def test_cssregistry(self):
         bundles = getUtility(IRegistry).collectionOfInterface(
-            IResourceRegistry, prefix="plone.resources")
+            IResourceRegistry, prefix='plone.resources')
         bundle = bundles['collective-behavior-banner']
 
         for id in CSS:
@@ -73,6 +72,6 @@ class TestUninstall(unittest.TestCase):
 
     def test_cssregistry_removed(self):
         bundles = getUtility(IRegistry).collectionOfInterface(
-            IResourceRegistry, prefix="plone.resources")
+            IResourceRegistry, prefix='plone.resources')
         self.assertNotIn(
             'collective-behavior-banner', bundles)

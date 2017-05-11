@@ -8,16 +8,16 @@ from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
-from zope.component import adapts
+from zope.component import adapter
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class IBanner(model.Schema):
 
     model.fieldset(
         'banner',
-        label=u"Banner",
+        label=u'Banner',
         fields=[
             'banner_hide',
             'banner_stop_inheriting',
@@ -33,23 +33,23 @@ class IBanner(model.Schema):
     )
 
     banner_hide = schema.Bool(
-        title=_(u"Hide banner"),
-        description=_(u"This does not show the banner for this item."),
+        title=_(u'Hide banner'),
+        description=_(u'This does not show the banner for this item.'),
         default=False,
         required=False,
     )
 
     banner_stop_inheriting = schema.Bool(
-        title=_(u"Do not inherit banner from parents"),
+        title=_(u'Do not inherit banner from parents'),
         description=_(
-            u"This stops inheriting banners for this item and all children."),
+            u'This stops inheriting banners for this item and all children.'),
         default=False,
         required=False,
     )
 
     banner_image = namedfile.NamedBlobImage(
-        title=_(u"Banner Image"),
-        description=u"",
+        title=_(u'Banner Image'),
+        description=u'',
         required=False,
     )
 
@@ -64,38 +64,38 @@ class IBanner(model.Schema):
     )
 
     banner_title = schema.TextLine(
-        title=_(u"Banner Title"),
-        description=u"",
+        title=_(u'Banner Title'),
+        description=u'',
         required=False,
     )
 
     banner_description = schema.Text(
-        title=_(u"Banner Subtitle"),
-        description=u"",
+        title=_(u'Banner Subtitle'),
+        description=u'',
         required=False,
     )
 
     banner_text = RichText(
-        title=_(u"Banner Text"),
-        description=u"",
+        title=_(u'Banner Text'),
+        description=u'',
         required=False,
     )
 
     banner_link = RelationChoice(
-        title=_(u"Banner Link"),
-        description=u"",
-        vocabulary="plone.app.vocabularies.Catalog",
+        title=_(u'Banner Link'),
+        description=u'',
+        vocabulary='plone.app.vocabularies.Catalog',
         required=False,
     )
 
     banner_linktext = schema.TextLine(
-        title=_(u"Link caption"),
+        title=_(u'Link caption'),
         description=_(u'Caption for the link'),
         required=False,
     )
 
     banner_fontcolor = schema.TextLine(
-        title=_(u"Fontcolor on the teaser"),
+        title=_(u'Fontcolor on the teaser'),
         description=_(u'Color for headings and texts as webcolor'),
         required=False,
     )
@@ -104,9 +104,9 @@ class IBanner(model.Schema):
 alsoProvides(IBanner, IFormFieldProvider)
 
 
+@implementer(IBanner)
+@adapter(IDexterityContent)
 class Banner(object):
-    implements(IBanner)
-    adapts(IDexterityContent)
 
     def __init__(self, context):
         self.context = context

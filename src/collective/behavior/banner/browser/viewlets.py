@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFPlone.browser.ploneview import Plone
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.behavior.banner.banner import IBanner
-from collective.behavior.banner.browser.controlpanel import \
-    IBannerSettingsSchema
 from collective.behavior.banner.slider import ISlider
+from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
-from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.browser.ploneview import Plone
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urlparse import urlparse
-from zope.component import getUtility
 
 import random
 
@@ -34,9 +31,8 @@ class BannerViewlet(ViewletBase):
         return self.banner_template()
 
     def find_banner(self):
-        registry = getUtility(IRegistry)
-        settings = registry.forInterface(IBannerSettingsSchema)
-        types = settings.types
+        types = api.portal.get_registry_record(
+            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.types')  # noqa: E501
         context = aq_inner(self.context)
         # first handle the obj itself
         if IBanner.providedBy(context):
@@ -72,8 +68,8 @@ class BannerViewlet(ViewletBase):
         """ return banner of this object """
         banner = {}
         if getattr(obj, 'banner_image', False):
-            banner['banner_image'] = '%s/@@images/banner_image' \
-                % obj.absolute_url()
+            banner['banner_image'] = '{0}/@@images/banner_image'.format(
+                obj.absolute_url())
         if obj.banner_title:
             banner['banner_title'] = obj.banner_title
         if obj.banner_description:

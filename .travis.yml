@@ -9,7 +9,7 @@ python:
 matrix:
   fast_finish: true
 install:
-  - pip install -r requirements.txt
+  - bin/pip install -r requirements.txt
   - bin/buildout -N buildout:download-cache=downloads annotate
   - bin/buildout -N buildout:download-cache=downloads
 before_script:

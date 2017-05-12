@@ -57,6 +57,8 @@ Compatability
 
 collective.behavior.banner works in Plone 4 and Plone 5.
 
+For Plone 4 use Version 0.2. For Plone 5 use 1.0b1 and higher.
+
 The branch `plone4 <https://github.com/collective/collective.behavior.banner/tree/plone4>`_ supports Plone 4 while the branch `master <https://github.com/collective/collective.behavior.banner/tree/master>`_ works in Plone 5 only.
 
 

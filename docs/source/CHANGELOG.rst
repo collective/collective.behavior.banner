@@ -6,6 +6,12 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Pass full banner-obj to templates to allow accessing object-attibutes.
+  [pbauer]
+
+- Test against Plone 5.0.7 and fix all pep8-issues.
+  [pbauer]
+
 - Show YouTube and Vimeo videos in a banner.
   [fulv]
 

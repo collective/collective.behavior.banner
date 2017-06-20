@@ -3,7 +3,7 @@
 Changelog
 =========
 
-1.0b2 (unreleased)
+1.0b2 (2017-06-20)
 ------------------
 
 - Pass full banner-obj to templates to allow accessing object-attibutes.

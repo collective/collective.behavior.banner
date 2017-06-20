@@ -88,6 +88,7 @@ class BannerViewlet(ViewletBase):
             banner['banner_fontcolor'] = obj.banner_fontcolor
         if obj.banner_url:
             banner['banner_url'] = obj.banner_url
+        banner['banner_obj'] = obj
         return banner
 
     def random_banner(self):

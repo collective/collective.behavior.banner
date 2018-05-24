@@ -64,6 +64,10 @@ class BannerViewlet(ViewletBase):
 
         return False
 
+    def banner_scale(self):
+        return api.portal.get_registry_record(
+            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale')
+
     def banner(self, obj):
         """ return banner of this object """
         banner = {}

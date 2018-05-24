@@ -10,6 +10,10 @@
       directory="static"
       />
 
+    <utility
+      factory=".controlpanel.SizesVocabulary"
+      name="collective.behavior.banner.all_sizes" />
+
     <browser:viewlet
       name="collective.bannerviewlet"
       for="plone.dexterity.interfaces.IDexterityContent"

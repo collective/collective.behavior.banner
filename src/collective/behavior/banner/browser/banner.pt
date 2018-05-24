@@ -17,7 +17,7 @@
                 <div class="bannerImage"
                      tal:condition="python:has_image">
                         <img class="bannerImageImage"
-                             tal:attributes="src string:${banner/banner_image}/preview">
+                             tal:attributes="src string:${banner/banner_image}/${view/banner_scale}">
                 </div>
 
                 <div class="bannerVideo"

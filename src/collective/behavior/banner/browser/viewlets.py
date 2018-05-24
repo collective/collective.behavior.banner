@@ -39,7 +39,7 @@ class BannerViewlet(ViewletBase):
             if context.banner_hide:
                 return False
             banner = self.banner(context)
-            if banner:
+            if 'banner_url' in banner or 'banner_image' in banner:
                 return banner
             if context.banner_stop_inheriting:
                 return False
@@ -55,7 +55,7 @@ class BannerViewlet(ViewletBase):
                 if item.banner_stop_inheriting:
                     return False
                 banner = self.banner(item)
-                if banner:
+                if 'banner_url' in banner or 'banner_image' in banner:
                     return banner
             if INavigationRoot.providedBy(item):
                 return False

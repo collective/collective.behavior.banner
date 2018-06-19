@@ -6,7 +6,10 @@
      tal:define="has_image python:banner and 'banner_image' in banner;
                  has_url python:banner and 'banner_url' in banner;
                  has_fontcolor python:banner and 'banner_fontcolor' in banner;
-                 fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#4d4d4d'">
+                 fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#4d4d4d';
+                 has_backgroundcolor python:banner and 'banner_backgroundcolor' in banner;
+                 backgroundcolor python:has_backgroundcolor and 'background:' + banner['banner_backgroundcolor'] + ' !important' or ''"
+     tal:attributes="style backgroundcolor">
 
     <div class="container"
         tal:condition="python: banner">

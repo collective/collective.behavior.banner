@@ -29,6 +29,7 @@ class IBanner(model.Schema):
             'banner_link',
             'banner_linktext',
             'banner_fontcolor',
+            'banner_backgroundcolor',
         ]
     )
 
@@ -97,6 +98,12 @@ class IBanner(model.Schema):
     banner_fontcolor = schema.TextLine(
         title=_(u'Fontcolor on the teaser'),
         description=_(u'Color for headings and texts as webcolor'),
+        required=False,
+    )
+
+    banner_backgroundcolor = schema.TextLine(
+        title=_(u'Background color'),
+        description=_(u'Background color on the banner'),
         required=False,
     )
 

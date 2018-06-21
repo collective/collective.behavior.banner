@@ -17,6 +17,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:upgradeStep
+      title="collective.behavior.banner: Add banner_scale to registry"
+      source="1"
+      destination="2"
+      handler=".upgradehandlers.upgrade_registry_for_banner_scale"
+      profile="collective.behavior.banner:default"
+      />
+
   <genericsetup:importStep
       name="collective.behavior.banner-postInstall"
       title="collective.behavior.banner post_install import step"

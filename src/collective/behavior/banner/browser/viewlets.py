@@ -39,7 +39,8 @@ class BannerViewlet(ViewletBase):
             if context.banner_hide:
                 return False
             banner = self.banner(context)
-            if banner:
+            config_keys = [key for key in banner.keys() if key != 'banner_obj']
+            if config_keys:
                 return banner
             if context.banner_stop_inheriting:
                 return False
@@ -55,7 +56,8 @@ class BannerViewlet(ViewletBase):
                 if item.banner_stop_inheriting:
                     return False
                 banner = self.banner(item)
-                if banner:
+                config_keys = [key for key in banner.keys() if key != 'banner_obj']
+                if config_keys:
                     return banner
             if INavigationRoot.providedBy(item):
                 return False
@@ -63,6 +65,12 @@ class BannerViewlet(ViewletBase):
                 return False
 
         return False
+
+    def banner_scale(self):
+        return api.portal.get_registry_record(
+            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale',
+            default='preview'
+        )
 
     def banner(self, obj):
         """ return banner of this object """
@@ -86,6 +94,8 @@ class BannerViewlet(ViewletBase):
             banner['banner_linktext'] = obj.banner_linktext
         if obj.banner_fontcolor:
             banner['banner_fontcolor'] = obj.banner_fontcolor
+        if obj.banner_backgroundcolor:
+            banner['banner_backgroundcolor'] = obj.banner_backgroundcolor
         if obj.banner_url:
             banner['banner_url'] = obj.banner_url
         banner['banner_obj'] = obj

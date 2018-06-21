@@ -1,8 +1,21 @@
 # -*- coding: UTF-8 -*-
+from plone.app.imaging.utils import getAllowedSizes
 from plone.app.registry.browser import controlpanel
 from Products.CMFPlone import PloneMessageFactory as _
 from zope import schema
 from zope.interface import Interface
+from zope.interface import implementer
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleVocabulary
+
+
+@implementer(IVocabularyFactory)
+class SizesVocabulary(object):
+
+    def __call__(self, context):
+        allowed_sizes = getAllowedSizes()
+        size_names = allowed_sizes and allowed_sizes.keys() or []
+        return SimpleVocabulary.fromValues(size_names)
 
 
 class IBannerSettingsSchema(Interface):
@@ -24,6 +37,14 @@ class IBannerSettingsSchema(Interface):
             'Link',
             'News Item',
         ]
+    )
+
+    banner_scale = schema.Choice(
+        title=_(u'Banner scale'),
+        description=_(u'Scale at which banner images are displayed'),
+        required=True,
+        default='preview',
+        vocabulary='collective.behavior.banner.all_sizes',
     )
 
 

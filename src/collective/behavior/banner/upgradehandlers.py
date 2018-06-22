@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from Products.CMFPlone import PloneMessageFactory as _
 from plone.registry import field
 from plone.registry import Record
 from plone.registry.interfaces import IRegistry
+from Products.CMFPlone import PloneMessageFactory as _
 from zope.component import getUtility
 
 
 def upgrade_registry_for_banner_scale(context):
-    key_id = 'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale'
+    key_id = 'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale'  # noqa: E501
     registry = getUtility(IRegistry)
     records = registry.records
     if key_id in records:

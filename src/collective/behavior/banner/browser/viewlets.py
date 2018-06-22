@@ -30,7 +30,7 @@ class BannerViewlet(ViewletBase):
                 return self.slider_template()
         return self.banner_template()
 
-    def find_banner(self):
+    def find_banner(self):  # noqa: C901
         types = api.portal.get_registry_record(
             'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.types')  # noqa: E501
         context = aq_inner(self.context)
@@ -56,7 +56,8 @@ class BannerViewlet(ViewletBase):
                 if item.banner_stop_inheriting:
                     return False
                 banner = self.banner(item)
-                config_keys = [key for key in banner.keys() if key != 'banner_obj']
+                config_keys = [
+                    key for key in banner.keys() if key != 'banner_obj']
                 if config_keys:
                     return banner
             if INavigationRoot.providedBy(item):
@@ -68,11 +69,11 @@ class BannerViewlet(ViewletBase):
 
     def banner_scale(self):
         return api.portal.get_registry_record(
-            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale',
+            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale',  # noqa: E501
             default='preview'
         )
 
-    def banner(self, obj):
+    def banner(self, obj):  # noqa: C901
         """ return banner of this object """
         banner = {}
         if getattr(obj, 'banner_image', False):

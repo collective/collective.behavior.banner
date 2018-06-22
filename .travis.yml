@@ -1,19 +1,19 @@
 language: python
 sudo: false
 cache:
+  pip: true
   directories:
   - eggs
   - downloads
 python:
-  - 2.7
+  - "2.7"
 matrix:
   fast_finish: true
 install:
-  - virtualenv .
-  - source bin/activate
+  - virtualenv -p `which python` .
   - bin/pip install -r requirements.txt
-  - bin/buildout -N buildout:download-cache=downloads annotate
-  - bin/buildout -N buildout:download-cache=downloads
+  - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
+  - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
 before_script:
 
 script:
@@ -21,8 +21,7 @@ script:
   - bin/test
 after_success:
   - bin/createcoverage
-  - pip install coveralls==0.5
+  - bin/pip install coverage
+  - bin/python -m coverage.pickle2json
+  - pip install coveralls
   - coveralls
-notifications:
-  email:
-    - bauer@starzel.de

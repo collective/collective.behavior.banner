@@ -22,6 +22,7 @@ class IBanner(model.Schema):
             'banner_hide',
             'banner_stop_inheriting',
             'banner_image',
+            'banner_alt',
             'banner_url',
             'banner_title',
             'banner_description',
@@ -50,6 +51,12 @@ class IBanner(model.Schema):
 
     banner_image = namedfile.NamedBlobImage(
         title=_(u'Banner Image'),
+        description=u'',
+        required=False,
+    )
+
+    banner_alt = schema.TextLine(
+        title=_(u'Banner image alt tag'),
         description=u'',
         required=False,
     )

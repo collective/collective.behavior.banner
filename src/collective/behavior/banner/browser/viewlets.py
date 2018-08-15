@@ -79,6 +79,7 @@ class BannerViewlet(ViewletBase):
         if getattr(obj, 'banner_image', False):
             banner['banner_image'] = '{0}/@@images/banner_image'.format(
                 obj.absolute_url())
+            banner['banner_alt'] = getattr(obj, 'banner_alt', None)
         if obj.banner_title:
             banner['banner_title'] = obj.banner_title
         if obj.banner_description:

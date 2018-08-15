@@ -6,7 +6,8 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add alt tag for banner image.
+  [tlotze]
 
 
 1.0b2 (2017-06-20)

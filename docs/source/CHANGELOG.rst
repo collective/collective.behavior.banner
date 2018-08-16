@@ -3,8 +3,8 @@
 Changelog
 =========
 
-1.0b3 (unreleased)
-------------------
+1.0 (2018-08-16)
+----------------
 
 - Add alt tag for banner image.
   [tlotze]

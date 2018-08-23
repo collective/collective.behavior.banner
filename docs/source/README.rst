@@ -18,13 +18,13 @@ Banner
 
 A banner is usually some text and an image that is displayed above of the content.
 
-The behavior ``collective.behavior.banner.banner.IBanner`` has various fields (image, title, subtitle, richtext, link, linkcaption etc) that are combined to build a banner. You can enable the behavior on any Dexterity type (tested with plone.app.contenttypes).
+The behavior ``collective.behavior.banner.banner.IBanner`` has various fields (image, title, subtitle, richtext, link, linkcaption etc) that are combined to build a banner. You can enable the behavior on any Dexterity type (tested with plone.app.contenttypes) or for the whole Plone site.
 
 
 Slider
 ------
 
-The behavior ``collective.behavior.banner.slider.ISlider`` adds the option to add relations to several banners (i.e. items that have the Banner behavior enabled). These banners are then displayed like a banner but fade .
+The behavior ``collective.behavior.banner.slider.ISlider`` adds the option to add relations to several banners (i.e. items that have the Banner behavior enabled). These banners are then displayed like a banner but fade.
 
 The slider viewlet uses the javascript library http://responsiveslides.com and fades from one banner to another. You can easily use a different javascript libray by overriding the viewlet templates (see below).
 
@@ -34,7 +34,7 @@ Before you use a slider/carousel on your website, please take time to read http:
 Inheriting
 ----------
 
-Banners are inherited by child objects. In a controlpanel you can configure which types should display inherited banners. You can also prevent inheriting banners for an item and its child objects by enabling the option *Do not inherit banner from parents* on the banner tab.
+Banners are inherited by child objects. In a controlpanel you can configure which types should display inherited banners. You can also prevent inheriting banners for an item and its child objects by enabling the option *Do not inherit banner from parents* on the banner tab. If you want a banner for the entire site, you can assign one to the default content of the Navigation Root (or Plone site root).
 
 
 Customization

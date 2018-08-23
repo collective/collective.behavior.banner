@@ -2,3 +2,4 @@
 - Steffen Lindner, lindner@starzel.de
 - Stefan Antonelli, stefan.antonelli@operun.de
 - Fulvio Casali, fulviocasali@gmail.com
+- Valentin Piret, valentin@affinitic.be

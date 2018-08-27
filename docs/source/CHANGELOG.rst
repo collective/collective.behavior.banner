@@ -6,7 +6,8 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use the banner from the root default content if there is one
+  [Vaal24]
 
 
 1.0 (2018-08-16)

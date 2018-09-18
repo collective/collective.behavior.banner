@@ -3,7 +3,7 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2018-09-18)
 ----------------
 
 - Use the banner from the root default content if there is one

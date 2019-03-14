@@ -7,7 +7,7 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from urlparse import urlparse
+from six.moves.urllib.parse import urlparse
 
 import random
 

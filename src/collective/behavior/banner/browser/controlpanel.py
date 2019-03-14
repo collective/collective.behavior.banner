@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-from plone.app.imaging.utils import getAllowedSizes
 from plone.app.registry.browser import controlpanel
 from Products.CMFPlone import PloneMessageFactory as _
 from zope import schema
@@ -8,13 +7,18 @@ from zope.interface import Interface
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
 
+try:
+    from Products.CMFPlone.utils import getAllowedSizes
+except ImportError:
+    from plone.app.imaging.utils import getAllowedSizes
+
 
 @implementer(IVocabularyFactory)
 class SizesVocabulary(object):
 
     def __call__(self, context):
         allowed_sizes = getAllowedSizes()
-        size_names = allowed_sizes and allowed_sizes.keys() or []
+        size_names = allowed_sizes and list(allowed_sizes.keys()) or []
         return SimpleVocabulary.fromValues(size_names)
 
 

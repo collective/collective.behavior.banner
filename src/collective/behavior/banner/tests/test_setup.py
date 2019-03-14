@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.banner.testing import COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING  # noqa: E501
 from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces import IResourceRegistry
 from zope.component import getUtility
 
 import unittest
+
+
+try:
+    from Products.CMFPlone.utils import get_installer
+    has_get_installer = True
+except ImportError:
+    has_get_installer = False
 
 
 CSS = (
@@ -22,7 +31,10 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        if has_get_installer:
+            self.installer = get_installer(self.portal, self.layer['request'])
+        else:
+            self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
         """Test if collective.behavior.banner is installed."""
@@ -34,7 +46,9 @@ class TestSetup(unittest.TestCase):
         from collective.behavior.banner.interfaces import (
             ICollectiveBannerLayer)
         from plone.browserlayer import utils
-        self.assertIn(ICollectiveBannerLayer, utils.registered_layers())
+        self.assertIn(
+            ICollectiveBannerLayer,
+            utils.registered_layers())
 
     def test_cssregistry(self):
         bundles = getUtility(IRegistry).collectionOfInterface(
@@ -55,8 +69,14 @@ class TestUninstall(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        if has_get_installer:
+            self.installer = get_installer(self.portal, self.layer['request'])
+        else:
+            self.installer = api.portal.get_tool('portal_quickinstaller')
+        roles_before = api.user.get_roles(TEST_USER_ID)
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer.uninstallProducts(['collective.behavior.banner'])
+        setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):
         """Test if collective.behavior.banner is cleanly uninstalled."""
@@ -65,10 +85,12 @@ class TestUninstall(unittest.TestCase):
 
     def test_browserlayer_removed(self):
         """Test that ICollectiveBannerLayer is removed."""
-        from collective.behavior.banner.interfaces import (
-            ICollectiveBannerLayer)
+        from collective.behavior.banner.interfaces import \
+            ICollectiveBannerLayer
         from plone.browserlayer import utils
-        self.assertNotIn(ICollectiveBannerLayer, utils.registered_layers())
+        self.assertNotIn(
+            ICollectiveBannerLayer,
+            utils.registered_layers())
 
     def test_cssregistry_removed(self):
         bundles = getUtility(IRegistry).collectionOfInterface(

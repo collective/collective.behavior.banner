@@ -104,6 +104,8 @@ class BannerViewlet(ViewletBase):
             banner['banner_backgroundcolor'] = obj.banner_backgroundcolor
         if obj.banner_url:
             banner['banner_url'] = obj.banner_url
+	if obj.banner_bg == False:
+	    banner['img_tag'] = True
         banner['banner_obj'] = obj
         return banner
 

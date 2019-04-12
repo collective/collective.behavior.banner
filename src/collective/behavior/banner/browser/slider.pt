@@ -16,6 +16,7 @@
         <tal:loop tal:repeat="banner banners">
 
             <li class="portal-banner"
+		 tal:attributes="style python: 'img_tag' in banner and 'background: none' or 'background: url('+ banner['banner_image'] + ')';"
                  tal:define="has_image python:'banner_image' in banner;
                              has_url python:banner and 'banner_url' in banner;
                              has_fontcolor python:'banner_fontcolor' in banner;
@@ -25,6 +26,7 @@
                 <div class="bannerImage"
                      tal:condition="python:has_image">
                         <img class="bannerImageImage"
+ 			     tal:condition="python: 'img_tag' in banner"
                              tal:attributes="src string:${banner/banner_image};
                                              alt banner/banner_alt">
                 </div>

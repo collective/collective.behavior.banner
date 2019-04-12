@@ -20,6 +20,7 @@ class IBanner(model.Schema):
         label=u'Banner',
         fields=[
             'banner_hide',
+	    'banner_bg',
             'banner_stop_inheriting',
             'banner_image',
             'banner_alt',
@@ -37,6 +38,13 @@ class IBanner(model.Schema):
     banner_hide = schema.Bool(
         title=_(u'Hide banner'),
         description=_(u'This does not show the banner for this item.'),
+        default=False,
+        required=False,
+    )
+
+    banner_bg = schema.Bool(
+        title=_(u'Show banner as background'),
+        description=_(u'This shows image as background of the slide instead of a seperate image.'),
         default=False,
         required=False,
     )

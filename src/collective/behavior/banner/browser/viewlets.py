@@ -6,6 +6,7 @@ from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.CMFPlone.browser.ploneview import Plone
+from Products.CMFPlone.defaultpage import get_default_page
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from six.moves.urllib.parse import urlparse
 
@@ -61,8 +62,9 @@ class BannerViewlet(ViewletBase):
                 if config_keys:
                     return banner
             if INavigationRoot.providedBy(item):
-                if getattr(item, item.default_page):
-                    banner = self.banner(getattr(item, item.default_page))
+                default_page = get_default_page(item)
+                if default_page:
+                    banner = self.banner(default_page)
                     if banner:
                         return banner
                 return False

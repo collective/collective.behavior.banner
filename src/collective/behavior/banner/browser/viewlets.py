@@ -64,7 +64,7 @@ class BannerViewlet(ViewletBase):
             if INavigationRoot.providedBy(item):
                 default_page = get_default_page(item)
                 if default_page:
-                    banner = self.banner(default_page)
+                    banner = self.banner(item[default_page])
                     if banner:
                         return banner
                 return False

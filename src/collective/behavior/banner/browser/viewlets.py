@@ -64,9 +64,11 @@ class BannerViewlet(ViewletBase):
             if INavigationRoot.providedBy(item):
                 default_page = get_default_page(item)
                 if default_page:
-                    banner = self.banner(item[default_page])
-                    if banner:
-                        return banner
+                    default_page = item[default_page]
+                    if IBanner.providedBy(default_page):
+                        banner = self.banner(default_page)
+                        if banner:
+                            return banner
                 return False
             if item.portal_type not in types:
                 return False

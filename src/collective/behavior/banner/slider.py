@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.banner import _
 from plone.app.vocabularies.catalog import CatalogSource
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
@@ -31,7 +33,13 @@ class ISlider(model.Schema):
         ),
         required=False,
     )
-
+    directives.widget(
+        'slider_relation',
+        RelatedItemsFieldWidget,
+        pattern_options={
+            'mode': 'search',
+            }
+        )
 
 alsoProvides(ISlider, IFormFieldProvider)
 

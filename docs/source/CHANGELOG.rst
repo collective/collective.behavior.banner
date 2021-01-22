@@ -3,7 +3,7 @@
 Changelog
 =========
 
-1.3 (unreleased)
+1.3 (2021-01-22)
 ----------------
 
 - Set RelatedItemsFieldWidget to search to find all banners for a slider.

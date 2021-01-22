@@ -3,6 +3,19 @@
 Changelog
 =========
 
+1.3 (unreleased)
+----------------
+
+- Set RelatedItemsFieldWidget to search to find all banners for a slider.
+  [pbauer]
+
+- Fix use of default_page
+  [pbauer]
+
+- Use named behaviors.
+  [pbauer]
+
+
 1.2 (2019-03-14)
 ----------------
 

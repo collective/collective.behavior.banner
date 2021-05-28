@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from collective.behavior.banner.banner import IBanner
+from collective.behavior.banner.banner import (
+    BANNER_CIRCLE_COLORS,
+    CSS_CLASS_MAPPING,
+    IBanner,
+    IMAGE_MAPPING,
+    TEXT_POSITION_OPTIONS,
+)
 from collective.behavior.banner.slider import ISlider
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -102,12 +108,18 @@ class BannerViewlet(ViewletBase):
                 banner['banner_linktext'] = to_obj.Title()
         if obj.banner_linktext:
             banner['banner_linktext'] = obj.banner_linktext
-        if obj.banner_fontcolor:
-            banner['banner_fontcolor'] = obj.banner_fontcolor
-        if obj.banner_backgroundcolor:
-            banner['banner_backgroundcolor'] = obj.banner_backgroundcolor
-        if obj.banner_url:
-            banner['banner_url'] = obj.banner_url
+        # Disabled fields for DIPF
+        # if obj.banner_fontcolor:
+        #     banner['banner_fontcolor'] = obj.banner_fontcolor
+        # if obj.banner_backgroundcolor:
+        #     banner['banner_backgroundcolor'] = obj.banner_backgroundcolor
+        # if obj.banner_url:
+        #     banner['banner_url'] = obj.banner_url
+        if obj.banner_image_template:
+            template = obj.banner_image_template
+            filename = IMAGE_MAPPING.get(template)
+            banner['banner_image_template'] = self.context.absolute_url() + "/++static++dipf.Projekte/" + filename
+
         banner['banner_obj'] = obj
         return banner
 
@@ -166,3 +178,21 @@ class BannerViewlet(ViewletBase):
         # Each template will use the argument it cares about and ignore the
         # other.
         return template.format(path, videoId)
+
+    def textblock_css_class(self):
+        # inherited from banner
+        banner_text_position = getattr(
+            self.context.aq_base, "banner_text_position", None
+        )
+        return CSS_CLASS_MAPPING.get(banner_text_position, "")
+
+    def show_content_title(self):
+        """The value from the field banner_show_content_title is taken from the context not from the inherited banner!
+        """
+        return getattr(self.context, "banner_show_content_title", None)
+
+    def circle_color(self):
+        """The value from the field banner_title_circle_color is taken from the context not from the inherited banner!
+        """
+        circle_color = getattr(self.context, "banner_title_circle_color", None)
+        return BANNER_CIRCLE_COLORS.get(circle_color, "")

@@ -27,9 +27,9 @@ TEXT_POSITION_OPTIONS = SimpleVocabulary(
 
 # TODO: Use usefull css-classes here :)
 CSS_CLASS_MAPPING = {
-    "1-3": "col-md-4 ",
-    "1-2": "col-md-4 offset-md-4",
-    "2-3": "col-md-4 offset-md-8",
+    "1-3": "col-1-3",
+    "1-2": "col-1-2",
+    "2-3": "col-2-3",
 }
 
 # TODO: Add images (maybe: make it configurable or make it use content)

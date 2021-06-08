@@ -82,16 +82,4 @@
   </div>
  </div>
 
-<script type="application/javascript">
-$(document).ready(function() {
-
-  $(function() {
-    $("#portal-slider .items").responsiveSlides({
-        speed: 700,
-        timeout: 6000
-    });
-  });
-
-});
-</script>
 </div>

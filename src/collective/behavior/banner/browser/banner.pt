@@ -9,6 +9,7 @@
                  textblock_css_class python: view.textblock_css_class();
                  has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
                  show_content_title python: not has_bannertext and view.show_content_title();
+                 show_content_title_class python: ' show-content-title' if show_content_title else '';
                  circle_color python: view.circle_color() if show_content_title else '';
                  banner_image_template python: banner.get('banner_image_template');
                  inherited python: banner['banner_obj'] != context;
@@ -18,7 +19,7 @@
         tal:condition="python: banner">
 
         <div class="gigantic"
-             tal:attributes="class python:'banner_container portal-banner gigantic' if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic'">
+             tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class">
 
                 <div class="bannerImage"
                      tal:condition="python: has_image or banner_image_template">
@@ -32,10 +33,10 @@
                                              alt python: banner.get('banner_alt', '')">
                 </div>
 
-                <div class="bannerContent frame">
+                <div class="bannerContent frame"
+                     tal:condition="python: has_bannertext">
 
                   <div class="bannerText"
-                       tal:condition="python: has_bannertext"
                        tal:attributes="class python: 'bannerText ' + textblock_css_class">
 
                       <h1 class="bannerTitle"
@@ -69,20 +70,34 @@
                       </div>
 
                   </div>
+                </div>
 
-                  <div class="contentTitle"
-                       tal:condition="python: show_content_title"
-                       tal:attributes="class python: 'contentTitle ' + circle_color">
-                       <h2 tal:content="python: context.title" />
+                <div class="bannerContent"
+                     tal:condition="python: show_content_title">
+
+                  <div class="contain-monad">
+                    <div class="hold-monad">
+                      <div class="monad-outer">
+                        <div class="monad-solid square-monad-solid hold fg-theme"
+                             tal:attributes="class python: 'monad-solid square-monad-solid hold fg-' + circle_color">
+                          <svg class="monad abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M138.257 505.556C27.97 533.952-27.778 423.292 13.738 258.39 55.256 93.488 207.085 30.117 352.86 116.848c145.772 86.73 201.52 197.39 124.518 247.167-77.003 49.775-228.832 113.146-339.121 141.541z" fill="currentColor" fill-rule="evenodd"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contentTitle">
+                    <h2 tal:content="python: context.title" />
                   </div>
 
-                  <a tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])"
-                     tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
-                     i18n:translate="">
-                      Edit inherited banner
-                 </a>
-
                 </div>
+
+                <a tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])"
+                   tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
+                   i18n:translate="">
+                    Edit inherited banner
+                </a>
 
           </div>
     </div>

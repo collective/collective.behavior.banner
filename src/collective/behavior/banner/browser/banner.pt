@@ -75,13 +75,13 @@
                 <div class="bannerContent"
                      tal:condition="python: show_content_title">
 
-                  <div class="contain-monad">
-                    <div class="hold-monad">
-                      <div class="monad-outer">
-                        <div class="monad-solid square-monad-solid hold fg-theme"
-                             tal:attributes="class python: 'monad-solid square-monad-solid hold fg-' + circle_color">
-                          <svg class="monad abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M138.257 505.556C27.97 533.952-27.778 423.292 13.738 258.39 55.256 93.488 207.085 30.117 352.86 116.848c145.772 86.73 201.52 197.39 124.518 247.167-77.003 49.775-228.832 113.146-339.121 141.541z" fill="currentColor" fill-rule="evenodd"></path>
+                  <div class="contain-shape">
+                    <div class="hold-shape">
+                      <div class="shape-outer">
+                        <div class="fg-theme"
+                             tal:attributes="class python: 'fg-' + circle_color">
+                          <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="256" cy="256" r="256" fill="currentColor" />
                           </svg>
                         </div>
                       </div>

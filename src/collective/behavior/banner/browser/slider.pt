@@ -4,7 +4,9 @@
      tal:define="banners view/random_banner | nothing;
                  textblock_css_class python: view.textblock_css_class();
                  portal context/@@plone_portal_state/portal;
-                 context_state context/@@plone_context_state"
+                 context_state context/@@plone_context_state;
+                 checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
+                 can_edit python:checkPermission('Modify portal content', context);"
      tal:condition="python: banners"
      tal:attributes="class python: view.scroll and 'scrollable principal' or 'principal';"
      i18n:domain="collective.behavior.banner">
@@ -71,6 +73,30 @@
                         </div>
 
                      </div>
+                </div>
+
+                <div class="bannerEdit"
+                     tal:condition="python: can_edit">
+                    <ul>
+                        <li>
+                            <a href=""
+                                tal:attributes="href python: context.absolute_url() + '/++add++banner'">
+                                Add slider
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                                tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'">
+                                Edit this slider
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                                tal:attributes="href python: context.absolute_url() + '/folder_contents'">
+                                Manage sliders
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
             </li>

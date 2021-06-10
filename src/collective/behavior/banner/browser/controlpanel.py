@@ -25,7 +25,7 @@ class SizesVocabulary(object):
 class IBannerSettingsSchema(Interface):
 
     types = schema.List(
-        title=u'Types',
+        title=_(u'Types'),
         description=_(u'Types displaying inherited banners'),
         required=False,
         value_type=schema.Choice(
@@ -56,13 +56,7 @@ class BannerSettingsEditForm(controlpanel.RegistryEditForm):
 
     schema = IBannerSettingsSchema
     label = _(u'Banner settings')
-    description = _(u'')
-
-    def updateFields(self):
-        super(BannerSettingsEditForm, self).updateFields()
-
-    def updateWidgets(self):
-        super(BannerSettingsEditForm, self).updateWidgets()
+    description = ''
 
 
 class BannerSettingsControlPanel(controlpanel.ControlPanelFormWrapper):

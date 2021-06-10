@@ -1,0 +1,193 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-06-10 15:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: collective/behavior/banner/banner.py
+msgid "1/3"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "2/3"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "A banner consits of various fields that can be used as a banner or combined to a slider"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Add a relation to the banner for slider function"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 1 (text left)"
+msgstr "Banner 1 (Text links)"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 2 (text middle)"
+msgstr "Banner 2 (Text in der Mitte)"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 3 (text right)"
+msgstr "Banner 3 (Text rechts)"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Image"
+msgstr "Banner Bild"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Link"
+msgstr "Linkziel"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Subtitle"
+msgstr "Untertitel des Bannern"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Text"
+msgstr "Freitext im Banner"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Title"
+msgstr "Titel"
+
+#: collective/behavior/banner/banner.py
+msgid "Banner image alt tag"
+msgstr "alt-tag des Bildes für Barrierefreiheit"
+
+#: collective/behavior/banner/browser/controlpanel.py
+#: collective/behavior/banner/upgradehandlers.py
+msgid "Banner scale"
+msgstr "Skalierungsstufe"
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Banner settings"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Caption for the link"
+msgstr "Text für den Link der zu dem Linkziel führt"
+
+#: collective/behavior/banner/banner.py
+msgid "Color of the circle with the context title"
+msgstr "Kreisfarbe für den Titel"
+
+#: collective/behavior/banner/banner.py
+msgid "Control the position of title and text. You can ignore this if there is no text"
+msgstr "Steuert die Position des Textblockes. Nur relevant wenn der Banner Titel, Untertitel oder Freitext hat."
+
+#: collective/behavior/banner/banner.py
+msgid "Display the context title in a circle overlaying the banner if the banner has no text."
+msgstr "Zeigt dem Titel des aktuellen Inhalts über dem (ggf. geerbten) Banner an sofern der Banner selber keinen Titel, Untertitel oder Freitext enthält."
+
+#: collective/behavior/banner/banner.py
+msgid "Do not inherit banner from parents"
+msgstr "Banner nicht vererben"
+
+#: collective/behavior/banner/browser/banner.pt
+msgid "Edit inherited banner"
+msgstr "Geerbtes Banner bearbeiten"
+
+#: collective/behavior/banner/banner.py
+msgid "Hide banner"
+msgstr "Banner verbergen"
+
+#: collective/behavior/banner/configure.zcml
+msgid "Installs the collective.behavior.banner add-on."
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Link caption"
+msgstr "Link Text"
+
+#: collective/behavior/banner/banner.py
+msgid "Middle"
+msgstr "Mitte"
+
+#: collective/behavior/banner/banner.py
+msgid "Neutral background image"
+msgstr "Neutrales Banner Bild"
+
+#: collective/behavior/banner/browser/controlpanel.py
+#: collective/behavior/banner/upgradehandlers.py
+msgid "Scale at which banner images are displayed"
+msgstr "Skalierungsstufe für die Darstellung des Bannerbildes"
+
+#: collective/behavior/banner/banner.py
+msgid "Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"
+msgstr "Wählen Sie eine Hintergrundfarbe für den Kreis ind er der Titel erscheint. Wird nur verwendet wenn der Titel auf dem Banner angezeigt werden soll."
+
+#: collective/behavior/banner/banner.py
+msgid "Select a neutral background image as a alternative to uploading a Banner Image."
+msgstr "Wählen Sie ein neutrales Banner-Bild aus als Alternative zum Upload eines eigenen Bildes."
+
+#: collective/behavior/banner/banner.py
+msgid "Show title in banner"
+msgstr "Titel auf dem Banner anzeigen"
+
+#: collective/behavior/banner/configure.zcml
+msgid "Slider"
+msgstr ""
+
+#: collective/behavior/banner/slider.py
+msgid "Slider Banners"
+msgstr "Banner für den Slider"
+
+#: collective/behavior/banner/testing.zcml
+msgid "Steps to ease tests of collective.behavior.banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Text position"
+msgstr "Position des Textblockes über dem Banner"
+
+#: collective/behavior/banner/slider.py
+msgid "These banners will be used in the slider"
+msgstr "Diese Banner werden für den Slider verwendet"
+
+#: collective/behavior/banner/banner.py
+msgid "This does not show the banner for this item."
+msgstr "Ein geerbtes Banner soll nicht anzeigt werden"
+
+#: collective/behavior/banner/banner.py
+msgid "This stops inheriting banners for this item and all children."
+msgstr "Unterbindet für diesen Element und alle darunter das Anzeigen eines von hier oder weiter oben vererbten Banners"
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Types"
+msgstr "Inhalte"
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Types displaying inherited banners"
+msgstr "Inhalte die geerbte Banner anzeigen sollen"
+
+#: collective/behavior/banner/configure.zcml
+msgid "Uninstalls the collective.behavior.banner add-on."
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "collective.behavior.banner"
+msgstr ""
+
+#: collective/behavior/banner/testing.zcml
+msgid "collective.behavior.banner tests"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "collective.behavior.banner uninstall"
+msgstr ""

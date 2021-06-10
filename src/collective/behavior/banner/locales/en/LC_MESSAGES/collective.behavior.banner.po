@@ -1,0 +1,193 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-06-10 15:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: collective/behavior/banner/banner.py
+msgid "1/3"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "2/3"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "A banner consits of various fields that can be used as a banner or combined to a slider"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Add a relation to the banner for slider function"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 1 (text left)"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 2 (text middle)"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner 3 (text right)"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Image"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Link"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Subtitle"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Text"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner Title"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Banner image alt tag"
+msgstr ""
+
+#: collective/behavior/banner/browser/controlpanel.py
+#: collective/behavior/banner/upgradehandlers.py
+msgid "Banner scale"
+msgstr ""
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Banner settings"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Caption for the link"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Color of the circle with the context title"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Control the position of title and text. You can ignore this if there is no text"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Display the context title in a circle overlaying the banner if the banner has no text."
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Do not inherit banner from parents"
+msgstr ""
+
+#: collective/behavior/banner/browser/banner.pt
+msgid "Edit inherited banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Hide banner"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Installs the collective.behavior.banner add-on."
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Link caption"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Middle"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Neutral background image"
+msgstr ""
+
+#: collective/behavior/banner/browser/controlpanel.py
+#: collective/behavior/banner/upgradehandlers.py
+msgid "Scale at which banner images are displayed"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Select a neutral background image as a alternative to uploading a Banner Image."
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Show title in banner"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Slider"
+msgstr ""
+
+#: collective/behavior/banner/slider.py
+msgid "Slider Banners"
+msgstr ""
+
+#: collective/behavior/banner/testing.zcml
+msgid "Steps to ease tests of collective.behavior.banner"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "Text position"
+msgstr ""
+
+#: collective/behavior/banner/slider.py
+msgid "These banners will be used in the slider"
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "This does not show the banner for this item."
+msgstr ""
+
+#: collective/behavior/banner/banner.py
+msgid "This stops inheriting banners for this item and all children."
+msgstr ""
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Types"
+msgstr ""
+
+#: collective/behavior/banner/browser/controlpanel.py
+msgid "Types displaying inherited banners"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "Uninstalls the collective.behavior.banner add-on."
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "collective.behavior.banner"
+msgstr ""
+
+#: collective/behavior/banner/testing.zcml
+msgid "collective.behavior.banner tests"
+msgstr ""
+
+#: collective/behavior/banner/configure.zcml
+msgid "collective.behavior.banner uninstall"
+msgstr ""

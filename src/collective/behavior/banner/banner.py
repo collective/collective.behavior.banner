@@ -96,8 +96,8 @@ class IBanner(model.Schema):
     )
 
     banner_image_template = schema.Choice(
-        title="Neutral background image",
-        description="Select a neutral background image as a alternative to uploading a Banner Image.",
+        title=_("Neutral background image"),
+        description=_("Select a neutral background image as a alternative to uploading a Banner Image."),
         vocabulary=IMAGE_TEMPLATE_OPTIONS,
         required=False,
     )
@@ -163,22 +163,22 @@ class IBanner(model.Schema):
 
     directives.widget(banner_text_position=RadioFieldWidget)
     banner_text_position = schema.Choice(
-        title="Text position",
-        description="Control the position of title and text. You can ignore this if there is no text",
+        title=_("Text position"),
+        description=_("Control the position of title and text. You can ignore this if there is no text"),
         vocabulary=TEXT_POSITION_OPTIONS,
         default="1-3",
         required=True,
     )
 
     banner_show_content_title = schema.Bool(
-        title="Show title in banner",
-        description="Display the context title in a circle overlaying the banner if the banner has no text.",
+        title=_("Show title in banner"),
+        description=_("Display the context title in a circle overlaying the banner if the banner has no text."),
         default=True,
     )
 
     banner_title_circle_color = schema.Choice(
-        title="Color of the circle with the context title",
-        description="Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner",
+        title=_("Color of the circle with the context title"),
+        description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
         values=BANNER_CIRCLE_COLORS.keys(),
         default=list(BANNER_CIRCLE_COLORS.keys())[0],
         required=True,

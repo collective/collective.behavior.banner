@@ -11,8 +11,8 @@ from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
-from zope.interface import alsoProvides
 from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 
@@ -33,11 +33,13 @@ CSS_CLASS_MAPPING = {
 }
 
 # TODO: Add images (maybe: make it configurable or make it use content)
-IMAGE_MAPPING = {
-    "Circles": "foo",
-    "Grid": "bar",
-    "Swirlies": "baz",
-}
+IMAGE_TEMPLATE_OPTIONS = SimpleVocabulary(
+    [
+        SimpleTerm("banner_1", "banner_1", _("Banner 1 (text left)")),
+        SimpleTerm("banner_2", "banner_2", _("Banner 2 (text middle)")),
+        SimpleTerm("banner_3", "banner_3", _("Banner 3 (text right)")),
+    ]
+)
 
 BANNER_CIRCLE_COLORS = {
     "Red": "red",
@@ -46,6 +48,7 @@ BANNER_CIRCLE_COLORS = {
 }
 
 
+@provider(IFormFieldProvider)
 class IBanner(model.Schema):
 
     model.fieldset(
@@ -95,7 +98,7 @@ class IBanner(model.Schema):
     banner_image_template = schema.Choice(
         title="Neutral background image",
         description="Select a neutral background image as a alternative to uploading a Banner Image.",
-        values=IMAGE_MAPPING.keys(),
+        vocabulary=IMAGE_TEMPLATE_OPTIONS,
         required=False,
     )
 
@@ -180,8 +183,6 @@ class IBanner(model.Schema):
         default=list(BANNER_CIRCLE_COLORS.keys())[0],
         required=True,
     )
-
-alsoProvides(IBanner, IFormFieldProvider)
 
 
 @implementer(IBanner)

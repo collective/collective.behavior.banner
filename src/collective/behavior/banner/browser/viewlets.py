@@ -4,8 +4,6 @@ from collective.behavior.banner.banner import (
     BANNER_CIRCLE_COLORS,
     CSS_CLASS_MAPPING,
     IBanner,
-    IMAGE_MAPPING,
-    TEXT_POSITION_OPTIONS,
 )
 from collective.behavior.banner.slider import ISlider
 from plone import api
@@ -116,9 +114,8 @@ class BannerViewlet(ViewletBase):
         # if obj.banner_url:
         #     banner['banner_url'] = obj.banner_url
         if obj.banner_image_template:
-            template = obj.banner_image_template
-            filename = IMAGE_MAPPING.get(template)
-            banner['banner_image_template'] = self.context.absolute_url() + "/++static++dipf.Projekte/" + filename
+            filename = obj.banner_image_template
+            banner['banner_image_template'] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
 
         banner['banner_obj'] = obj
         return banner

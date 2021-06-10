@@ -25,7 +25,7 @@
                      tal:condition="python: has_image or banner_image_template">
                         <img class="bannerImageImage"
                              tal:condition="python: not has_image and banner_image_template"
-                             tal:attributes="src python: banner_image_template;
+                             tal:attributes="src python: banner_image_template + '.jpg';
                                              alt python: banner.get('banner_alt', '')">
                         <img class="bannerImageImage"
                              tal:condition="python:has_image"

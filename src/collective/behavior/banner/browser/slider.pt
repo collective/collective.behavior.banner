@@ -14,16 +14,30 @@
  <div class="container">
   <div class="gigantic">
 
-    <ul class="items">
+    <div id="carousel"
+         class="carousel slide"
+         data-ride="carousel"
+         tal:attributes="id python: 'carousel_' + context.id">
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators hidden-xs">
+          <li data-target="#carousel"
+              tal:repeat="banner banners"
+              tal:attributes="data-target python: '#carousel_' + context.id"
+              data-slide-to="${python:repeat.banner.index}"
+              class="${python: repeat.banner.start and 'active' or ''}"></li>
+          <button class="flickity-play-button-container flickity-play-button paused"></button>
+      </ol>
+
+      <div class="carousel-inner" role="listbox">
 
         <tal:loop tal:repeat="banner banners">
 
-            <li class="portal-banner"
+            <div class="portal-banner item ${python: repeat.banner.start and 'active' or ''}"
                  tal:define="has_image python:'banner_image' in banner;
                              has_url python:banner and 'banner_url' in banner;
                              has_fontcolor python:'banner_fontcolor' in banner;
                              fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff'">
-
 
                 <div class="bannerImage"
                      tal:condition="python:has_image">
@@ -72,38 +86,40 @@
                            </span>
                         </div>
 
+                        <div class="bannerEdit"
+                             tal:condition="python: can_edit">
+                            <ul>
+                                <li>
+                                    <a href=""
+                                        tal:attributes="href python: context.absolute_url() + '/++add++banner'">
+                                        Add slider
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=""
+                                        tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'">
+                                        Edit this slider
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=""
+                                        tal:attributes="href python: context.absolute_url() + '/folder_contents'">
+                                        Manage sliders
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                      </div>
                 </div>
 
-                <div class="bannerEdit"
-                     tal:condition="python: can_edit">
-                    <ul>
-                        <li>
-                            <a href=""
-                                tal:attributes="href python: context.absolute_url() + '/++add++banner'">
-                                Add slider
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                                tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'">
-                                Edit this slider
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                                tal:attributes="href python: context.absolute_url() + '/folder_contents'">
-                                Manage sliders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </li>
+            </div>
 
         </tal:loop>
 
-    </ul>
+      </div>
+
+    </div>
 
   </div>
  </div>

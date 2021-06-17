@@ -173,7 +173,7 @@ class IBanner(model.Schema):
     banner_show_content_title = schema.Bool(
         title=_("Show title in banner"),
         description=_("Display the context title in a circle overlaying the banner if the banner has no text."),
-        default=True,
+        default=False,
     )
 
     banner_title_circle_color = schema.Choice(

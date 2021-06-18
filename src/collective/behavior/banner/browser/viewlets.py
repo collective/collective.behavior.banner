@@ -106,6 +106,10 @@ class BannerViewlet(ViewletBase):
                 banner['banner_linktext'] = to_obj.Title()
         if obj.banner_linktext:
             banner['banner_linktext'] = obj.banner_linktext
+
+        banner_text_position = getattr(obj, "banner_text_position", None)
+        banner['textblock_css_class'] = CSS_CLASS_MAPPING.get(banner_text_position, "")
+
         # Disabled fields for DIPF
         # if obj.banner_fontcolor:
         #     banner['banner_fontcolor'] = obj.banner_fontcolor
@@ -175,13 +179,6 @@ class BannerViewlet(ViewletBase):
         # Each template will use the argument it cares about and ignore the
         # other.
         return template.format(path, videoId)
-
-    def textblock_css_class(self):
-        # inherited from banner
-        banner_text_position = getattr(
-            self.context.aq_base, "banner_text_position", None
-        )
-        return CSS_CLASS_MAPPING.get(banner_text_position, "")
 
     def show_content_title(self):
         """The value from the field banner_show_content_title is taken from the context not from the inherited banner!

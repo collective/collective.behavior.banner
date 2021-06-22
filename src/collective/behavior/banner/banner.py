@@ -35,9 +35,10 @@ CSS_CLASS_MAPPING = {
 # TODO: Add images (maybe: make it configurable or make it use content)
 IMAGE_TEMPLATE_OPTIONS = SimpleVocabulary(
     [
-        SimpleTerm("banner_1", "banner_1", _("Banner 1 (text left)")),
-        SimpleTerm("banner_2", "banner_2", _("Banner 2 (text middle)")),
-        SimpleTerm("banner_3", "banner_3", _("Banner 3 (text right)")),
+        SimpleTerm("banner_1", "banner_1", _("Banner 1")),
+        SimpleTerm("banner_2", "banner_2", _("Banner 2")),
+        SimpleTerm("banner_3", "banner_3", _("Banner 3")),
+        SimpleTerm("banner_4", "banner_4", _("Banner 4")),
     ]
 )
 

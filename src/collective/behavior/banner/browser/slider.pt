@@ -36,7 +36,9 @@
                  tal:define="has_image python:'banner_image' in banner;
                              has_url python:banner and 'banner_url' in banner;
                              has_fontcolor python:'banner_fontcolor' in banner;
-                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff';">
+                             hide_other_banner python: repeat.banner.start and '' or 'display: none';
+                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff';"
+                tal:attributes="style hide_other_banner">
 
                 <div class="bannerImage"
                      tal:condition="python:has_image">

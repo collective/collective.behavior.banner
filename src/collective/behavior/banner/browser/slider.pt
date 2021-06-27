@@ -58,10 +58,10 @@
                     <div class="bannerText"
                          tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
 
-                        <h1 class="bannerTitle"
+                        <h2 class="bannerTitle"
                              tal:condition="python:'banner_title' in banner">
                             <span tal:replace="banner/banner_title">Title</span>
-                        </h1>
+                        </h2>
 
                         <p class="bannerDescription"
                              tal:condition="python:'banner_description' in banner">

@@ -89,7 +89,7 @@
                   </div>
                   <div class="contentTitle">
                     <h2 tal:content="python: context.title"
-                        tal:attributes="style python: 'color: #fff' if circle_color in ['5560a4', '004a7f'] else ''" />
+                        tal:attributes="style python: 'color: #fff' if circle_color in ['af0917'] else ''" />
                   </div>
 
                 </div>

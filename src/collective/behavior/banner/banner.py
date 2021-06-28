@@ -44,17 +44,16 @@ IMAGE_TEMPLATE_OPTIONS = SimpleVocabulary(
 
 BANNER_CIRCLE_COLORS = SimpleVocabulary(
     [
-        SimpleTerm("ffffff" ,"ffffff", _("Weiß")),  # font-color: #000
-        SimpleTerm("fee6c7" ,"fee6c7", _("DIPF-Orange (hell)")),  # font-color: #000
-        SimpleTerm("bf6060" ,"bf6060", _("BBF-Rot (mittel)")),  # font-color: #000
-        SimpleTerm("de5e73" ,"de5e73", _("Himbeerrot (mittel)")),  # font-color: #000
-        SimpleTerm("5560a4" ,"5560a4", _("Violettblau")),  # font-color: #fff
-        SimpleTerm("004a7f" ,"004a7f", _("Signalblau (dunkel)")),  # font-color: #fff
-        SimpleTerm("5c8db6" ,"5c8db6", _("DIPF-Blau (dunkel)")),  # font-color: #000
-        SimpleTerm("dbdcdd" ,"dbdcdd", _("DIPF-Grau (hell)")),  # font-color: #000
-        SimpleTerm("8b8c8e" ,"8b8c8e", _("DIPF-Grau (mittel)")),  # font-color: #000
-        SimpleTerm("e8eccd" ,"e8eccd", _("Gelbgrün (hell)")),  # font-color: #000
-        SimpleTerm("7dba61" ,"7dba61", _("Maigrün (mittel)")),  # font-color: #000
+        SimpleTerm("f7b98f", "f7b98f", _("Verkehrsorange (hell)")),  # font-color: #000
+        SimpleTerm("dc593c", "dc593c", _("Verkehrsrot (mittel)")),  # font-color: #000
+        SimpleTerm("af0917", "af0917", _("Verkehrsrot (dunkel)")),  # font-color: #fff
+        SimpleTerm("dea6a6", "dea6a6", _("BBF-Rot (hell)")),  # font-color: #000
+        SimpleTerm("de5e73", "de5e73", _("Himbeerrot (mittel)")),  # font-color: #000
+        SimpleTerm("abacd2", "abacd2", _("Violettblau (hell)")),  # font-color: #000
+        SimpleTerm("b5b7b8", "b5b7b8", _("DIPF-Grau (hell)")),  # font-color: #000
+        SimpleTerm("6794bc", "6794bc", _("Himmelblau (mittel)")),  # font-color: #000
+        SimpleTerm("7dba61", "7dba61", _("Maigrün (mittel)")),  # font-color: #000
+        SimpleTerm("7f9716", "7f9716", _("Gelbgrün (dunkel)")),  # font-color: #000
     ]
 )
 
@@ -191,7 +190,7 @@ class IBanner(model.Schema):
         title=_("Color of the circle with the context title"),
         description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
         vocabulary=BANNER_CIRCLE_COLORS,
-        default="ffffff",
+        default="f7b98f",
         required=True,
     )
 

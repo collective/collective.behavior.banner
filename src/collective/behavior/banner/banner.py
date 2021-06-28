@@ -65,9 +65,10 @@ class IBanner(model.Schema):
         'banner',
         label=u'Banner',
         fields=[
-            'banner_hide',
-            'banner_stop_inheriting',
+            "banner_show_content_title",
+            "banner_title_circle_color",
             'banner_image',
+            "banner_image_template",
             'banner_alt',
             # 'banner_url',
             'banner_title',
@@ -77,11 +78,30 @@ class IBanner(model.Schema):
             'banner_linktext',
             # 'banner_fontcolor',
             # 'banner_backgroundcolor',
-            "banner_image_template",
             "banner_text_position",
-            "banner_show_content_title",
-            "banner_title_circle_color",
+            'banner_hide',
+            'banner_stop_inheriting',
         ]
+    )
+
+    banner_show_content_title = schema.Bool(
+        title=_("Show title in banner"),
+        description=_("Display the context title in a circle overlaying the banner if the banner has no text."),
+        default=False,
+    )
+
+    banner_title_circle_color = schema.Choice(
+        title=_("Color of the circle with the context title"),
+        description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
+        vocabulary=BANNER_CIRCLE_COLORS,
+        default="f7b98f",
+        required=True,
+    )
+
+    banner_image = namedfile.NamedBlobImage(
+        title=_(u'Banner Image'),
+        description=_(u''),
+        required=False,
     )
 
     banner_hide = schema.Bool(
@@ -96,12 +116,6 @@ class IBanner(model.Schema):
         description=_(
             u'This stops inheriting banners for this item and all children.'),
         default=False,
-        required=False,
-    )
-
-    banner_image = namedfile.NamedBlobImage(
-        title=_(u'Banner Image'),
-        description=u'',
         required=False,
     )
 
@@ -177,20 +191,6 @@ class IBanner(model.Schema):
         description=_("Control the position of title and text. You can ignore this if there is no text"),
         vocabulary=TEXT_POSITION_OPTIONS,
         default="1-3",
-        required=True,
-    )
-
-    banner_show_content_title = schema.Bool(
-        title=_("Show title in banner"),
-        description=_("Display the context title in a circle overlaying the banner if the banner has no text."),
-        default=False,
-    )
-
-    banner_title_circle_color = schema.Choice(
-        title=_("Color of the circle with the context title"),
-        description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
-        vocabulary=BANNER_CIRCLE_COLORS,
-        default="f7b98f",
         required=True,
     )
 

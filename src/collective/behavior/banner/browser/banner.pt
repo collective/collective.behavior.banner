@@ -78,10 +78,9 @@
                     <div class="hold-shape">
                       <div class="shape-outer">
                         <div class="fg-theme"
-                             tal:attributes="class python: 'bg-' + circle_color">
+                             tal:attributes="style python: 'color: #' + circle_color + ';; opacity: .9'">
                           <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="256" cy="256" r="256"
-                                    tal:attributes="fill python: '#' + circle_color" />
+                            <circle cx="256" cy="256" r="256" fill="currentColor" />
                           </svg>
                         </div>
                       </div>

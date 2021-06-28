@@ -42,11 +42,21 @@ IMAGE_TEMPLATE_OPTIONS = SimpleVocabulary(
     ]
 )
 
-BANNER_CIRCLE_COLORS = {
-    "Red": "red",
-    "Green": "green",
-    "Blue": "blue",
-}
+BANNER_CIRCLE_COLORS = SimpleVocabulary(
+    [
+        SimpleTerm("ffffff" ,"ffffff", _("Weiß")),  # font-color: #000
+        SimpleTerm("fee6c7" ,"fee6c7", _("DIPF-Orange (hell)")),  # font-color: #000
+        SimpleTerm("bf6060" ,"bf6060", _("BBF-Rot (mittel)")),  # font-color: #000
+        SimpleTerm("de5e73" ,"de5e73", _("Himbeerrot (mittel)")),  # font-color: #000
+        SimpleTerm("5560a4" ,"5560a4", _("Violettblau")),  # font-color: #fff
+        SimpleTerm("004a7f" ,"004a7f", _("Signalblau (dunkel)")),  # font-color: #fff
+        SimpleTerm("5c8db6" ,"5c8db6", _("DIPF-Blau (dunkel)")),  # font-color: #000
+        SimpleTerm("dbdcdd" ,"dbdcdd", _("DIPF-Grau (hell)")),  # font-color: #000
+        SimpleTerm("8b8c8e" ,"8b8c8e", _("DIPF-Grau (mittel)")),  # font-color: #000
+        SimpleTerm("e8eccd" ,"e8eccd", _("Gelbgrün (hell)")),  # font-color: #000
+        SimpleTerm("7dba61" ,"7dba61", _("Maigrün (mittel)")),  # font-color: #000
+    ]
+)
 
 
 @provider(IFormFieldProvider)
@@ -180,8 +190,8 @@ class IBanner(model.Schema):
     banner_title_circle_color = schema.Choice(
         title=_("Color of the circle with the context title"),
         description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
-        values=BANNER_CIRCLE_COLORS.keys(),
-        default=list(BANNER_CIRCLE_COLORS.keys())[0],
+        vocabulary=BANNER_CIRCLE_COLORS,
+        default="ffffff",
         required=True,
     )
 

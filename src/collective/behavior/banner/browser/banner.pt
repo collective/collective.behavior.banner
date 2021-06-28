@@ -78,16 +78,18 @@
                     <div class="hold-shape">
                       <div class="shape-outer">
                         <div class="fg-theme"
-                             tal:attributes="class python: 'fg-' + circle_color">
+                             tal:attributes="class python: 'bg-' + circle_color">
                           <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="256" cy="256" r="256" fill="currentColor" />
+                            <circle cx="256" cy="256" r="256"
+                                    tal:attributes="fill python: '#' + circle_color" />
                           </svg>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="contentTitle">
-                    <h2 tal:content="python: context.title" />
+                    <h2 tal:content="python: context.title"
+                        tal:attributes="style python: 'color: #fff' if circle_color in ['5560a4', '004a7f'] else ''" />
                   </div>
 
                 </div>

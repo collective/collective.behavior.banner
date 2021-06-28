@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from collective.behavior.banner.banner import (
-    BANNER_CIRCLE_COLORS,
     CSS_CLASS_MAPPING,
     IBanner,
 )
@@ -188,5 +187,4 @@ class BannerViewlet(ViewletBase):
     def circle_color(self):
         """The value from the field banner_title_circle_color is taken from the context not from the inherited banner!
         """
-        circle_color = getattr(self.context, "banner_title_circle_color", None)
-        return BANNER_CIRCLE_COLORS.get(circle_color, "")
+        return getattr(self.context, "banner_title_circle_color", None)

@@ -15,6 +15,9 @@ from six.moves.urllib.parse import urlparse
 
 import random
 
+# Values a banner can have without being counted a banner.
+IGNORE_KEYS = ['banner_obj', 'textblock_css_class']
+
 
 class BannerViewlet(ViewletBase):
     """ A viewlet which renders the banner """
@@ -43,7 +46,7 @@ class BannerViewlet(ViewletBase):
             if context.banner_hide:
                 return False
             banner = self.banner(context)
-            config_keys = [key for key in banner.keys() if key != 'banner_obj']
+            config_keys = [key for key in banner.keys() if key not in IGNORE_KEYS]
             if config_keys:
                 return banner
             if context.banner_stop_inheriting:
@@ -60,8 +63,7 @@ class BannerViewlet(ViewletBase):
                 if item.banner_stop_inheriting:
                     return False
                 banner = self.banner(item)
-                config_keys = [
-                    key for key in banner.keys() if key != 'banner_obj']
+                config_keys = [key for key in banner.keys() if key not in IGNORE_KEYS]
                 if config_keys:
                     return banner
             if INavigationRoot.providedBy(item):

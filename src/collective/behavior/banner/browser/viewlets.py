@@ -93,13 +93,20 @@ class BannerViewlet(ViewletBase):
             banner['banner_image'] = '{0}/@@images/banner_image'.format(
                 obj.absolute_url())
             banner['banner_alt'] = getattr(obj, 'banner_alt', None)
+        elif obj.banner_image_template:
+            filename = obj.banner_image_template
+            banner['banner_image_template'] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
+        else:
+            # no image => no banner
+            return banner
+
         if obj.banner_title:
             banner['banner_title'] = obj.banner_title
         if obj.banner_description:
             crop = Plone(self.context, self.request).cropText
             banner['banner_description'] = crop(obj.banner_description, 400)
-        if obj.banner_text:
-            banner['banner_text'] = obj.banner_text.output
+        if obj.banner_text and obj.banner_text.output.strip():
+            banner['banner_text'] = obj.banner_text.output.strip()
         if obj.banner_link:
             to_obj = obj.banner_link.to_object
             if to_obj:
@@ -110,17 +117,6 @@ class BannerViewlet(ViewletBase):
 
         banner_text_position = getattr(obj, "banner_text_position", None)
         banner['textblock_css_class'] = CSS_CLASS_MAPPING.get(banner_text_position, "")
-
-        # Disabled fields for DIPF
-        # if obj.banner_fontcolor:
-        #     banner['banner_fontcolor'] = obj.banner_fontcolor
-        # if obj.banner_backgroundcolor:
-        #     banner['banner_backgroundcolor'] = obj.banner_backgroundcolor
-        # if obj.banner_url:
-        #     banner['banner_url'] = obj.banner_url
-        if obj.banner_image_template:
-            filename = obj.banner_image_template
-            banner['banner_image_template'] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
         banner['banner_size'] = obj.banner_size
         banner['banner_obj'] = obj
         return banner

@@ -96,11 +96,13 @@
 
                 </div>
 
-                <a tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])"
-                   tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
-                   i18n:translate="">
-                    Edit inherited banner
-                </a>
+                <div class="bannerEdit"
+                     tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
+                    <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
+                       i18n:translate="">
+                        Edit inherited banner
+                    </a>
+                </div>
 
             </div>
         </div>

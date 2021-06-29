@@ -42,6 +42,14 @@ IMAGE_TEMPLATE_OPTIONS = SimpleVocabulary(
     ]
 )
 
+BANNER_SIZES = SimpleVocabulary(
+    [
+        SimpleTerm("banner", "banner", _("Banner (1244px)")),
+        SimpleTerm("slider", "slider", _("Slider (1664px)")),
+    ]
+)
+
+
 BANNER_CIRCLE_COLORS = SimpleVocabulary(
     [
         SimpleTerm("f7b98f", "f7b98f", _("Verkehrsorange (hell)")),  # font-color: #000
@@ -62,25 +70,26 @@ BANNER_CIRCLE_COLORS = SimpleVocabulary(
 class IBanner(model.Schema):
 
     model.fieldset(
-        'banner',
-        label=u'Banner',
+        "banner",
+        label=u"Banner",
         fields=[
             "banner_show_content_title",
             "banner_title_circle_color",
-            'banner_image',
+            "banner_image",
+            "banner_size",
             "banner_image_template",
-            'banner_alt',
-            # 'banner_url',
-            'banner_title',
-            'banner_description',
-            'banner_text',
-            'banner_link',
-            'banner_linktext',
-            # 'banner_fontcolor',
-            # 'banner_backgroundcolor',
+            "banner_alt",
+            # "banner_url",
+            "banner_title",
+            "banner_description",
+            "banner_text",
+            "banner_link",
+            "banner_linktext",
+            # "banner_fontcolor",
+            # "banner_backgroundcolor",
             "banner_text_position",
-            'banner_hide',
-            'banner_stop_inheriting',
+            "banner_hide",
+            "banner_stop_inheriting",
         ]
     )
 
@@ -99,22 +108,28 @@ class IBanner(model.Schema):
     )
 
     banner_image = namedfile.NamedBlobImage(
-        title=_(u'Banner Image'),
-        description=_(u''),
+        title=_(u"Banner Image"),
         required=False,
     )
 
+    banner_size = schema.Choice(
+        title=_("Size of the banner"),
+        vocabulary=BANNER_SIZES,
+        default="banner",
+        required=True,
+    )
+
     banner_hide = schema.Bool(
-        title=_(u'Hide banner'),
-        description=_(u'This does not show the banner for this item.'),
+        title=_(u"Hide banner"),
+        description=_(u"This does not show the banner for this item."),
         default=False,
         required=False,
     )
 
     banner_stop_inheriting = schema.Bool(
-        title=_(u'Do not inherit banner from parents'),
+        title=_(u"Do not inherit banner from parents"),
         description=_(
-            u'This stops inheriting banners for this item and all children.'),
+            u"This stops inheriting banners for this item and all children."),
         default=False,
         required=False,
     )
@@ -127,61 +142,61 @@ class IBanner(model.Schema):
     )
 
     banner_alt = schema.TextLine(
-        title=_(u'Banner image alt tag'),
-        description=u'',
+        title=_(u"Banner image alt tag"),
+        description=u"",
         required=False,
     )
 
     # banner_url = schema.URI(
-    #     title=_(u'label_banner_url', default=u'Video URL'),
-    #     description=u'''
+    #     title=_(u"label_banner_url", default=u"Video URL"),
+    #     description=u"
     #     If you want the banner for this item to show a video, enter an
     #     external URL here.  YouTube and Vimeo are supported.  Note:
     #     You can either supply an image, or a video URL, not both.
-    #     ''',
+    #     ",
     #     required=False,
     # )
 
     banner_title = schema.TextLine(
-        title=_(u'Banner Title'),
-        description=u'',
+        title=_(u"Banner Title"),
+        description=u"",
         required=False,
     )
 
     banner_description = schema.Text(
-        title=_(u'Banner Subtitle'),
-        description=u'',
+        title=_(u"Banner Subtitle"),
+        description=u"",
         required=False,
     )
 
     banner_text = RichText(
-        title=_(u'Banner Text'),
-        description=u'',
+        title=_(u"Banner Text"),
+        description=u"",
         required=False,
     )
 
     banner_link = RelationChoice(
-        title=_(u'Banner Link'),
-        description=u'',
-        vocabulary='plone.app.vocabularies.Catalog',
+        title=_(u"Banner Link"),
+        description=u"",
+        vocabulary="plone.app.vocabularies.Catalog",
         required=False,
     )
 
     banner_linktext = schema.TextLine(
-        title=_(u'Link caption'),
-        description=_(u'Caption for the link'),
+        title=_(u"Link caption"),
+        description=_(u"Caption for the link"),
         required=False,
     )
 
     # banner_fontcolor = schema.TextLine(
-    #     title=_(u'Fontcolor on the teaser'),
-    #     description=_(u'Color for headings and texts as webcolor'),
+    #     title=_(u"Fontcolor on the teaser"),
+    #     description=_(u"Color for headings and texts as webcolor"),
     #     required=False,
     # )
 
     # banner_backgroundcolor = schema.TextLine(
-    #     title=_(u'Background color'),
-    #     description=_(u'Background color on the banner'),
+    #     title=_(u"Background color"),
+    #     description=_(u"Background color on the banner"),
     #     required=False,
     # )
 

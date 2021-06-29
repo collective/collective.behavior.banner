@@ -16,7 +16,7 @@ from six.moves.urllib.parse import urlparse
 import random
 
 # Values a banner can have without being counted a banner.
-IGNORE_KEYS = ['banner_obj', 'textblock_css_class']
+IGNORE_KEYS = ['banner_obj', 'textblock_css_class', 'banner_size']
 
 
 class BannerViewlet(ViewletBase):
@@ -121,7 +121,7 @@ class BannerViewlet(ViewletBase):
         if obj.banner_image_template:
             filename = obj.banner_image_template
             banner['banner_image_template'] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
-
+        banner['banner_size'] = obj.banner_size
         banner['banner_obj'] = obj
         return banner
 

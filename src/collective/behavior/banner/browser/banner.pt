@@ -12,6 +12,7 @@
                  circle_color python: view.circle_color() if show_content_title else '';
                  banner_image_template python: banner.get('banner_image_template');
                  inherited python: banner['banner_obj'] != context;
+                 banner_scale python: banner['banner_size'];
                  ">
 
     <div class="container"
@@ -28,7 +29,7 @@
                                              alt python: banner.get('banner_alt', '')">
                         <img class="bannerImageImage"
                              tal:condition="python:has_image"
-                             tal:attributes="src python: banner['banner_image'] + '/' + view.banner_scale();
+                             tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
                                              alt python: banner.get('banner_alt', '')">
                 </div>
 

@@ -13,13 +13,14 @@
                  banner_image_template python: banner.get('banner_image_template');
                  inherited python: banner['banner_obj'] != context;
                  banner_scale python: banner['banner_size'];
+                 slider_scale_class python: ' bleed' if banner_scale == 'slider' else '';
                  ">
 
     <div class="container"
         tal:condition="python: banner">
 
         <div class="gigantic"
-             tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class">
+             tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
 
                 <div class="bannerImage"
                      tal:condition="python: has_image or banner_image_template">

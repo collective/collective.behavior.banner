@@ -52,6 +52,7 @@ BANNER_SIZES = SimpleVocabulary(
 
 BANNER_CIRCLE_COLORS = SimpleVocabulary(
     [
+        SimpleTerm("None", "None", _("Keinen Kreis anzeigen")),  # font-color: #000
         SimpleTerm("f7b98f", "f7b98f", _("Verkehrsorange (hell)")),  # font-color: #000
         SimpleTerm("dc593c", "dc593c", _("Verkehrsrot (mittel)")),  # font-color: #000
         SimpleTerm("af0917", "af0917", _("Verkehrsrot (dunkel)")),  # font-color: #fff
@@ -95,15 +96,15 @@ class IBanner(model.Schema):
 
     banner_show_content_title = schema.Bool(
         title=_("Show title in banner"),
-        description=_("Display the context title in a circle overlaying the banner if the banner has no text."),
+        description=_("Display the title of the current context in the banner. Text and title of the banner will be ignored."),
         default=False,
     )
 
     banner_title_circle_color = schema.Choice(
-        title=_("Color of the circle with the context title"),
-        description=_("Select a background color for the cirlce. Only valid when displaying the title in a circle in the banner"),
+        title=_("Color of a circle around context title"),
+        description=_("Optionally choose a background color for a circle around the content title."),
         vocabulary=BANNER_CIRCLE_COLORS,
-        default="f7b98f",
+        default="None",
         required=True,
     )
 
@@ -147,16 +148,6 @@ class IBanner(model.Schema):
         required=False,
     )
 
-    # banner_url = schema.URI(
-    #     title=_(u"label_banner_url", default=u"Video URL"),
-    #     description=u"
-    #     If you want the banner for this item to show a video, enter an
-    #     external URL here.  YouTube and Vimeo are supported.  Note:
-    #     You can either supply an image, or a video URL, not both.
-    #     ",
-    #     required=False,
-    # )
-
     banner_title = schema.TextLine(
         title=_(u"Banner Title"),
         description=u"",
@@ -188,18 +179,6 @@ class IBanner(model.Schema):
         required=False,
     )
 
-    # banner_fontcolor = schema.TextLine(
-    #     title=_(u"Fontcolor on the teaser"),
-    #     description=_(u"Color for headings and texts as webcolor"),
-    #     required=False,
-    # )
-
-    # banner_backgroundcolor = schema.TextLine(
-    #     title=_(u"Background color"),
-    #     description=_(u"Background color on the banner"),
-    #     required=False,
-    # )
-
     directives.widget(banner_text_position=RadioFieldWidget)
     banner_text_position = schema.Choice(
         title=_("Text position"),
@@ -220,10 +199,4 @@ class Banner(object):
 
 @indexer(IBanner)
 def has_image(object, **kw):
-    return (object.banner_image
-            or object.banner_title
-            or object.banner_description
-            or object.banner_text
-            or object.banner_link
-            or object.banner_image_template
-            )
+    return object.banner_image

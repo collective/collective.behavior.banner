@@ -182,11 +182,15 @@ class BannerViewlet(ViewletBase):
         return template.format(path, videoId)
 
     def show_content_title(self):
-        """The value from the field banner_show_content_title is taken from the context not from the inherited banner!
+        """The value from the field banner_show_content_title is taken
+        from the context not from the inherited banner!
         """
         return getattr(self.context, "banner_show_content_title", None)
 
     def circle_color(self):
-        """The value from the field banner_title_circle_color is taken from the context not from the inherited banner!
+        """The value from the field banner_title_circle_color is taken
+        from the context not from the inherited banner!
         """
-        return getattr(self.context, "banner_title_circle_color", None)
+        color = getattr(self.context, "banner_title_circle_color", None)
+        if color and color != "None":
+            return color

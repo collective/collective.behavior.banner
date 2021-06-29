@@ -10,7 +10,6 @@
      tal:attributes="class python: view.scroll and 'scrollable principal' or 'principal';"
      i18n:domain="collective.behavior.banner">
 
- <div class="container">
   <div class="gigantic">
 
     <div id="carousel"
@@ -124,6 +123,5 @@
     </div>
 
   </div>
- </div>
 
 </div>

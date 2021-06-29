@@ -7,7 +7,7 @@
      tal:define="checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
                  has_image python:banner and 'banner_image' in banner;
                  has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
-                 show_content_title python: not has_bannertext and view.show_content_title();
+                 show_content_title python: view.show_content_title();
                  show_content_title_class python: ' show-content-title' if show_content_title else '';
                  circle_color python: view.circle_color() if show_content_title else '';
                  banner_image_template python: banner.get('banner_image_template');
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="bannerContent frame"
-                     tal:condition="python: has_bannertext">
+                     tal:condition="python: not show_content_title and has_bannertext">
 
                   <div class="bannerText"
                        tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
@@ -76,7 +76,7 @@
                 <div class="bannerContent"
                      tal:condition="python: show_content_title">
 
-                  <div class="contain-shape">
+                  <div class="contain-shape" tal:condition="python: circle_color">
                     <div class="hold-shape">
                       <div class="shape-outer">
                         <div class="fg-theme"

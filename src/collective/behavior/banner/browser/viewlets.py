@@ -125,13 +125,12 @@ class BannerViewlet(ViewletBase):
         context = aq_inner(self.context)
         banners = []
         raw_banners = context.slider_relation
-        for banner in raw_banners:
-            banner = banner.to_object
-            banners.append(self.banner(banner))
-
+        for raw_banner in raw_banners:
+            obj = raw_banner.to_object
+            banner = self.banner(obj)
+            if banner:
+                banners.append(banner)
         self.scroll = len(banners) > 1
-
-        random.shuffle(banners)
         return banners
 
     def getVideoEmbedMarkup(self, url):

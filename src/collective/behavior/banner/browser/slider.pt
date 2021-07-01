@@ -1,7 +1,7 @@
 <div id="portal-slider"
      class="principal"
      role="complementary"
-     tal:define="banners view/random_banner | nothing;
+     tal:define="banners python: view.random_banner();
                  portal context/@@plone_portal_state/portal;
                  context_state context/@@plone_context_state;
                  checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;

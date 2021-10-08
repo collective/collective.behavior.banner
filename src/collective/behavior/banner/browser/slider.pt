@@ -40,7 +40,7 @@
                 <div class="bannerImage"
                      tal:condition="python:has_image">
                         <img class="bannerImageImage"
-                             tal:attributes="src string:${banner/banner_image};
+                             tal:attributes="src python: banner['banner_image'] + '?v=' + banner['banner_obj'].ModificationDate();
                                              alt banner/banner_alt">
                 </div>
 

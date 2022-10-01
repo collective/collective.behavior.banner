@@ -41,10 +41,10 @@
                   <div class="bannerText"
                        tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
 
-                      <h2 class="bannerTitle"
+                      <h1 class="bannerTitle"
                            tal:condition="python:'banner_title' in banner">
                           <span tal:replace="python: banner['banner_title']">Title</span>
-                      </h2>
+                      </h1>
 
                       <p class="bannerDescription"
                            tal:condition="python:'banner_description' in banner">
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                   <div class="contentTitle">
-                    <h2 tal:content="python: context.title"
+                    <h1 tal:content="python: context.title"
                         class="bannerTitle"
                         tal:attributes="style python: 'color: #fff' if circle_color in ['af0917'] else ''" />
                   </div>

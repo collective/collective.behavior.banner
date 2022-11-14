@@ -2,7 +2,7 @@
 from zope.i18nmessageid import MessageFactory
 
 
-_ = MessageFactory('collective.behavior.banner')
+_ = MessageFactory("collective.behavior.banner")
 
 
 def initialize(context):

@@ -1,3 +1,6 @@
--c constraints_plone52.txt
-setuptools
-zc.buildout
+-r https://dist.plone.org/release/6.0-dev/requirements.txt
+-c constraints.txt
+-e .[test] --install-option="--pre"
+
+# WSGI: A system for configuration of WSGI web components in declarative .ini format.
+Paste

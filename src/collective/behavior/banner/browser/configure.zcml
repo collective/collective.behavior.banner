@@ -5,9 +5,10 @@
     i18n_domain="collective.behavior.banner">
 
     <!-- Publish static files -->
-    <browser:resourceDirectory
+    <plone:static
       name="collective.behavior.banner"
       directory="static"
+      type="plone"
       />
 
     <utility

@@ -6,10 +6,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.behavior.banner">
 
-  <!-- Include configuration for dependencies listed in setup.py -->
-  <includeDependencies package="." />
-
-  <genericsetup:registerProfile
+   <genericsetup:registerProfile
       name="default"
       title="collective.behavior.banner"
       directory="profiles/default"

@@ -1,13 +1,10 @@
 <registry>
-
-  <records prefix="plone.resources/collective-behavior-banner"
-           interface='Products.CMFPlone.interfaces.IResourceRegistry'
-           remove="True">
-  </records>
-
-  <records prefix="plone.bundles/collective-behavior-banner-bundle"
+  <records interface="collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema"
+            remove="True" />
+  <records prefix="plone.bundles/collective_behavior_banner"
            interface='Products.CMFPlone.interfaces.IBundleRegistry'
-           remove="True">
-  </records>
-
+           remove="True" />
+  <records prefix="plone.bundles/responsiveslides"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'
+           remove="True" />
 </registry>

@@ -5,18 +5,12 @@ from collective.behavior.banner.testing import (  # noqa: E501
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.base.interfaces.resources import IBundleRegistry
 from plone.base.utils import get_installer
 from plone.registry.interfaces import IRegistry
-from Products.CMFPlone.interfaces import IResourceRegistry
 from zope.component import getUtility
 
 import unittest
-
-
-CSS = (
-    "++resource++collective.behavior.banner/banner.css",
-    "++resource++collective.behavior.banner/slider.css",
-)
 
 
 class TestSetup(unittest.TestCase):
@@ -44,15 +38,21 @@ class TestSetup(unittest.TestCase):
 
     def test_cssregistry(self):
         bundles = getUtility(IRegistry).collectionOfInterface(
-            IResourceRegistry, prefix="plone.resources"
+            IBundleRegistry, prefix="plone.bundles"
         )
-        bundle = bundles["collective-behavior-banner"]
+        self.assertIn("responsiveslides", bundles)
+        self.assertIn("collective_behavior_banner", bundles)
 
-        for id in CSS:
-            self.assertIn(id, bundle.css, "{0} not installed".format(id))
+        bundle = bundles["responsiveslides"]
 
         self.assertIn(
-            "++resource++collective.behavior.banner/responsiveslides.min.js", bundle.js
+            "++plone++collective.behavior.banner/responsiveslides.css",
+            bundle.csscompilation,
+            "{0} not installed".format(id),
+        )
+        self.assertIn(
+            "++plone++collective.behavior.banner/responsiveslides.min.js",
+            bundle.jscompilation,
         )
 
 
@@ -83,6 +83,7 @@ class TestUninstall(unittest.TestCase):
 
     def test_cssregistry_removed(self):
         bundles = getUtility(IRegistry).collectionOfInterface(
-            IResourceRegistry, prefix="plone.resources"
+            IBundleRegistry, prefix="plone.bundles"
         )
-        self.assertNotIn("collective-behavior-banner", bundles)
+        self.assertNotIn("collective_behavior_banner", bundles)
+        self.assertNotIn("responsiveslides", bundles)

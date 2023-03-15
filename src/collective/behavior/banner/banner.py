@@ -98,6 +98,7 @@ class IBanner(model.Schema):
         title=_("Show title in banner"),
         description=_("Display the title of the current context in the banner. Text and title of the banner will be ignored."),
         default=False,
+        required=False,
     )
 
     banner_title_circle_color = schema.Choice(

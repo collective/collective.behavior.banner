@@ -20,14 +20,14 @@ IGNORE_KEYS = ['banner_obj', 'textblock_css_class', 'banner_size']
 
 
 class BannerViewlet(ViewletBase):
-    """ A viewlet which renders the banner """
+    """A viewlet which renders the banner"""
 
-    banner_template = ViewPageTemplateFile('banner.pt')
-    slider_template = ViewPageTemplateFile('slider.pt')
+    banner_template = ViewPageTemplateFile("banner.pt")
+    slider_template = ViewPageTemplateFile("slider.pt")
 
     def render(self):
-        if '@@edit' in self.request.steps:
-            return ''
+        if "@@edit" in self.request.steps:
+            return ""
         return self.index()
 
     def index(self):
@@ -39,7 +39,8 @@ class BannerViewlet(ViewletBase):
 
     def find_banner(self):  # noqa: C901
         types = api.portal.get_registry_record(
-            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.types')  # noqa: E501
+            "collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.types"
+        )  # noqa: E501
         context = aq_inner(self.context)
         # first handle the obj itself
         if IBanner.providedBy(context):
@@ -82,43 +83,43 @@ class BannerViewlet(ViewletBase):
 
     def banner_scale(self):
         return api.portal.get_registry_record(
-            'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale',  # noqa: E501
-            default='preview'
+            "collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale",  # noqa: E501
+            default="preview",
         )
 
     def banner(self, obj):  # noqa: C901
-        """ return banner of this object """
+        """return banner of this object"""
         banner = {}
-        if getattr(obj, 'banner_image', False):
-            banner['banner_image'] = '{0}/@@images/banner_image'.format(
+        if getattr(obj, "banner_image", False):
+            banner["banner_image"] = "{0}/@@images/banner_image".format(
                 obj.absolute_url())
-            banner['banner_alt'] = getattr(obj, 'banner_alt', None)
+            banner["banner_alt"] = getattr(obj, "banner_alt", None)
         elif obj.banner_image_template:
             filename = obj.banner_image_template
-            banner['banner_image_template'] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
+            banner["banner_image_template"] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
         else:
             # no image => no banner
             return banner
 
         if obj.banner_title:
-            banner['banner_title'] = obj.banner_title
+            banner["banner_title"] = obj.banner_title
         if obj.banner_description:
             crop = Plone(self.context, self.request).cropText
-            banner['banner_description'] = crop(obj.banner_description, 400)
+            banner["banner_description"] = crop(obj.banner_description, 400)
         if obj.banner_text and obj.banner_text.output.strip():
-            banner['banner_text'] = obj.banner_text.output.strip()
+            banner["banner_text"] = obj.banner_text.output.strip()
         if obj.banner_link:
             to_obj = obj.banner_link.to_object
             if to_obj:
-                banner['banner_link'] = to_obj.absolute_url()
-                banner['banner_linktext'] = to_obj.Title()
+                banner["banner_link"] = to_obj.absolute_url()
+                banner["banner_linktext"] = to_obj.Title()
         if obj.banner_linktext:
-            banner['banner_linktext'] = obj.banner_linktext
+            banner["banner_linktext"] = obj.banner_linktext
 
         banner_text_position = getattr(obj, "banner_text_position", None)
-        banner['textblock_css_class'] = CSS_CLASS_MAPPING.get(banner_text_position, "")
-        banner['banner_size'] = obj.banner_size
-        banner['banner_obj'] = obj
+        banner["textblock_css_class"] = CSS_CLASS_MAPPING.get(banner_text_position, "")
+        banner["banner_size"] = obj.banner_size
+        banner["banner_obj"] = obj
         return banner
 
     def random_banner(self):
@@ -134,9 +135,9 @@ class BannerViewlet(ViewletBase):
         return banners
 
     def getVideoEmbedMarkup(self, url):
-        """ Build an iframe from a YouTube or Vimeo share url """
+        """Build an iframe from a YouTube or Vimeo share url"""
         # https://www.youtube.com/watch?v=Q6qYdJuWB6w
-        YOUTUBE_TEMPLATE = '''
+        YOUTUBE_TEMPLATE = """
             <iframe
                 width="660"
                 height="495"
@@ -144,9 +145,9 @@ class BannerViewlet(ViewletBase):
                 frameborder="0"
                 allowfullscreen>
             </iframe>
-        '''
+        """
         # https://vimeo.com/75721023
-        VIMEO_TEMPLATE = '''
+        VIMEO_TEMPLATE = """
             <iframe
                 src="//player.vimeo.com/video/{0}?title=0&amp;byline=0&amp;portrait=0"
                 width="660"
@@ -156,19 +157,19 @@ class BannerViewlet(ViewletBase):
                 mozallowfullscreen
                 allowfullscreen>
             </iframe>
-        '''
+        """
         try:
             parsed = urlparse(url)
         except AttributeError:
-            return ''
-        path = parsed.path.replace('/', '')
-        videoId = parsed.query.replace('v=', '')
-        if 'youtube' in parsed.netloc:
+            return ""
+        path = parsed.path.replace("/", "")
+        videoId = parsed.query.replace("v=", "")
+        if "youtube" in parsed.netloc:
             template = YOUTUBE_TEMPLATE
-        elif 'vimeo' in parsed.netloc:
+        elif "vimeo" in parsed.netloc:
             template = VIMEO_TEMPLATE
         else:
-            return ''
+            return ""
         # It so happens that path is needed by the Vimeo format,
         # while videoId is needed by the Youtube format, so only one
         # of the variables will have a useful value, depending on the player.

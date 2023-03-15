@@ -39,3 +39,9 @@ reports/
 !.gitkeep
 !.travis.yml
 !src/collective
+
+# mxdev
+.make-sentinels/
+sources/
+/*-mxdev.txt
+.installed.txt

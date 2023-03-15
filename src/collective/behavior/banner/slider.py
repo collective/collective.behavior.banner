@@ -10,43 +10,40 @@ from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope.component import adapter
-from zope.interface import provider
 from zope.interface import implementer
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
 class ISlider(model.Schema):
 
     model.fieldset(
-        'slider',
-        label=u'Slider',
+        "slider",
+        label="Slider",
         fields=[
-            'slider_relation',
-        ]
+            "slider_relation",
+        ],
     )
 
     slider_relation = RelationList(
-        title=_(u'Slider Banners'),
-        description=_(u'These banners will be used in the slider'),
+        title=_("Slider Banners"),
+        description=_("These banners will be used in the slider"),
         default=[],
-        value_type=RelationChoice(
-            source=CatalogSource(banner_has_image=True)
-        ),
+        value_type=RelationChoice(source=CatalogSource(banner_has_image=True)),
         required=False,
     )
     directives.widget(
-        'slider_relation',
+        "slider_relation",
         RelatedItemsFieldWidget,
         pattern_options={
-            'basePath': getNavigationRoot,
-            'mode': 'search',
-            }
-        )
+            "basePath": getNavigationRoot,
+            "mode": "search",
+        },
+    )
 
 
 @implementer(ISlider)
 @adapter(IDexterityContent)
 class Slider(object):
-
     def __init__(self, context):
         self.context = context

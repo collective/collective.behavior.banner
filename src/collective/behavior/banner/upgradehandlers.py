@@ -8,7 +8,7 @@ from zope.component import getUtility
 
 
 def upgrade_registry_for_banner_scale(context):
-    key_id = 'collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale'  # noqa: E501
+    key_id = "collective.behavior.banner.browser.controlpanel.IBannerSettingsSchema.banner_scale"  # noqa: E501
     registry = getUtility(IRegistry)
     records = registry.records
     if key_id in records:
@@ -16,10 +16,12 @@ def upgrade_registry_for_banner_scale(context):
 
     record = Record(
         field.Choice(
-            title=_(u'Banner scale'),
-            description=_(u'Scale at which banner images are displayed'),
+            title=_("Banner scale"),
+            description=_("Scale at which banner images are displayed"),
             required=True,
-            vocabulary='collective.behavior.banner.all_sizes',
-            default='preview'),
-        value='preview')
+            vocabulary="collective.behavior.banner.all_sizes",
+            default="preview",
+        ),
+        value="preview",
+    )
     records[key_id] = record

@@ -72,7 +72,7 @@ class IBanner(model.Schema):
 
     model.fieldset(
         "banner",
-        label=u"Banner",
+        label="Banner",
         fields=[
             "banner_show_content_title",
             "banner_title_circle_color",
@@ -91,7 +91,7 @@ class IBanner(model.Schema):
             "banner_text_position",
             "banner_hide",
             "banner_stop_inheriting",
-        ]
+        ],
     )
 
     banner_show_content_title = schema.Bool(
@@ -121,8 +121,8 @@ class IBanner(model.Schema):
     )
 
     banner_hide = schema.Bool(
-        title=_(u"Hide banner"),
-        description=_(u"This does not show the banner for this item."),
+        title=_("Hide banner"),
+        description=_("This does not show the banner for this item."),
         default=False,
         required=False,
     )
@@ -143,39 +143,39 @@ class IBanner(model.Schema):
     )
 
     banner_alt = schema.TextLine(
-        title=_(u"Banner image alt tag"),
-        description=u"",
+        title=_("Banner image alt tag"),
+        description="",
         required=False,
     )
 
     banner_title = schema.TextLine(
-        title=_(u"Banner Title"),
-        description=u"",
+        title=_("Banner Title"),
+        description="",
         required=False,
     )
 
     banner_description = schema.Text(
-        title=_(u"Banner Subtitle"),
-        description=u"",
+        title=_("Banner Subtitle"),
+        description="",
         required=False,
     )
 
     banner_text = RichText(
-        title=_(u"Banner Text"),
-        description=u"",
+        title=_("Banner Text"),
+        description="",
         required=False,
     )
 
     banner_link = RelationChoice(
-        title=_(u"Banner Link"),
-        description=u"",
+        title=_("Banner Link"),
+        description="",
         vocabulary="plone.app.vocabularies.Catalog",
         required=False,
     )
 
     banner_linktext = schema.TextLine(
-        title=_(u"Link caption"),
-        description=_(u"Caption for the link"),
+        title=_("Link caption"),
+        description=_("Caption for the link"),
         required=False,
     )
 
@@ -189,14 +189,20 @@ class IBanner(model.Schema):
     )
 
 
+
 @implementer(IBanner)
 @adapter(IDexterityContent)
 class Banner(object):
-
     def __init__(self, context):
         self.context = context
 
 
 @indexer(IBanner)
 def has_image(object, **kw):
-    return object.banner_image
+    return (
+        object.banner_image
+        or object.banner_title
+        or object.banner_description
+        or object.banner_text
+        or object.banner_link
+    )

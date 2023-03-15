@@ -3,3 +3,4 @@
 - Stefan Antonelli, stefan.antonelli@operun.de
 - Fulvio Casali, fulviocasali@gmail.com
 - Valentin Piret, valentin@affinitic.be
+- Peter Mathis, peter.mathis@kombinat.at

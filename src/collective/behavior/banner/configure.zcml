@@ -6,9 +6,6 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.behavior.banner">
 
-  <!-- Include configuration for dependencies listed in setup.py -->
-  <includeDependencies package="." />
-
   <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile

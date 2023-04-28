@@ -1,10 +1,3 @@
-.. image:: https://travis-ci.org/collective/collective.behavior.banner.svg?branch=master
-    :target: https://travis-ci.org/collective/collective.behavior.banner
-
-.. image:: https://coveralls.io/repos/github/collective/collective.behavior.banner/badge.svg?branch=master
-    :target: https://coveralls.io/github/collective/collective.behavior.banner?branch=master
-
-
 collective.behavior.banner
 ==========================
 
@@ -56,11 +49,11 @@ collective.behavior.banner is used on the following sites:
 Compatibility
 =============
 
-collective.behavior.banner works in Plone 4 and Plone 5.
+collective.behavior.banner works in Plone 4, 5 and 6.
 
-For Plone 4 use Version 0.2. For Plone 5 use 1.0b1 and higher.
-
-The branch `plone4 <https://github.com/collective/collective.behavior.banner/tree/plone4>`_ supports Plone 4 while the branch `master <https://github.com/collective/collective.behavior.banner/tree/master>`_ works in Plone 5 only.
+* Plone 6: 2.x
+* Plone 5: 1.x
+* Plone 4: 0.x
 
 
 Installation

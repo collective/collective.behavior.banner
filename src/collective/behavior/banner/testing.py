@@ -16,7 +16,7 @@ class CollectiveBehaviorBannerLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.behavior.banner)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'collective.behavior.banner:default')
+        applyProfile(portal, "collective.behavior.banner:default")
 
 
 COLLECTIVE_BEHAVIOR_BANNER_FIXTURE = CollectiveBehaviorBannerLayer()
@@ -24,13 +24,13 @@ COLLECTIVE_BEHAVIOR_BANNER_FIXTURE = CollectiveBehaviorBannerLayer()
 
 COLLECTIVE_BEHAVIOR_BANNER_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_BEHAVIOR_BANNER_FIXTURE,),
-    name='CollectiveBehaviorBannerLayer:IntegrationTesting'
+    name="CollectiveBehaviorBannerLayer:IntegrationTesting",
 )
 
 
 COLLECTIVE_BEHAVIOR_BANNER_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(COLLECTIVE_BEHAVIOR_BANNER_FIXTURE,),
-    name='CollectiveBehaviorBannerLayer:FunctionalTesting'
+    name="CollectiveBehaviorBannerLayer:FunctionalTesting",
 )
 
 

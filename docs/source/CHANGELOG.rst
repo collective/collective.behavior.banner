@@ -3,7 +3,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (2023-11-10)
 ----------------
 
 - Add support for Plone 6.

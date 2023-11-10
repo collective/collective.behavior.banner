@@ -3,10 +3,11 @@
 Changelog
 =========
 
-1.4 (unreleased)
+2.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add support for Plone 6.
+  [petschki]
 
 
 1.3 (2021-01-22)

@@ -14,7 +14,7 @@
 
     <div id="carousel"
          class="carousel slide"
-         data-bs-ride="carousel"
+         data-bs-pause="false"
          tal:attributes="id python: 'carousel_' + context.id">
 
       <ol class="carousel-indicators hidden-xs">
@@ -31,7 +31,6 @@
         <tal:loop tal:repeat="banner banners">
 
             <div class="carousel-item ${python: repeat.banner.start and 'active' or ''}"
-                 data-bs-interval="6000"
                  tal:define="has_image python:'banner_image' in banner;
                              has_url python:banner and 'banner_url' in banner;
                              has_fontcolor python:'banner_fontcolor' in banner;

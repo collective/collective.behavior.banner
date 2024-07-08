@@ -128,6 +128,8 @@ class BannerViewlet(ViewletBase):
         raw_banners = context.slider_relation
         for raw_banner in raw_banners:
             obj = raw_banner.to_object
+            if not obj:
+                continue
             banner = self.banner(obj)
             if banner:
                 banners.append(banner)

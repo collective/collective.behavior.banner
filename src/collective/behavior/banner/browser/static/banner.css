@@ -11,6 +11,13 @@
     display:block;
 }
 
+.portal-banner .bannerImage.minimal {
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center top;
+  object-position: center top;
+
 
 /* Slider overrides */
 #portal-slider.scrollable .items {

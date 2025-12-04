@@ -6,6 +6,7 @@
 <div id="portal-banner" class="principal portal-banner banner-monads-super-txt" role="complementary"
      tal:define="checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
                  has_image python:banner and 'banner_image' in banner;
+                 has_minimal_image python:banner and 'banner_image_minimal' in banner;
                  has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
                  show_content_title python: view.show_content_title();
                  show_content_title_class python: ' show-content-title' if show_content_title else '';
@@ -33,6 +34,11 @@
                              tal:condition="python:has_image"
                              tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
                                              alt python: banner.get('banner_alt', '')">
+
+                  <img class="bannerImageImage minimal"
+                     tal:condition="python: not has_image and not banner_image_template and has_image_minimal"
+                        tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
+                                        alt python: banner.get('banner_alt', '')">
                 </div>
 
                 <div class="bannerContent frame"

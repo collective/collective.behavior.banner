@@ -77,6 +77,7 @@ class IBanner(model.Schema):
             "banner_show_content_title",
             "banner_title_circle_color",
             "banner_image",
+            "banner_image_minimal",
             "banner_size",
             "banner_image_template",
             "banner_alt",
@@ -111,6 +112,11 @@ class IBanner(model.Schema):
 
     banner_image = namedfile.NamedBlobImage(
         title=_(u"Banner Image"),
+        required=False,
+    )
+
+    banner_image_minimal = namedfile.NamedBlobImage(
+        title=_(u"Banner Minimal Image"),
         required=False,
     )
 

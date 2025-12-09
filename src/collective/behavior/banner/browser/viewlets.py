@@ -97,6 +97,10 @@ class BannerViewlet(ViewletBase):
         elif obj.banner_image_template:
             filename = obj.banner_image_template
             banner["banner_image_template"] = self.context.absolute_url() + "/++resource++collective.behavior.banner/" + filename
+        elif getattr(obj, "banner_image_minimal", False):
+                banner["banner_image_minimal"] = "{0}/@@images/banner_image_minimal".format(
+                    obj.absolute_url())
+                banner["banner_alt"] = getattr(obj, "banner_alt", None)
         else:
             # no image => no banner
             return banner

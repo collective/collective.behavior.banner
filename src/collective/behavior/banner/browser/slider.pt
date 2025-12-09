@@ -1,117 +1,140 @@
 <div id="portal-slider"
      class="principal"
      role="complementary"
-     tal:define="banners python: view.random_banner();
-                 portal context/@@plone_portal_state/portal;
-                 context_state context/@@plone_context_state;
-                 checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
-                 can_edit python:checkPermission('Modify portal content', context);"
-     tal:condition="python: banners"
-     tal:attributes="class python: view.scroll and 'scrollable principal' or 'principal';"
-     i18n:domain="collective.behavior.banner">
+   tal:define="banners python: view.random_banner();
+  portal context/@@plone_portal_state/portal;
+  context_state context/@@plone_context_state;
+  checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
+  can_edit python:checkPermission('Modify portal content', context);"
+   tal:condition="python: banners"
+   tal:attributes="class python: view.scroll and 'scrollable principal' or 'principal';"
+   i18n:domain="collective.behavior.banner">
 
   <div class="gigantic">
 
     <div id="carousel"
          class="carousel slide"
          data-bs-pause="false"
-         tal:attributes="id python: 'carousel_' + context.id">
+       tal:attributes="id python: 'carousel_' + context.id">
 
       <ol class="carousel-indicators hidden-xs">
-          <li data-bs-target="#carousel"
-              tal:repeat="banner banners"
-              tal:attributes="data-bs-target python: '#carousel_' + context.id"
-              data-bs-slide-to="${python:repeat.banner.index}"
-              class="${python: repeat.banner.start and 'active' or ''}"></li>
-          <button class="flickity-play-button-container flickity-play-button paused"></button>
+        <li data-bs-target="#carousel"
+           tal:repeat="banner banners"
+           tal:attributes="data-bs-target python: '#carousel_' + context.id"
+            data-bs-slide-to="${python:repeat.banner.index}"
+            class="${python: repeat.banner.start and 'active' or ''}"></li>
+        <button class="flickity-play-button-container flickity-play-button paused"></button>
       </ol>
 
       <div class="carousel-inner">
 
         <tal:loop tal:repeat="banner banners">
 
-            <div class="carousel-item ${python: repeat.banner.start and 'active' or ''}"
-                 tal:define="has_image python:'banner_image' in banner;
-                             has_url python:banner and 'banner_url' in banner;
-                             has_fontcolor python:'banner_fontcolor' in banner;
-                             fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff';">
+          <div class="carousel-item ${python: repeat.banner.start and 'active' or ''}"
+             tal:define="has_image python:'banner_image' in banner;
+              has_image_minimal python:banner and 'banner_image_minimal' in banner;
+                has_url python:banner and 'banner_url' in banner;
+                  banner_scale python: banner['banner_size'];
+                    has_fontcolor python:'banner_fontcolor' in banner;
+                      fontcolor python:has_fontcolor and banner['banner_fontcolor'] + ' !important' or '#ffffff';">
 
-                <div class="bannerImage"
-                     tal:condition="python:has_image">
-                        <img class="bannerImageImage"
-                             tal:attributes="src python: banner['banner_image'] + '?v=' + banner['banner_obj'].ModificationDate();
-                                             alt banner/banner_alt">
+            <div class="bannerImage"
+               tal:condition="python:has_image">
+              <img class="bannerImageImage"
+                 tal:attributes="src python: banner['banner_image'] + '?v=' + banner['banner_obj'].ModificationDate();
+                  alt banner/banner_alt">
+            </div>
+            <div class="bannerImage">
+
+              <div class="bannerImageImage">
+                <svg class="monad lazyloaded" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg"
+                   tal:condition="python: not has_image and has_image_minimal"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <defs>
+                    <clipPath id="banner-monad-std-46396">
+                      <path
+                        d="M317.436 587.623C123.61 604.799-.032 490.34 41.273 331.972 82.58 173.603 198.868 18.788 355.19 47.07c156.323 28.283 323.885 192.1 320.085 305.011-3.803 112.91-164.013 218.365-357.839 235.542z"
+                        fill="#FFF"></path>
+                    </clipPath>
+                  </defs>
+                  <image
+                     tal:attributes="xlink:href python: banner['banner_image_minimal'] + '/' + banner_scale;
+                      data-href python: banner['banner_image_minimal'] + '/' + banner_scale"
+                    width="100%" height="100%" clip-path="url(#banner-monad-std-46396)"></image>
+                </svg>
+              </div>
+
+            </div>
+
+            <div class="bannerVideo"
+               tal:condition="python:has_url and not has_image">
+              <tal:iframe define="url banner/banner_url"
+                          replace="structure python:view.getVideoEmbedMarkup(url)">
+              </tal:iframe>
+            </div>
+
+            <div class="bannerContent frame">
+              <div class="bannerText"
+                 tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
+
+                <h1 class="bannerTitle"
+                   tal:condition="python:'banner_title' in banner">
+                  <span tal:replace="banner/banner_title">Title</span>
+                </h1>
+
+                <p class="bannerDescription"
+                   tal:condition="python:'banner_description' in banner">
+                  <tal:def tal:define="banner_desc banner/banner_description;">
+                    <span tal:replace="banner_desc" />
+                  </tal:def>
+                </p>
+
+                <div class="bannerLink"
+                   tal:condition="python:'banner_link' in  banner and 'banner_linktext' in banner">
+
+                  <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext"
+                     tal:content="banner/banner_linktext">
+                    Link
+                  </a>
+
                 </div>
 
-                <div class="bannerVideo"
-                     tal:condition="python:has_url and not has_image">
-                    <tal:iframe define="url banner/banner_url"
-                      replace="structure python:view.getVideoEmbedMarkup(url)">
-                    </tal:iframe>
-                </div>
-
-                <div class="bannerContent frame">
-                    <div class="bannerText"
-                         tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
-
-                        <h1 class="bannerTitle"
-                             tal:condition="python:'banner_title' in banner">
-                            <span tal:replace="banner/banner_title">Title</span>
-                        </h1>
-
-                        <p class="bannerDescription"
-                             tal:condition="python:'banner_description' in banner">
-                            <tal:def tal:define="banner_desc banner/banner_description;">
-                                <span tal:replace="banner_desc" />
-                            </tal:def>
-                        </p>
-
-                        <div class="bannerLink"
-                             tal:condition="python:'banner_link' in  banner and 'banner_linktext' in banner">
-
-                            <a href="" title="" tal:attributes="href banner/banner_link; title banner/banner_linktext"
-                                                tal:content="banner/banner_linktext">
-                                Link
-                            </a>
-
-                        </div>
-
-                        <div class="bannerBody"
-                           tal:condition="python:'banner_text' in banner">
+                <div class="bannerBody"
+                   tal:condition="python:'banner_text' in banner">
                            <span tal:replace="structure banner/banner_text">
                                  Text
                            </span>
-                        </div>
-
-                    </div>
-
-                    <div class="bannerEdit"
-                         tal:condition="python: can_edit">
-                        <ul>
-                            <li>
-                                <a href=""
-                                    tal:attributes="href python: context.absolute_url() + '/++add++banner'">
-                                    Add slider
-                                </a>
-                            </li>
-                            <li>
-                                <a href=""
-                                    tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'">
-                                    Edit this slider
-                                </a>
-                            </li>
-                            <li>
-                                <a href=""
-                                    tal:attributes="href python: context.absolute_url() + '/folder_contents'">
-                                    Manage sliders
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
                 </div>
 
+              </div>
+
+              <div class="bannerEdit"
+                 tal:condition="python: can_edit">
+                <ul>
+                  <li>
+                    <a href=""
+                       tal:attributes="href python: context.absolute_url() + '/++add++banner'">
+                      Add slider
+                    </a>
+                  </li>
+                  <li>
+                    <a href=""
+                       tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'">
+                      Edit this slider
+                    </a>
+                  </li>
+                  <li>
+                    <a href=""
+                       tal:attributes="href python: context.absolute_url() + '/folder_contents'">
+                      Manage sliders
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
             </div>
+
+          </div>
 
         </tal:loop>
 

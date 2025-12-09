@@ -1,119 +1,131 @@
 <tal:block
-    tal:define="banner python:view.find_banner()"
-    i18n:domain="collective.behavior.banner"
-    tal:condition="python: banner">
+   tal:define="banner python:view.find_banner()"
+   i18n:domain="collective.behavior.banner"
+   tal:condition="python: banner">
 
-<div id="portal-banner" class="principal portal-banner banner-monads-super-txt" role="complementary"
+  <div id="portal-banner" class="principal portal-banner banner-monads-super-txt" role="complementary"
      tal:define="checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
-                 has_image python:banner and 'banner_image' in banner;
-                 has_minimal_image python:banner and 'banner_image_minimal' in banner;
-                 has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
-                 show_content_title python: view.show_content_title();
-                 show_content_title_class python: ' show-content-title' if show_content_title else '';
-                 circle_color python: view.circle_color() if show_content_title else '';
-                 banner_image_template python: banner.get('banner_image_template');
-                 inherited python: banner['banner_obj'] != context;
-                 banner_scale python: banner['banner_size'];
-                 slider_scale_class python: ' slider-scale bleed' if banner_scale == 'slider' else ' banner-scale';
-                 ">
+    has_image python:banner and 'banner_image' in banner;
+    has_image_minimal python:banner and 'banner_image_minimal' in banner;
+    has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
+    show_content_title python: view.show_content_title();
+    show_content_title_class python: ' show-content-title' if show_content_title else '';
+    circle_color python: view.circle_color() if show_content_title else '';
+    banner_image_template python: banner.get('banner_image_template');
+    inherited python: banner['banner_obj'] != context;
+    banner_scale python: banner['banner_size'];
+    slider_scale_class python: ' slider-scale bleed' if banner_scale == 'slider' else ' banner-scale';
+    ">
 
     <div class="container"
-        tal:condition="python: banner">
+       tal:condition="python: banner">
 
-        <div class="gigantic"
-             tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
-            <div class="banner-wrapper">
+      <div class="gigantic"
+         tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
+        <div class="banner-wrapper">
+          <div class="bannerImage"
+             tal:condition="python: has_image or banner_image_template or has_image_minimal">
+            <img class="bannerImageImage"
+               tal:condition="python: not has_image and banner_image_template"
+               tal:attributes="src python: banner_image_template + '.jpg';
+              alt python: banner.get('banner_alt', '')">
+            <img class="bannerImageImage"
+               tal:condition="python:has_image"
+               tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
+                alt python: banner.get('banner_alt', '')">
 
-                <div class="bannerImage"
-                     tal:condition="python: has_image or banner_image_template">
-                        <img class="bannerImageImage"
-                             tal:condition="python: not has_image and banner_image_template"
-                             tal:attributes="src python: banner_image_template + '.jpg';
-                                             alt python: banner.get('banner_alt', '')">
-                        <img class="bannerImageImage"
-                             tal:condition="python:has_image"
-                             tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
-                                             alt python: banner.get('banner_alt', '')">
 
-                  <img class="bannerImageImage minimal"
-                     tal:condition="python: not has_image and not banner_image_template and has_image_minimal"
-                        tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
-                                        alt python: banner.get('banner_alt', '')">
-                </div>
+            <div class="bannerImageImage">
+            <svg class="monad lazyloaded" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg"
+                  tal:condition="python: not has_image and not banner_image_template and has_image_minimal"
+                 xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <clipPath id="banner-monad-std-46396">
+                  <path
+                    d="M317.436 587.623C123.61 604.799-.032 490.34 41.273 331.972 82.58 173.603 198.868 18.788 355.19 47.07c156.323 28.283 323.885 192.1 320.085 305.011-3.803 112.91-164.013 218.365-357.839 235.542z"
+                    fill="#FFF"></path>
+                </clipPath>
+              </defs>
+              <image
+                tal:attributes="xlink:href python: banner['banner_image_minimal'] + '/' + banner_scale;
+                                data-href python: banner['banner_image_minimal'] + '/' + banner_scale"
+                width="100%" height="100%" clip-path="url(#banner-monad-std-46396)"></image>
+            </svg>
+          </div>
+          </div>
+          <div class="bannerContent frame"
+             tal:condition="python: not show_content_title and has_bannertext">
 
-                <div class="bannerContent frame"
-                     tal:condition="python: not show_content_title and has_bannertext">
+            <div class="bannerText"
+               tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
 
-                  <div class="bannerText"
-                       tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
+              <h1 class="bannerTitle"
+                 tal:condition="python:'banner_title' in banner">
+                <span tal:replace="python: banner['banner_title']">Title</span>
+              </h1>
 
-                      <h1 class="bannerTitle"
-                           tal:condition="python:'banner_title' in banner">
-                          <span tal:replace="python: banner['banner_title']">Title</span>
-                      </h1>
+              <p class="bannerDescription"
+                 tal:condition="python:'banner_description' in banner">
+                <tal:def tal:define="banner_desc python:banner['banner_description'];">
+                  <span tal:replace="banner_desc" />
+                </tal:def>
+              </p>
 
-                      <p class="bannerDescription"
-                           tal:condition="python:'banner_description' in banner">
-                          <tal:def tal:define="banner_desc python:banner['banner_description'];">
-                              <span tal:replace="banner_desc" />
-                          </tal:def>
-                      </p>
+              <div class="bannerLink"
+                 tal:condition="python: 'banner_link' in banner">
 
-                      <div class="bannerLink"
-                           tal:condition="python: 'banner_link' in banner">
+                <p><a class="context" role="button" target="_blank" href="" title=""
+                   tal:attributes="href python: banner['banner_link']; title python: banner['banner_linktext']"
+                   tal:content="python: banner['banner_linktext']">
+                  Link
+                </a></p>
 
-                              <p><a class="context" role="button" target="_blank" href="" title=""
-                                    tal:attributes="href python: banner['banner_link']; title python: banner['banner_linktext']"
-                                    tal:content="python: banner['banner_linktext']">
-                                  Link
-                              </a></p>
+              </div>
 
-                      </div>
-
-                      <div class="bannerBody"
-                         tal:condition="python:'banner_text' in banner">
+              <div class="bannerBody"
+                 tal:condition="python:'banner_text' in banner">
                          <span tal:replace="structure python:banner['banner_text']">
                                Text
                          </span>
-                      </div>
-
-                  </div>
-                </div>
-
-                <div class="bannerContent"
-                     tal:condition="python: show_content_title">
-
-                  <div class="contain-shape" tal:condition="python: circle_color">
-                    <div class="hold-shape">
-                      <div class="shape-outer">
-                        <div class="fg-theme"
-                             tal:attributes="style python: 'color: #' + circle_color + ';; opacity: .9'">
-                          <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="256" cy="256" r="256" fill="currentColor" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="contentTitle">
-                    <h1 tal:content="python: context.title"
-                        class="bannerTitle"
-                        tal:attributes="style python: 'color: #fff' if circle_color in ['af0917'] else ''" />
-                  </div>
-
-                </div>
-
-                <div class="bannerEdit"
-                     tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
-                    <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
-                       i18n:translate="">
-                        Edit inherited banner
-                    </a>
-                </div>
+              </div>
 
             </div>
+          </div>
+
+          <div class="bannerContent"
+             tal:condition="python: show_content_title">
+
+            <div class="contain-shape" tal:condition="python: circle_color">
+              <div class="hold-shape">
+                <div class="shape-outer">
+                  <div class="fg-theme"
+                     tal:attributes="style python: 'color: #' + circle_color + ';; opacity: .9'">
+                    <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="256" cy="256" r="256" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contentTitle">
+              <h1 tal:content="python: context.title"
+                class="bannerTitle"
+                 tal:attributes="style python: 'color: #fff' if circle_color in ['af0917'] else ''" />
+            </div>
+
+          </div>
+
+          <div class="bannerEdit"
+             tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
+            <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
+               i18n:translate="">
+              Edit inherited banner
+            </a>
+          </div>
+
         </div>
+      </div>
     </div>
 
-</div>
+  </div>
 </tal:block>

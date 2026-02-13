@@ -77,7 +77,9 @@ class IBanner(model.Schema):
             "banner_show_content_title",
             "banner_title_circle_color",
             "banner_image",
-            "banner_image_minimal",
+            "banner_image_left",
+            "banner_image_main",
+            "banner_image_right",
             "banner_size",
             "banner_image_template",
             "banner_alt",
@@ -110,13 +112,25 @@ class IBanner(model.Schema):
         required=True,
     )
 
+    # Default banner image with one image
     banner_image = namedfile.NamedBlobImage(
         title=_(u"Banner Image"),
         required=False,
     )
 
-    banner_image_minimal = namedfile.NamedBlobImage(
-        title=_(u"Banner Minimal Image"),
+    # Alternative banner image with three images
+    banner_image_left = namedfile.NamedBlobImage(
+        title=_(u"Banner Left Image - (Main & right needed"),
+        required=False,
+    )
+
+    banner_image_main = namedfile.NamedBlobImage(
+        title=_(u"Banner Main Image - (Left & right needed"),
+        required=False,
+    )
+
+    banner_image_right = namedfile.NamedBlobImage(
+        title=_(u"Banner Right Image (Left & main needed"),
         required=False,
     )
 

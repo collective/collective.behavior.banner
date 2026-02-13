@@ -6,7 +6,9 @@
   <div id="portal-banner" class="principal portal-banner banner-monads-super-txt" role="complementary"
      tal:define="checkPermission python:context.restrictedTraverse('portal_membership').checkPermission;
     has_image python:banner and 'banner_image' in banner;
-    has_image_minimal python:banner and 'banner_image_minimal' in banner;
+    has_image_right python:banner and 'banner_image_right' in banner;
+    has_image_main python:banner and 'banner_image_main' in banner;
+    has_image_left python:banner and 'banner_image_left' in banner;
     has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
     show_content_title python: view.show_content_title();
     show_content_title_class python: ' show-content-title' if show_content_title else '';
@@ -24,7 +26,7 @@
          tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
         <div class="banner-wrapper">
           <div class="bannerImage"
-             tal:condition="python: has_image or banner_image_template or has_image_minimal">
+             tal:condition="python: has_image or banner_image_template or has_image_main">
             <img class="bannerImageImage"
                tal:condition="python: not has_image and banner_image_template"
                tal:attributes="src python: banner_image_template + '.jpg';
@@ -32,26 +34,25 @@
             <img class="bannerImageImage"
                tal:condition="python:has_image"
                tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
-                alt python: banner.get('banner_alt', '')">
+              alt python: banner.get('banner_alt', '')">
 
+            <div class="bannerImageImage three">
+                <img class="left"
+                   tal:condition="python:has_image_left"
+                   tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
+                  alt python: banner.get('banner_alt', '')">
 
-            <div class="bannerImageImage">
-            <svg class="monad lazyloaded" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg"
-                  tal:condition="python: not has_image and not banner_image_template and has_image_minimal"
-                 xmlns:xlink="http://www.w3.org/1999/xlink">
-              <defs>
-                <clipPath id="banner-monad-std-46396">
-                  <path
-                    d="M317.436 587.623C123.61 604.799-.032 490.34 41.273 331.972 82.58 173.603 198.868 18.788 355.19 47.07c156.323 28.283 323.885 192.1 320.085 305.011-3.803 112.91-164.013 218.365-357.839 235.542z"
-                    fill="#FFF"></path>
-                </clipPath>
-              </defs>
-              <image
-                tal:attributes="xlink:href python: banner['banner_image_minimal'] + '/' + banner_scale;
-                                data-href python: banner['banner_image_minimal'] + '/' + banner_scale"
-                width="100%" height="100%" clip-path="url(#banner-monad-std-46396)"></image>
-            </svg>
-          </div>
+                <img class="main"
+                   tal:condition="python:has_image_main"
+                   tal:attributes="src python: banner['banner_image_main'] + '/' + banner_scale;
+                    alt python: banner.get('banner_alt', '')">
+
+                <img class="right"
+                   tal:condition="python:has_image_right"
+                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
+                    alt python: banner.get('banner_alt', '')">
+              </div>
+            </div>
           </div>
           <div class="bannerContent frame"
              tal:condition="python: not show_content_title and has_bannertext">
@@ -127,5 +128,4 @@
       </div>
     </div>
 
-  </div>
 </tal:block>

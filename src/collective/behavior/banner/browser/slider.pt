@@ -63,8 +63,7 @@
 
                 <div class="bannerContent frame">
 
-                  <div class="bannerText"
-                     tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
+                  <div class="bannerText m-4">
 
                     <h1 class="bannerTitle"
                        tal:condition="python:'banner_title' in banner">

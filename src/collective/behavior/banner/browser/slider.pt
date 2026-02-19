@@ -51,9 +51,9 @@
               <div class="bannerImageImage three"
                   tal:condition="python:has_image_left and has_image_main and has_image_right"
               >
-                <img class="left"
-                   tal:condition="python:has_image_left"
-                   tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
+              <img class="right"
+                   tal:condition="python:has_image_right"
+                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
                     alt python: banner.get('banner_alt', '')">
 
                 <img class="main"
@@ -121,10 +121,12 @@
                   </div>
 
                 </div>
-                <img class="right"
-                   tal:condition="python:has_image_right"
-                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
+
+                <img class="left"
+                   tal:condition="python:has_image_left"
+                   tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
                     alt python: banner.get('banner_alt', '')">
+
               </div>
 
             </div>

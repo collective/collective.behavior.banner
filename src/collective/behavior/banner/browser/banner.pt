@@ -36,24 +36,91 @@
                tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;
               alt python: banner.get('banner_alt', '')">
 
-            <div class="bannerImageImage three">
-                <img class="left"
-                   tal:condition="python:has_image_left"
-                   tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
+            <div class="bannerImageImage three"
+              tal:condition="python:has_image_left and has_image_main and has_image_right">
+
+                <img class="right"
+                   tal:condition="python:has_image_right"
+                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
                   alt python: banner.get('banner_alt', '')">
+
+
 
                 <img class="main"
                    tal:condition="python:has_image_main"
                    tal:attributes="src python: banner['banner_image_main'] + '/' + banner_scale;
                     alt python: banner.get('banner_alt', '')">
 
-                <img class="right"
-                   tal:condition="python:has_image_right"
-                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
-                    alt python: banner.get('banner_alt', '')">
+                <div class="bannerContent frame"
+                 tal:condition="python: not show_content_title and has_bannertext">
+
+                <div class="bannerText"
+                   tal:attributes="class python: 'bannerText ' + banner['textblock_css_class']">
+
+                  <h1 class="bannerTitle"
+                     tal:condition="python:'banner_title' in banner">
+                    <span tal:replace="python: banner['banner_title']">Title</span>
+                  </h1>
+
+                  <p class="bannerDescription"
+                     tal:condition="python:'banner_description' in banner">
+                    <tal:def tal:define="banner_desc python:banner['banner_description'];">
+                      <span tal:replace="banner_desc" />
+                    </tal:def>
+                  </p>
+
+                  <div class="bannerLink"
+                     tal:condition="python: 'banner_link' in banner">
+
+                    <p><a class="context" role="button" target="_blank" href="" title=""
+                       tal:attributes="href python: banner['banner_link']; title python: banner['banner_linktext']"
+                       tal:content="python: banner['banner_linktext']">
+                      Link
+                    </a></p>
+
+                  </div>
+
+                  <div class="bannerBody"
+                     tal:condition="python:'banner_text' in banner">
+               <span tal:replace="structure python:banner['banner_text']">
+                     Text
+               </span>
+                  </div>
+
+                </div>
               </div>
+              <div class="bannerContent"
+                 tal:condition="python: show_content_title">
+
+                <div class="contain-shape" tal:condition="python: circle_color">
+                  <div class="hold-shape">
+                    <div class="shape-outer">
+                      <div class="fg-theme"
+                         tal:attributes="style python: 'color: #' + circle_color + ';; opacity: .9'">
+                        <svg class="shape abs-trbl" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="256" cy="256" r="256" fill="currentColor"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contentTitle">
+                  <h1 tal:content="python: context.title"
+                    class="bannerTitle"
+                     tal:attributes="style python: 'color: #fff' if circle_color in ['af0917'] else ''" />
+                </div>
+
+              </div>
+               <img class="left"
+                 tal:condition="python:has_image_left"
+                 tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
+                alt python: banner.get('banner_alt', '')">
+
+            </div>
+
             </div>
           </div>
+        <tal:banner_image tal:condition="python: has_image">
           <div class="bannerContent frame"
              tal:condition="python: not show_content_title and has_bannertext">
 
@@ -92,8 +159,10 @@
 
             </div>
           </div>
+        </tal:banner_image>
 
-          <div class="bannerContent"
+        <tal:banner_image tal:condition="python: has_image">
+        <div class="bannerContent"
              tal:condition="python: show_content_title">
 
             <div class="contain-shape" tal:condition="python: circle_color">
@@ -115,8 +184,9 @@
             </div>
 
           </div>
+        </tal:banner_image>
 
-          <div class="bannerEdit"
+        <div class="bannerEdit"
              tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
             <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
                i18n:translate="">

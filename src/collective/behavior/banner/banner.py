@@ -81,7 +81,6 @@ class IBanner(model.Schema):
             "banner_image_main",
             "banner_image_right",
             "banner_size",
-            "banner_image_template",
             "banner_alt",
             # "banner_url",
             "banner_title",
@@ -153,13 +152,6 @@ class IBanner(model.Schema):
         description=_(
             u"This stops inheriting banners for this item and all children."),
         default=False,
-        required=False,
-    )
-
-    banner_image_template = schema.Choice(
-        title=_("Neutral background image"),
-        description=_("Select a neutral background image as a alternative to uploading a Banner Image."),
-        vocabulary=IMAGE_TEMPLATE_OPTIONS,
         required=False,
     )
 

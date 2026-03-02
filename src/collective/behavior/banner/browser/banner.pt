@@ -13,7 +13,6 @@
     show_content_title python: view.show_content_title();
     show_content_title_class python: ' show-content-title' if show_content_title else '';
     circle_color python: view.circle_color() if show_content_title else '';
-    banner_image_template python: banner.get('banner_image_template');
     inherited python: banner['banner_obj'] != context;
     banner_scale python: banner['banner_size'];
     slider_scale_class python: ' slider-scale bleed' if banner_scale == 'slider' else ' banner-scale';
@@ -23,14 +22,10 @@
        tal:condition="python: banner">
 
       <div class="gigantic"
-         tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if (has_image or banner_image_template) else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
+         tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if has_image else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
         <div class="banner-wrapper">
           <div class="bannerImage"
-             tal:condition="python: has_image or banner_image_template or has_image_main">
-            <img class="bannerImageImage"
-               tal:condition="python: not has_image and banner_image_template"
-               tal:attributes="src python: banner_image_template + '.jpg';
-              alt python: banner.get('banner_alt', '')">
+             tal:condition="python: has_image or has_image_main">
             <img class="bannerImageImage"
                tal:condition="python:has_image"
                tal:attributes="src python: banner['banner_image'] + '/' + banner_scale;

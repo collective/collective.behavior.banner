@@ -9,6 +9,7 @@
     has_image_right python:banner and 'banner_image_right' in banner;
     has_image_main python:banner and 'banner_image_main' in banner;
     has_image_left python:banner and 'banner_image_left' in banner;
+    has_three_images python: has_image_left and has_image_main and has_image_right;
     has_bannertext python: banner.get('banner_title') or banner.get('banner_description') or banner.get('banner_text') or banner.get('banner_linktext');
     show_content_title python: view.show_content_title();
     show_content_title_class python: ' show-content-title' if show_content_title else '';
@@ -22,7 +23,10 @@
        tal:condition="python: banner">
 
       <div class="gigantic"
-         tal:attributes="class python: 'banner_container portal-banner gigantic' + show_content_title_class + slider_scale_class if has_image else 'banner_container banner_without_image portal-banner gigantic' + show_content_title_class + slider_scale_class">
+         tal:define="
+        base_classes python:'banner_container portal-banner gigantic' if has_image else 'banner_container banner_without_image portal-banner gigantic';
+        full_classes python:base_classes + (show_content_title_class or '') + (slider_scale_class or '')"
+         tal:attributes="class full_classes">
         <div class="banner-wrapper">
           <div class="bannerImage"
              tal:condition="python: has_image or has_image_main">
@@ -32,12 +36,12 @@
               alt python: banner.get('banner_alt', '')">
 
             <div class="bannerImageImage three"
-              tal:condition="python:has_image_left and has_image_main and has_image_right">
+               tal:condition="python:has_three_images">
 
-                <img class="right"
-                   tal:condition="python:has_image_right"
-                   tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
-                  alt python: banner.get('banner_alt', '')">
+              <img class="right"
+                 tal:condition="python:has_image_right"
+                 tal:attributes="src python: banner['banner_image_right'] + '/' + banner_scale;
+                alt python: banner.get('banner_alt', '')">
 
               <div class="bannerContent"
                  tal:condition="python: show_content_title">
@@ -63,20 +67,20 @@
               </div>
 
               <img class="main"
-                   tal:condition="python:has_image_main"
-                   tal:attributes="src python: banner['banner_image_main'] + '/' + banner_scale;
-                    alt python: banner.get('banner_alt', '')">
+                 tal:condition="python:has_image_main"
+                 tal:attributes="src python: banner['banner_image_main'] + '/' + banner_scale;
+                alt python: banner.get('banner_alt', '')">
 
 
-               <img class="left"
+              <img class="left"
                  tal:condition="python:has_image_left"
                  tal:attributes="src python: banner['banner_image_left'] + '/' + banner_scale;
                 alt python: banner.get('banner_alt', '')">
 
             </div>
 
-            </div>
           </div>
+        </div>
         <tal:banner_image tal:condition="python: has_image">
           <div class="bannerContent frame"
              tal:condition="python: not show_content_title and has_bannertext">
@@ -119,7 +123,7 @@
         </tal:banner_image>
 
         <tal:banner_image tal:condition="python: has_image">
-        <div class="bannerContent"
+          <div class="bannerContent"
              tal:condition="python: show_content_title">
 
             <div class="contain-shape" tal:condition="python: circle_color">
@@ -144,15 +148,15 @@
         </tal:banner_image>
 
         <div class="bannerEdit"
-             tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
-            <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
-               i18n:translate="">
-              Edit inherited banner
-            </a>
-          </div>
-
+           tal:condition="python: inherited and checkPermission('Modify portal content', banner['banner_obj'])">
+          <a tal:attributes="href python: banner['banner_obj'].absolute_url() + '/@@edit'"
+             i18n:translate="">
+            Edit inherited banner
+          </a>
         </div>
+
       </div>
     </div>
+  </div>
 
 </tal:block>

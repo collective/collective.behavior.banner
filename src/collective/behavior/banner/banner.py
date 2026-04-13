@@ -60,6 +60,7 @@ BANNER_CIRCLE_COLORS = SimpleVocabulary(
         SimpleTerm("de5e73", "de5e73", _("Himbeerrot (mittel)")),  # font-color: #000
         SimpleTerm("abacd2", "abacd2", _("Violettblau (hell)")),  # font-color: #000
         SimpleTerm("b5b7b8", "b5b7b8", _("DIPF-Grau (hell)")),  # font-color: #000
+        SimpleTerm("dbe1ed", "dbe1ed", _("DIPF-Bubble-Grau")),  # font-color: #000
         SimpleTerm("6794bc", "6794bc", _("Himmelblau (mittel)")),  # font-color: #000
         SimpleTerm("7dba61", "7dba61", _("Maigrün (mittel)")),  # font-color: #000
         SimpleTerm("7f9716", "7f9716", _("Gelbgrün (dunkel)")),  # font-color: #000
